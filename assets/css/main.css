@@ -2649,6 +2649,16 @@ input, select, textarea {
 				width: 100%;
 			}
 
+			.image.new {
+				display:flex;
+				justify-content: center;
+				flex-shrink: 100;
+				align-items: center; 
+				margin: 2rem 0;
+								
+				
+			}
+
 		@media screen and (max-width: 736px) {
 
 			.image.fit {
