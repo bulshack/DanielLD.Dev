@@ -2597,10 +2597,12 @@ input, select, textarea {
 		position: relative;
 	}
 
-		.image img {
-			display: block;
+		.image img {		
+			display: block;		
+			max-width: 100%;
+			height: auto;				
 		}
-
+			
 		.image.left, .image.right {
 			max-width: 40%;
 		}
@@ -2654,10 +2656,18 @@ input, select, textarea {
 				justify-content: center;
 				flex-shrink: 100;
 				align-items: center; 
-				margin: 2rem 0;
-								
+				margin: 2rem 0;											
+			}
+
+
+			.image.avatar {
+				border-radius: 50%;
+				width: auto;
+				height: auto;
+				
 				
 			}
+
 
 		@media screen and (max-width: 736px) {
 
@@ -2667,8 +2677,7 @@ input, select, textarea {
 
 			.image.main {
 				margin: 2rem 0;
-			}
-
+			}			
 		}
 
 	a.image {
