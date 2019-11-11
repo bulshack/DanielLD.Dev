@@ -144,7 +144,7 @@ input, select, textarea {
 		}
 
 	body {
-		color: #eeeeee;
+		color: #ffffff;
 	}
 
 	body, input, select, textarea {
@@ -4590,13 +4590,13 @@ input, select, textarea {
 		}
 
 		#navPanelToggle.alt {
-			background-color: rgba(255, 255, 255, 0.875);
+			background-color: rgba(70, 70, 70, 0.521);
 			box-shadow: 0 0.125rem 0.75rem 0 rgba(30, 37, 45, 0.25);
-			color: #212931;
+			color: #fffffff1;
 		}
 
 			#navPanelToggle.alt:hover {
-				background-color: #ffffff;
+				background-color: #f3f3f393;
 			}
 
 		@media screen and (max-width: 980px) {
@@ -4627,7 +4627,7 @@ input, select, textarea {
 		transition: transform 0.5s ease, box-shadow 0.5s ease, visibility 0.5s;
 		display: none;
 		-webkit-overflow-scrolling: touch;
-		background: #ffffff;
+		background: #222121;
 		box-shadow: none;
 		color: #212931;
 		height: 100%;
