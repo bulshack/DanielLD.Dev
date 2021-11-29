@@ -29,8 +29,13 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;}
 
+
+
+
 body {
-	line-height: 1;
+	line-height: 1; 
+	cursor: crosshair
+	
 }
 
 ol, ul {
@@ -2636,6 +2641,14 @@ input, select, textarea {
 			.image.fit img {
 				width: 100%;
 			}
+
+			.image.fitts img {
+				
+				display: block;
+				margin:  auto auto ;
+				width: 60%;
+			}
+
 
 		.image.main {
 			display: block;
