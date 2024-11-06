@@ -1,31 +1,36 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './NavBar.css';
 
 const NavBar = () => {
+    const navItems = [
+        { path: '/', label: 'Home' },
+        { path: '/about', label: 'About' },
+        { path: '/portfolio', label: 'Portfolio' },
+        { path: '/resume', label: 'Resume' },
+        { path: '/contact', label: 'Contact' },
+        { path: '/blog', label: 'Blog' },
+    ];
+
     return (
-        <nav className="navbar">
+        <nav className="navbar" aria-label="Main Navigation">
             <div className="logo">
-              {/* Insert your logo image here */}
-              <img src="path_to_your_logo_image" alt="logo" />
-              <h1>Daniel Lopez</h1>
+                <img src="path_to_your_logo_image" alt="Daniel Lopez Logo" />
+                <h1>Daniel Lopez</h1>
             </div>
             <ul className="navbar-nav">
-                <li className="nav-item">
-                    <Link to="/" className="nav-link">Home</Link>
-                </li>
-                <li className="nav-item">
-                    <Link to="/about" className="nav-link">About</Link>
-                </li>
-                <li className="nav-item">
-                    <Link to="/portfolio" className="nav-link">Portfolio</Link>
-                </li>
-                <li className="nav-item">
-                    <Link to="/contact" className="nav-link">Contact</Link>
-                </li>
-                <li className="nav-item">
-                    <Link to="/Blog" className="nav-link">Blog</Link>
-                </li>
+                {navItems.map((item, index) => (
+                    <li key={index} className="nav-item">
+                        <NavLink 
+                            to={item.path} 
+                            className="nav-link" 
+                            activeClassName="active"
+                            exact
+                        >
+                            {item.label}
+                        </NavLink>
+                    </li>
+                ))}
             </ul>
         </nav>
     );
