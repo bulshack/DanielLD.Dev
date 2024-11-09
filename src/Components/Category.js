@@ -1,54 +1,144 @@
-// Category.js
-
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import ProjectCard from './ProjectCard';
-import './Portfolio.css';
+import './Category.css';
+import { motion } from 'framer-motion';
 
 const Category = ({ category }) => {
-  const categoryRef = useRef(null);
+  const gridRef = useRef(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [supportsHover, setSupportsHover] = useState(true);
 
-  // Function to scroll left
+  // State variables for arrow animations
+  const [leftArrowAnimation, setLeftArrowAnimation] = useState('initial');
+  const [rightArrowAnimation, setRightArrowAnimation] = useState('initial');
+
+  useEffect(() => {
+    const hoverQuery = window.matchMedia('(hover: hover)');
+    setSupportsHover(hoverQuery.matches);
+
+    const handleHoverChange = (e) => {
+      setSupportsHover(e.matches);
+    };
+
+    if (hoverQuery.addEventListener) {
+      hoverQuery.addEventListener('change', handleHoverChange);
+    } else if (hoverQuery.addListener) {
+      // For Safari and older browsers
+      hoverQuery.addListener(handleHoverChange);
+    }
+
+    return () => {
+      if (hoverQuery.removeEventListener) {
+        hoverQuery.removeEventListener('change', handleHoverChange);
+      } else if (hoverQuery.removeListener) {
+        hoverQuery.removeListener(handleHoverChange);
+      }
+    };
+  }, []);
+
+  const updateScrollButtons = () => {
+    const { scrollLeft, scrollWidth, clientWidth } = gridRef.current;
+    setCanScrollLeft(scrollLeft > 0);
+    setCanScrollRight(scrollLeft + clientWidth < scrollWidth);
+  };
+
+  useEffect(() => {
+    const grid = gridRef.current;
+    updateScrollButtons();
+
+    grid.addEventListener('scroll', updateScrollButtons);
+    window.addEventListener('resize', updateScrollButtons);
+
+    return () => {
+      grid.removeEventListener('scroll', updateScrollButtons);
+      window.removeEventListener('resize', updateScrollButtons);
+    };
+  }, []);
+
   const scrollLeft = () => {
-    if (categoryRef.current) {
-      const scrollAmount = categoryRef.current.clientWidth;
-      categoryRef.current.scrollBy({
-        left: -scrollAmount,
-        behavior: 'smooth',
-      });
-    }
+    gridRef.current.scrollBy({
+      left: -gridRef.current.clientWidth * 0.9,
+      behavior: 'smooth',
+    });
+    setLeftArrowAnimation('clicked');
   };
 
-  // Function to scroll right
   const scrollRight = () => {
-    if (categoryRef.current) {
-      const scrollAmount = categoryRef.current.clientWidth;
-      categoryRef.current.scrollBy({
-        left: scrollAmount,
-        behavior: 'smooth',
-      });
-    }
+    gridRef.current.scrollBy({
+      left: gridRef.current.clientWidth * 0.9,
+      behavior: 'smooth',
+    });
+    setRightArrowAnimation('clicked');
   };
 
-  // Limit the projects displayed using maxProjects
-  const displayedProjects = category.projects.slice(0, category.maxProjects);
+  const shouldShowButtons = isHovered || !supportsHover;
+
+  // Define the animation variants for the arrow icons
+  const arrowVariants = {
+    initial: { x: 0 },
+    clicked: {
+      x: [0, -5, 5, -5, 5, -3, 3, -1, 1, 0],
+      transition: { duration: 0.4 },
+    },
+  };
 
   return (
     <div className="category">
       <h2 className="category-title">{category.title}</h2>
-
-      <div className="scroll-buttons">
-        <button onClick={scrollLeft} className="scroll-button left">
-          {'<'}
-        </button>
-        <button onClick={scrollRight} className="scroll-button right">
-          {'>'}
-        </button>
-      </div>
-
-      <div className="project-grid" ref={categoryRef}>
-        {displayedProjects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
+      <div
+        className="project-grid-container"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {canScrollLeft && (
+          <motion.button
+            className="scroll-button left"
+            onClick={() => {
+              scrollLeft();
+            }}
+            initial={false}
+            animate={{ opacity: shouldShowButtons ? 1 : 0 }}
+            transition={{ duration: 0.3 }}
+            whileHover={{ scale: 1.1 }}
+          >
+            <motion.span
+              className="arrow"
+              variants={arrowVariants}
+              animate={leftArrowAnimation}
+              onAnimationComplete={() => setLeftArrowAnimation('initial')}
+            >
+              &#10094;
+            </motion.span>
+          </motion.button>
+        )}
+        <div className="project-grid" ref={gridRef}>
+          {category.projects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </div>
+        {canScrollRight && (
+          <motion.button
+            className="scroll-button right"
+            onClick={() => {
+              scrollRight();
+            }}
+            initial={false}
+            animate={{ opacity: shouldShowButtons ? 1 : 0 }}
+            transition={{ duration: 0.3 }}
+            whileHover={{ scale: 1.1 }}
+          >
+            <motion.span
+              className="arrow"
+              variants={arrowVariants}
+              animate={rightArrowAnimation}
+              onAnimationComplete={() => setRightArrowAnimation('initial')}
+            >
+              &#10095;
+            </motion.span>
+          </motion.button>
+        )}
       </div>
     </div>
   );

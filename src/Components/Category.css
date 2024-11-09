@@ -1,0 +1,82 @@
+/* Category.css */
+
+.category {
+    margin-bottom: 40px;
+  }
+  
+  .category-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .project-grid-container {
+    position: relative;
+  }
+  
+  .project-grid {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding-bottom: 10px;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+  }
+  
+  .project-grid::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .project-card {
+    flex: 0 0 auto;
+    width: 300px;
+    scroll-snap-align: start;
+  }
+  
+  .scroll-button {
+    /* Remove opacity and transition properties */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 60px;
+    background: rgba(20, 20, 20, 0.5);
+    border: none;
+    color: white;
+    cursor: pointer;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .scroll-button.left {
+    left: 0;
+  }
+  
+  .scroll-button.right {
+    right: 0;
+  }
+  
+  .scroll-button .arrow {
+    font-size: 2.5em; /* Increase size to match Netflix arrow */
+  }
+  
+  .project-grid-container:hover .scroll-button {
+    opacity: 1;
+  }
+  
+  @media (hover: none) {
+    .scroll-button {
+      opacity: 1;
+    }
+  }
+  
+  .scroll-button:hover {
+    background: rgba(20, 20, 20, 0.8);
+  }
+  
+  
+  
+  .scroll-button {
+    animation: buttonFadeIn 0.3s forwards;
+  }
+  

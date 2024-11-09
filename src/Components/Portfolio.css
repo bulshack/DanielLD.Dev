@@ -29,28 +29,3 @@
     width: 300px;
   }
   
-  .scroll-buttons {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    transform: translateY(-50%);
-    z-index: 2;
-  }
-  
-  .scroll-button {
-    position: absolute;
-    background: rgba(0, 0, 0, 0.5);
-    border: none;
-    color: white;
-    font-size: 2em;
-    cursor: pointer;
-    padding: 10px;
-  }
-  
-  .scroll-button.left {
-    left: 0;
-  }
-  
-  .scroll-button.right {
-    right: 0;
-  }
