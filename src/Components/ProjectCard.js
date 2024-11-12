@@ -4,6 +4,20 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './ProjectCard.css';
 
+// Import icons from react-icons
+import { FaReact, FaCss3Alt, FaJsSquare } from 'react-icons/fa';
+import { SiUnity, SiUnrealengine } from 'react-icons/si';
+
+// Map technology names to icons
+const techIcons = {
+  React: <FaReact />,
+  CSS: <FaCss3Alt />,
+  JavaScript: <FaJsSquare />,
+  Unity: <SiUnity />,
+  'Unreal Engine': <SiUnrealengine />,
+  // Add more mappings as needed
+};
+
 const ProjectCard = ({ project }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -12,6 +26,7 @@ const ProjectCard = ({ project }) => {
 
   return (
     <>
+      {/* Project Card */}
       <motion.div
         className="project-card"
         onClick={openModal}
@@ -26,19 +41,21 @@ const ProjectCard = ({ project }) => {
         />
         <div className="project-overlay">
           <h3 className="project-title">{project.title}</h3>
-          {/* Technologies Tags */}
+          {/* Technologies with Icons */}
           {project.technologies && (
             <div className="project-technologies">
               {project.technologies.map((tech, index) => (
-                <span key={index} className="project-tech-tag">
-                  {tech}
-                </span>
+                <div key={index} className="project-tech">
+                  {techIcons[tech] || tech}
+                  <span>{tech}</span>
+                </div>
               ))}
             </div>
           )}
         </div>
       </motion.div>
 
+      {/* Modal */}
       <AnimatePresence>
         {isModalOpen && (
           <motion.div
@@ -65,13 +82,14 @@ const ProjectCard = ({ project }) => {
               <div className="modal-content-wrapper">
                 <h2 className="modal-title">{project.title}</h2>
                 <p className="project-description">{project.description}</p>
-                {/* Technologies Tags */}
+                {/* Technologies with Icons in Modal */}
                 {project.technologies && (
                   <div className="project-technologies">
                     {project.technologies.map((tech, index) => (
-                      <span key={index} className="project-tech-tag">
-                        {tech}
-                      </span>
+                      <div key={index} className="project-tech">
+                        {techIcons[tech] || tech}
+                        <span>{tech}</span>
+                      </div>
                     ))}
                   </div>
                 )}

@@ -236,3 +236,28 @@
     right: 10px;
   }
 }
+
+
+/* Technologies Section */
+.project-technologies {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.project-tech {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 5px 10px;
+  margin: 5px 5px 0 0;
+  border-radius: 15px;
+  font-size: 0.8em;
+}
+
+.project-tech svg {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}

@@ -13,7 +13,7 @@ export const categories = [
           description: 'Description for Project One.',
           image: project1Image,
           link: 'https://example.com/project-one', // Add this line
-          technologies: ['React', 'CSS', 'JavaScript'], // We'll use this later
+          technologies: ['React', 'CSS', 'JavaScript', 'Unity'], // We'll use this later
         },
         {
           id: 2,
