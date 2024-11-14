@@ -6,7 +6,7 @@ import './ProjectCard.css';
 
 // Import icons from react-icons
 import { FaReact, FaCss3Alt, FaJsSquare } from 'react-icons/fa';
-import { SiUnity, SiUnrealengine } from 'react-icons/si';
+import { SiUnity, SiCsharp } from 'react-icons/si';
 
 // Map technology names to icons
 const techIcons = {
@@ -14,7 +14,7 @@ const techIcons = {
   CSS: <FaCss3Alt />,
   JavaScript: <FaJsSquare />,
   Unity: <SiUnity />,
-  'Unreal Engine': <SiUnrealengine />,
+  'C#': <SiCsharp />,
   // Add more mappings as needed
 };
 
@@ -80,19 +80,48 @@ const ProjectCard = ({ project }) => {
                 layoutId={`card-image-${project.id}`}
               />
               <div className="modal-content-wrapper">
+                {/* Project Title */}
                 <h2 className="modal-title">{project.title}</h2>
+
+                {/* Brief Description */}
                 <p className="project-description">{project.description}</p>
-                {/* Technologies with Icons in Modal */}
+
+                {/* Your Role */}
+                {project.role && (
+                  <p className="project-role">
+                    <strong>Role:</strong> {project.role}
+                  </p>
+                )}
+
+                {/* Your Contributions */}
+                {project.contributions && (
+                  <p className="project-contributions">
+                    <strong>Contributions:</strong> {project.contributions}
+                  </p>
+                )}
+
+                {/* Technologies Used */}
                 {project.technologies && (
                   <div className="project-technologies">
-                    {project.technologies.map((tech, index) => (
-                      <div key={index} className="project-tech">
-                        {techIcons[tech] || tech}
-                        <span>{tech}</span>
-                      </div>
-                    ))}
+                    <h3>Technologies:</h3>
+                    <div className="technologies-list">
+                      {project.technologies.map((tech, index) => (
+                        <div key={index} className="project-tech">
+                          {techIcons[tech] || tech}
+                          <span>{tech}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 )}
+
+                {/* Achievements */}
+                {project.achievements && (
+                  <p className="project-achievements">
+                    <strong>Achievements:</strong> {project.achievements}
+                  </p>
+                )}
+
                 {/* View Project Button */}
                 {project.link && (
                   <a

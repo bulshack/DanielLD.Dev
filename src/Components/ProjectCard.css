@@ -7,7 +7,7 @@
   height: 300px;
   overflow: hidden;
   border-radius: 8px;
-  background-color: #00000000;
+  background-color: transparent;
   box-shadow: 0 4px 8px rgba(107, 107, 107, 0.1);
   cursor: pointer;
   z-index: 1;
@@ -58,11 +58,31 @@
 .project-description {
   margin: 10px 0 0;
   font-size: 1em;
+  line-height: 1.5;
 }
 
-/* Technologies Tags */
+/* Technologies Section */
 .project-technologies {
+  display: flex;
+  flex-wrap: wrap;
   margin-top: 10px;
+}
+
+.project-tech {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 5px 10px;
+  margin: 5px 5px 0 0;
+  border-radius: 15px;
+  font-size: 0.9em;
+}
+
+.project-tech svg {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
 }
 
 .project-tech-tag {
@@ -83,36 +103,6 @@
   width: 100%;
   height: 100%;
   padding: 20px; /* Add padding to prevent content from touching the edges */
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* The Modal (background) */
-.project-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding: 20px; /* Prevent content from touching the edges */
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* The Modal (background) */
-.project-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding: 20px; /* Keep padding on large screens */
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 1000;
   display: flex;
@@ -151,7 +141,7 @@
   width: 100%;
   height: auto;
   object-fit: cover;
-  max-height: 40vh;
+  max-height: 50vh; /* Adjusted to 30% of viewport height */
 }
 
 /* Modal Content Wrapper */
@@ -159,6 +149,7 @@
   padding: 20px;
   overflow-y: auto;
   flex: 1;
+  max-height: 60vh; /* Limit the height to 60% of viewport */
 }
 
 /* Modal Title */
@@ -167,26 +158,24 @@
   font-size: 2em;
 }
 
-/* Project Description */
-.project-description {
+/* Project Role, Contributions, Achievements */
+.project-role,
+.project-contributions,
+.project-achievements {
   margin: 10px 0;
   font-size: 1em;
   line-height: 1.5;
 }
 
-/* Technologies Tags */
-.project-technologies {
-  margin-top: 10px;
+/* Technologies Section in Modal */
+.project-technologies h3 {
+  margin-bottom: 10px;
+  font-size: 1.2em;
 }
 
-.project-tech-tag {
-  display: inline-block;
-  background-color: rgba(255, 255, 255, 0.2);
-  color: #fff;
-  padding: 5px 10px;
-  margin: 5px 5px 0 0;
-  border-radius: 15px;
-  font-size: 0.8em;
+.technologies-list {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 /* View Project Button */
@@ -235,29 +224,4 @@
     top: 10px;
     right: 10px;
   }
-}
-
-
-/* Technologies Section */
-.project-technologies {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 10px;
-}
-
-.project-tech {
-  display: flex;
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.2);
-  color: #fff;
-  padding: 5px 10px;
-  margin: 5px 5px 0 0;
-  border-radius: 15px;
-  font-size: 0.8em;
-}
-
-.project-tech svg {
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
 }
