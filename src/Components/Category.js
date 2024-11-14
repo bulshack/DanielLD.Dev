@@ -1,9 +1,12 @@
+// Category.js
+
 import React, { useRef, useState, useEffect } from 'react';
 import ProjectCard from './ProjectCard';
 import './Category.css';
 import { motion } from 'framer-motion';
 
 const Category = ({ category }) => {
+  const { title, projects } = category;
   const gridRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -86,7 +89,7 @@ const Category = ({ category }) => {
 
   return (
     <div className="category">
-      <h2 className="category-title">{category.title}</h2>
+      <h2 className="category-title">{title}</h2>
       <div
         className="project-grid-container"
         onMouseEnter={() => setIsHovered(true)}
@@ -95,9 +98,7 @@ const Category = ({ category }) => {
         {canScrollLeft && (
           <motion.button
             className="scroll-button left"
-            onClick={() => {
-              scrollLeft();
-            }}
+            onClick={scrollLeft}
             initial={false}
             animate={{ opacity: shouldShowButtons ? 1 : 0 }}
             transition={{ duration: 0.3 }}
@@ -114,16 +115,18 @@ const Category = ({ category }) => {
           </motion.button>
         )}
         <div className="project-grid" ref={gridRef}>
-          {category.projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+          {projects.map((project) => (
+            <ProjectCard
+              key={`${project.id}-${title}`}
+              project={project}
+              uniqueId={`${project.id}-${title}`}
+            />
           ))}
         </div>
         {canScrollRight && (
           <motion.button
             className="scroll-button right"
-            onClick={() => {
-              scrollRight();
-            }}
+            onClick={scrollRight}
             initial={false}
             animate={{ opacity: shouldShowButtons ? 1 : 0 }}
             transition={{ duration: 0.3 }}

@@ -37,6 +37,7 @@ export const categories = [
           'Developed core gameplay mechanics, led the networking architecture, collaborated in all design elements, and implemented both player and enemy mechanics for a balanced and immersive experience.',
         achievements:
           'Delivered a fully functional prototype as part of an educational project, demonstrating the game’s potential and receiving positive feedback from instructors and peers, showcasing professional-level quality and depth',
+        tags: ['Game Projects', 'Education'],
       },
       {
         id: 2,
@@ -54,6 +55,7 @@ export const categories = [
           'Contributed to the project’s evolution from a purely educational tool to an engaging puzzle game, increasing its appeal and depth ',
           'Successfully implemented a unique block-based command system that enhances player engagement and strategic thinking.'
         ],
+        tags: ['Game Projects', 'Education'],
       },
       {
         id: 3,
@@ -67,6 +69,7 @@ export const categories = [
         contributions:
           'As the gameplay programmer, developed core systems including cat behavior reactions, UI functionality, code architecture, and asset integration to create a seamless and engaging player experience.',
         achievements: 'Successfully identified and refined the game’s core “fun factor” through extensive design collaboration and gameplay iteration, navigating design debates and technical challenges to achieve a highly engaging player experience.',
+        tags: ['Game Projects', '302 Interactive'],
       },
       {
         id: 4,
@@ -81,6 +84,7 @@ export const categories = [
           'Designed and implemented key systems, including the enemy spawner, enemy behavior cycles, and player interactions with both paparazzi and enemies. Developed the paparazzi photo cone dimensions for accurate scoring, and integrated a state machine system for streamlined player and enemy behavior management, ensuring responsive and dynamic gameplay.',
         achievements:
           'Engineered a responsive state machine architecture that improved performance and streamlined player-enemy interactions, increasing overall gameplay fluidity.',
+        tags: ['Game Projects', '302 Interactive'],
       },
       {
         id: 5,
@@ -94,6 +98,7 @@ export const categories = [
         contributions:
           'Developed core elements to simulate mini-golf physics, including shot indicators, force mechanics, and interactions with rogue-lite elements. Contributed to design decisions and asset implementation, ensuring cohesive gameplay and a polished player experience.',
         achievements: 'Achieved a balanced gameplay loop that maintains the fun of mini-golf while introducing new strategic layers, enhancing player satisfaction.',
+        tags: ['Game Projects', '302 Interactive'],
       },
       {
         id: 6,
@@ -108,6 +113,7 @@ export const categories = [
           'Developed a pseudo-randomized track generation tool using Bézier curve principles, ensuring each race offers a fresh challenge. Implemented key car mechanics, including collision handling and dash functionality, to enhance gameplay dynamics. Designed and integrated UI settings for video options, allowing players to customize resolution, refresh rate, and other visual elements.',
         achievements:
           'Enhanced player control and experience with responsive car mechanics and customizable UI settings, contributing to an immersive and personalized gameplay environment.',
+        tags: ['Game Projects', '302 Interactive'],
       },
       {
         id: 7,
@@ -122,6 +128,7 @@ export const categories = [
           'Engineered core networking functionalities, including room management, disconnection/reconnection handling, and player synchronization. Integrated chat, voice communication, and streaming, allowing seamless, real-time interactions. Implemented Ready Player Me for personalized avatars using facial data, enhancing player identity within the virtual environment.',
         achievements:
           'Successfully integrated third-party libraries (Agora, Ready Player Me, Photon Network) to create a multi-functional social space with advanced communication features. Developed reliable networking systems for consistent player experiences, facilitating interactive features like screen sharing and live TV streaming.',
+        tags: ['Game Projects', '302 Interactive'],
       },
       {
         id: 8,
@@ -136,25 +143,26 @@ export const categories = [
           'Handled all programming aspects, including asset integration, game controller setup, enemy implementation, UI design, and core game logic, delivering a complete and playable prototype.',
         achievements:
           'Received strong feedback from instructors and peers for developing a polished, playable prototype that demonstrated advanced programming and design skills within a collaborative student project.',
+        tags: ['Game Projects', 'Education'],
       },
-      
       { 
-      id: 9,
-      title: 'TTYL',
-      description:
-        'TTYL is a narrative-driven, time-management game that captures the chaos of teenage life. Players navigate the social world of a high schooler juggling friendships, romance, and family—while contending with a broken phone. With only outdated technology at your disposal, your social status depends on responding to texts and calls promptly. Maintain connections with friends, keep your boyfriend happy, and, crucially, stay on Mom’s good side to secure that long-awaited phone upgrade.',
-      image: project9Image,
-      link: 'https://example.com/ttyl',
-      technologies: ['Godot', 'GDScript'],
-      role: 'Quality Assurance and Design Feedback',
-      contributions:
-        'Tested gameplay extensively to ensure a smooth player experience, identified bugs, and provided design feedback to enhance narrative immersion and pacing.',
-      achievements:
-        [
-          'Contributed to a polished user experience by identifying and addressing key gameplay issues through thorough quality assurance.',
-          'Influenced design improvements, enhancing player engagement and narrative flow.',
-          'Received positive feedback for helping create a game that resonates with players through relatable scenarios and fast-paced interaction dynamics.',
-        ],
+        id: 9,
+        title: 'TTYL',
+        description:
+          'TTYL is a narrative-driven, time-management game that captures the chaos of teenage life. Players navigate the social world of a high schooler juggling friendships, romance, and family—while contending with a broken phone. With only outdated technology at your disposal, your social status depends on responding to texts and calls promptly. Maintain connections with friends, keep your boyfriend happy, and, crucially, stay on Mom’s good side to secure that long-awaited phone upgrade.',
+        image: project9Image,
+        link: 'https://example.com/ttyl',
+        technologies: ['Godot', 'GDScript'],
+        role: 'Quality Assurance and Design Feedback',
+        contributions:
+          'Tested gameplay extensively to ensure a smooth player experience, identified bugs, and provided design feedback to enhance narrative immersion and pacing.',
+        achievements:
+          [
+            'Contributed to a polished user experience by identifying and addressing key gameplay issues through thorough quality assurance.',
+            'Influenced design improvements, enhancing player engagement and narrative flow.',
+            'Received positive feedback for helping create a game that resonates with players through relatable scenarios and fast-paced interaction dynamics.',
+          ],
+        tags: ['Game Projects', '302 Interactive'],
       },
       // ... Add more projects if needed
     ],
@@ -175,6 +183,7 @@ export const categories = [
         contributions:
           'Engineered a high-performance networking solution, managing real-time data flow at 240Hz to maintain smooth interactions and avoid motion sickness. Integrated NatNet cameras and connected data streams through a UDP server to Unity clients, ensuring synchronized AR/VR experiences. Developed a JSON management system for seamless connection/disconnection handling and headset management, and conducted rigorous motion-to-photon latency testing to optimize user experience.',
         achievements: 'Contributed to a fully functional and socially interactive mixed reality experience that was launched successfully at AWE 2024, generating significant interest and positive feedback from attendees. Achieved high data transmission rate of 240Hz to deliver fluid, immersive interactions within mixed reality space.',
+        tags: ['Mixed Reality Projects', '302 Interactive'],
       },
       {
         id: 102,
@@ -193,6 +202,7 @@ export const categories = [
           'Delivered a fully interactive and immersive VR command center that enabled effective resource sharing and emergency preparedness training.',
           'Recognized for advancing virtual simulation solutions aligned with real-world emergency protocols and healthcare coordination needs.',
         ],
+        tags: ['Mixed Reality Projects'],
       },
       {
         id: 103,
@@ -207,6 +217,7 @@ export const categories = [
           'Developed the VR logic and implemented a realistic, interactive X-ray machine simulation. Managed networking aspects using Photon Networking, enabling multi-user interactions for collaborative training sessions.',
         achievements:
           'Enhanced student learning experiences by creating a high-fidelity X-ray simulation environment. Increased student confidence and proficiency in X-ray machine operation through hands-on practice in a safe, controlled setting.',
+        tags: ['Mixed Reality Projects'],
       },
       {
         id: 104,
@@ -224,6 +235,7 @@ export const categories = [
           'Contributed to the foundational prototype, which has since evolved into a full-fledged business, widely adopted by law enforcement agencies for tactical training.',
           'Delivered precise real-time feedback through advanced sensor integration, enabling officers to evaluate their performance within realistic, high-pressure scenarios.',
         ],
+        tags: ['Mixed Reality Projects'],
       },
       // ... Add more projects if needed
     ],
@@ -234,7 +246,7 @@ export const categories = [
     maxProjects: 100,
     projects: [
       {
-        id: 101,
+        id: 201,
         title: 'Split-Screen Graphics Exploration',
         description: 'This project focuses on exploring GPU capabilities and core computer graphics concepts using C++ and the DirectX API. It features a split-screen setup with two visually distinct themes: an expansive space universe and a Super Smash Brothers-inspired arena. Key elements include custom shader development, dynamic lighting, and real-time rendering optimizations to harness GPU performance. The FPS camera system allows smooth, free navigation, enabling an immersive exploration of both 3D worlds.',
         image: project201Image,
@@ -250,11 +262,14 @@ export const categories = [
           'Developed an FPS camera system, providing fluid, interactive navigation within diverse 3D environments.',
           'Gained hands-on experience with GPU programming and rendering techniques foundational to computer graphics.',
         ],
+        tags: ['Education'],
       },
     ],
   },
 ];
 
+
+export const projects = categories.flatMap((category) => category.projects);
 
 // ... Add more projects if needed
 
