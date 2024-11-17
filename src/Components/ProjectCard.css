@@ -1,22 +1,22 @@
-/* ProjectCard.css */
+/* src/styles/ProjectCard.css */
 
 /* Project Card Styles */
 .project-card {
   position: relative;
-  width: 100%;
-  height: 300px;
+  width: 300px; /* Adjust as needed */
+  height: 200px; /* Adjust as needed */
+  margin: 10px;
   overflow: hidden;
-  border-radius: 8px;
-  background-color: transparent;
-  box-shadow: 0 4px 8px rgba(107, 107, 107, 0.1);
+  border-radius: 12px;
   cursor: pointer;
-  z-index: 1;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  background-color: #fff; /* Optional: Add background color */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .project-card:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.63);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .project-image {
@@ -24,11 +24,6 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.3s ease;
-}
-
-.project-card:hover .project-image {
-  transform: scale(1.1);
 }
 
 .project-overlay {
@@ -36,256 +31,51 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  background: rgba(30, 30, 30, 0.85);
   color: #fff;
   padding: 15px;
   opacity: 0;
-  visibility: hidden;
-  transform: translateY(100%);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .project-card:hover .project-overlay {
   opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
 }
 
 .project-title {
   margin: 0;
-  font-size: 1.5em;
+  font-size: 1.3em;
+  font-weight: bold;
 }
 
 .project-company {
-  margin: 5px 0;
+  margin: 8px 0;
   font-size: 1em;
+  color: #ddd;
 }
 
 .project-technologies {
   display: flex;
   flex-wrap: wrap;
+  gap: 8px;
   margin-top: 10px;
 }
 
 .project-tech {
   display: flex;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.2);
-  color: #fff;
-  padding: 5px 10px;
-  margin: 5px 5px 0 0;
-  border-radius: 15px;
-  font-size: 0.9em;
-}
-
-.project-tech svg {
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
-}
-
-/* The Modal (background) */
-.project-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding: 20px;
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 1000;
-  overflow-y: auto; /* Enable vertical scrolling */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Modal Content */
-.project-modal-content {
-  position: relative;
-  background-color: #1e1e1e;
-  color: #fff;
-  border-radius: 8px;
-  max-width: 800px;
-  width: 100%;
-  max-height: 90vh; /* Limit height to 90% of viewport */
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.project-modal-close {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  color: #fff;
-  font-size: 30px;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 1;
-}
-
-/* Modal Content Wrapper */
-.modal-content-wrapper {
-  flex: 1;
-  overflow-y: auto; /* Enable scrolling within modal content */
-  padding: 20px;
-}
-
-/* Main Image */
-.modal-image {
-  width: 100%;
-  max-height: 300px;
-  object-fit: cover;
-  border-bottom: 1px solid #333;
-}
-
-/* Details Section */
-.modal-title {
-  margin-top: 20px;
-  font-size: 2em;
-}
-
-.modal-description,
-.modal-role,
-.modal-contributions,
-.modal-achievements,
-.modal-company {
-  margin: 10px 0;
-  font-size: 1em;
-  line-height: 1.5;
-}
-
-.modal-technologies,
-.modal-tags {
-  margin: 20px 0 10px;
-}
-
-.modal-technologies h3,
-.modal-tags h3 {
-  margin-bottom: 10px;
-  font-size: 1.2em;
-}
-
-.technologies-list,
-.tags-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.project-tag,
-.project-tech {
-  background-color: #333;
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 0.9em;
-}
-
-.project-tech svg {
-  margin-right: 5px;
-}
-
-/* View Project Button */
-.view-project-button {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 10px 15px;
-  background-color: #1db954;
-  color: white;
-  text-decoration: none;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 5px 12px;
   border-radius: 20px;
-  font-size: 1em;
-  transition: background-color 0.3s ease;
+  font-size: 0.9em;
+  transition: background 0.3s ease;
 }
 
-.view-project-button:hover {
-  background-color: #1ed760;
+.project-tech:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
-/* Responsive Design */
-
-/* Larger screens */
-@media (min-width: 800px) {
-  .project-modal-content {
-    flex-direction: row;
-    overflow: hidden;
-  }
-
-  .modal-image {
-    width: 50%;
-    max-height: none;
-    border-right: 1px solid #333;
-  }
-
-  .modal-content-wrapper {
-    width: 50%;
-    padding: 20px;
-    overflow-y: auto;
-  }
-}
-
-/* Smaller screens */
-@media (max-width: 799px) {
-  .project-modal-content {
-    flex-direction: column;
-  }
-
-  .modal-image {
-    width: 100%;
-    max-height: 300px;
-  }
-
-  .modal-content-wrapper {
-    padding: 15px;
-  }
-}
-
-/* Very small screens */
-@media (max-width: 600px) {
-  .project-modal {
-    padding: 10px;
-  }
-
-  .project-modal-close {
-    top: 5px;
-    right: 10px;
-    font-size: 25px;
-  }
-
-  .modal-title {
-    font-size: 1.5em;
-  }
-
-  .modal-description,
-  .modal-role,
-  .modal-contributions,
-  .modal-achievements,
-  .modal-company {
-    font-size: 0.9em;
-  }
-
-  .project-tech,
-  .project-tag {
-    font-size: 0.8em;
-  }
-
-  .view-project-button {
-    width: 100%;
-    text-align: center;
-    padding: 10px;
-    font-size: 0.9em;
-  }
-}
-
-/* Hide scrollbar in modal content for WebKit browsers */
-.modal-content-wrapper::-webkit-scrollbar {
-  display: none;
-}
-
-/* Hide scrollbar in modal content for other browsers */
-.modal-content-wrapper {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;     /* Firefox */
+.project-tech svg {
+  margin-right: 5px;
+  color: #1db954; /* Adjust icon color as needed */
 }

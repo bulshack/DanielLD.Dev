@@ -1,11 +1,11 @@
-// Category.js
+// src/components/Category.js
 
 import React, { useRef, useState, useEffect } from 'react';
 import ProjectCard from './ProjectCard';
 import Modal from './Modal';
 import './Category.css';
 import { motion, LayoutGroup } from 'framer-motion';
-import projectsData from '../Data/ProjectsData.js';
+
 
 const Category = ({ category }) => {
   const { title, projects } = category;
@@ -41,6 +41,7 @@ const Category = ({ category }) => {
   }, []);
 
   const updateScrollButtons = () => {
+    if (!gridRef.current) return;
     const { scrollLeft, scrollWidth, clientWidth } = gridRef.current;
     setCanScrollLeft(scrollLeft > 0);
     setCanScrollRight(scrollLeft + clientWidth < scrollWidth);
@@ -48,6 +49,7 @@ const Category = ({ category }) => {
 
   useEffect(() => {
     const grid = gridRef.current;
+    if (!grid) return;
     updateScrollButtons();
 
     grid.addEventListener('scroll', updateScrollButtons);
@@ -82,18 +84,34 @@ const Category = ({ category }) => {
   };
 
   const scrollLeftHandler = () => {
+    if (!gridRef.current) return;
     const scrollAmount = -gridRef.current.clientWidth * 0.9;
     const targetPosition = gridRef.current.scrollLeft + scrollAmount;
     smoothScroll(gridRef.current, targetPosition, 500);
   };
 
   const scrollRightHandler = () => {
+    if (!gridRef.current) return;
     const scrollAmount = gridRef.current.clientWidth * 0.9;
     const targetPosition = gridRef.current.scrollLeft + scrollAmount;
     smoothScroll(gridRef.current, targetPosition, 500);
   };
 
   const shouldShowButtons = isHovered || !supportsHover;
+
+  // Prevent background scrolling when modal is open
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [selectedProject]);
 
   return (
     <div className="category">
@@ -112,6 +130,7 @@ const Category = ({ category }) => {
               animate={{ opacity: shouldShowButtons ? 1 : 0 }}
               transition={{ duration: 0.3 }}
               whileHover={{ scale: 1.1 }}
+              aria-label="Scroll Left"
             >
               &#10094;
             </motion.button>
@@ -138,18 +157,27 @@ const Category = ({ category }) => {
               animate={{ opacity: shouldShowButtons ? 1 : 0 }}
               transition={{ duration: 0.3 }}
               whileHover={{ scale: 1.1 }}
+              aria-label="Scroll Right"
             >
               &#10095;
             </motion.button>
           )}
         </div>
         {/* Render Single Modal */}
-        {selectedProject && (
-          <Modal
-            project={selectedProject}
-            closeModal={() => setSelectedProject(null)}
-          />
-        )}
+        <Modal
+          project={selectedProject}
+          uniqueId={
+            selectedProject
+              ? `${selectedProject.id}-${projects.findIndex((p) => p.id === selectedProject.id)}`
+              : ''
+          }
+          isModalOpen={
+            selectedProject
+              ? `${selectedProject.id}-${projects.findIndex((p) => p.id === selectedProject.id)}`
+              : ''
+          }
+          closeModal={() => setSelectedProject(null)}
+        />
       </LayoutGroup>
     </div>
   );

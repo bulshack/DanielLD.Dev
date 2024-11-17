@@ -37,6 +37,13 @@ export const categories = [
         image: project1Image,
         link: '/Projects_Index/index.html',
         technologies: ['Unity', 'C#'],
+        media: [
+          mediaImage1,
+          mediaImage2,
+          mediaImage3,
+          mediaImage4,
+          // Add more media items
+        ],
         role: 'Lead Developer',
         contributions:
           'Developed core gameplay mechanics, led the networking architecture, collaborated in all design elements, and implemented both player and enemy mechanics for a balanced and immersive experience.',
@@ -52,6 +59,13 @@ export const categories = [
         image: project2Image,
         link: null,
         technologies: ['Unity', 'C#'],
+        media: [
+          mediaImage1,
+          mediaImage2,
+          mediaImage3,
+          mediaImage4,
+          // Add more media items
+        ],
         role: 'Gameplay Programmer',
         contributions:
           'Developed player movement and logic using a "player command" system, enabling precise sequential actions. Collaborated in designing and implementing each player command for an intuitive yet challenging gameplay experience.',
@@ -61,11 +75,7 @@ export const categories = [
           'Successfully implemented a unique block-based command system that enhances player engagement and strategic thinking.'
         ],
         tags: ['Game Projects', 'Education'],
-        media: [
         
-        
-          // Add more media items
-        ],
       },
       {
         id: 3,
@@ -75,6 +85,7 @@ export const categories = [
         image: project3Image,
         link: 'https://302interactive.itch.io/rub-a-bellys-cat',
         technologies: ['Unity', 'C#'],
+        media: [ mediaImage1],
         role: 'Gameplay Engineer and Designer',
         contributions:
           'As the gameplay programmer, developed core systems including cat behavior reactions, UI functionality, code architecture, and asset integration to create a seamless and engaging player experience.',
@@ -89,6 +100,7 @@ export const categories = [
         image: project4Image,
         link: 'https://302interactive.itch.io/paraparazzi',
         technologies: ['Unity', 'C#'],
+        media: [ mediaImage1],
         role: 'Gameplay Engineer and Designer',
         contributions:
           'Designed and implemented key systems, including the enemy spawner, enemy behavior cycles, and player interactions with both paparazzi and enemies. Developed the paparazzi photo cone dimensions for accurate scoring, and integrated a state machine system for streamlined player and enemy behavior management, ensuring responsive and dynamic gameplay.',
@@ -104,6 +116,7 @@ export const categories = [
         image: project5Image,
         link: 'https://302interactive.itch.io/rolf',
         technologies: ['Unity', 'C#'],
+        media: [ mediaImage1],
         role: 'Gameplay Engineer and Designer',
         contributions:
           'Developed core elements to simulate mini-golf physics, including shot indicators, force mechanics, and interactions with rogue-lite elements. Contributed to design decisions and asset implementation, ensuring cohesive gameplay and a polished player experience.',
@@ -118,6 +131,7 @@ export const categories = [
         image: project6Image,
         link: 'https://x.com/roguerally',
         technologies: ['Unity', 'C#'],
+        media: [ mediaImage1],
         role: 'Tools Engineer and Gameplay Programmer',
         contributions:
           'Developed a pseudo-randomized track generation tool using Bézier curve principles, ensuring each race offers a fresh challenge. Implemented key car mechanics, including collision handling and dash functionality, to enhance gameplay dynamics. Designed and integrated UI settings for video options, allowing players to customize resolution, refresh rate, and other visual elements.',
@@ -133,6 +147,7 @@ export const categories = [
         image: project7Image,
         link: 'https://thirdtimegames.com/introducing-the-suites/',
         technologies: ['Unity', 'C#'],
+        media: [ mediaImage1],
         role: 'Networking Engineer',
         contributions:
           'Engineered core networking functionalities, including room management, disconnection/reconnection handling, and player synchronization. Integrated chat, voice communication, and streaming, allowing seamless, real-time interactions. Implemented Ready Player Me for personalized avatars using facial data, enhancing player identity within the virtual environment.',
@@ -148,6 +163,7 @@ export const categories = [
         image: project8Image,
         link: 'https://example.com/project-c',
         technologies: ['Unity', 'C#'],
+        media: [ mediaImage1],
         role: 'Lead Programmer',
         contributions:
           'Handled all programming aspects, including asset integration, game controller setup, enemy implementation, UI design, and core game logic, delivering a complete and playable prototype.',
@@ -163,6 +179,7 @@ export const categories = [
         image: project9Image,
         link: 'https://302interactive.itch.io/ttyl',
         technologies: ['Godot', 'GDScript'],
+        media: [ mediaImage1],
         role: 'Quality Assurance and Design Feedback',
         contributions:
           'Tested gameplay extensively to ensure a smooth player experience, identified bugs, and provided design feedback to enhance narrative immersion and pacing.',
@@ -189,6 +206,7 @@ export const categories = [
         image: project101Image,
         link: 'https://fanport.drawandcode.com/',
         technologies: ['Unity', 'C#', 'UDP', 'NatNet', 'VR', 'AR'],
+        media: [ mediaImage1],
         role: 'Lead Networking Developer',
         contributions:
           'Engineered a high-performance networking solution, managing real-time data flow at 240Hz to maintain smooth interactions and avoid motion sickness. Integrated NatNet cameras and connected data streams through a UDP server to Unity clients, ensuring synchronized AR/VR experiences. Developed a JSON management system for seamless connection/disconnection handling and headset management, and conducted rigorous motion-to-photon latency testing to optimize user experience.',
@@ -203,6 +221,7 @@ export const categories = [
         image: project102Image,
         link: 'https://www.fox35orlando.com/video/874113',
         technologies: ['Unity', 'C#', 'VR'],
+        media: [ mediaImage1],
         role: 'VR Developer',
         contributions:
           'Implemented assets within the VR environment, coordinated with the art team for cohesive visual integration, and managed feature implementation. Developed the networking and management system to enable virtual resource exchange and communication, simulating a command center setup for hospitals.',
@@ -219,10 +238,11 @@ export const categories = [
         title: 'Nurse Trainer',
         description:
           'Nurse Train is a VR simulation project created to provide medical students with realistic training on the use of X-ray machines. Recognizing the limited hands-on time available with actual equipment, this immersive simulation replicates a clinical environment where students can learn X-ray machine operations, improve technique, and build confidence before handling real equipment.',
-        image: null,
+        image: project102Image,
         link: 'https://example.com/nurse-trainer',
         technologies: ['Unity', 'C#', 'AR'],
-        role: 'AR Developer',
+        media: [ mediaImage1],
+        role: 'VR Developer',
         contributions:
           'Developed the VR logic and implemented a realistic, interactive X-ray machine simulation. Managed networking aspects using Photon Networking, enabling multi-user interactions for collaborative training sessions.',
         achievements:
@@ -237,6 +257,7 @@ export const categories = [
         image: project104Image,
         link: 'https://decisiontactical.com/',
         technologies: ['Unity', 'C#'],
+        media: [ mediaImage1],
         role: 'Senior VR Engineer',
         contributions:
           'Engineered immersive and interactive scenarios, integrated AI-driven characters for dynamic responses, and optimized real-time performance. Developed a mixed reality system using laser-point detection and custom gun attachments that send signals to the server, accurately registering shot placement and actions within the virtual scenario.',
@@ -262,6 +283,7 @@ export const categories = [
         image: project201Image,
         link: 'https://example.com/fanport',
         technologies: ['C++', 'DirectX', 'Shaders', 'GPU Optimization'],
+        media: [ mediaImage1],
         role: 'Solo Developer',
         contributions:
           'Designed and implemented custom shaders and dynamic lighting effects to enhance visual realism across split-screen themes. Optimized GPU usage to achieve smooth real-time rendering, pushing the DirectX API to handle complex graphics tasks. Developed an FPS camera system, providing fluid, interactive navigation within diverse 3D environments. Gained hands-on experience with GPU programming and rendering techniques foundational to computer graphics.',

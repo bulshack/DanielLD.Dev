@@ -1,4 +1,4 @@
-// ProjectCard.js
+// src/components/ProjectCard.js
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -53,12 +53,14 @@ const ProjectCard = ({ project, uniqueId, setSelectedProject }) => {
       onClick={openModal}
       layoutId={`card-container-${uniqueId}`}
       whileHover={{ scale: 1.05 }}
+      transition={{ duration: 0.3 }}
     >
       <motion.img
         src={imageUrl}
         alt={project.title}
         className="project-image"
         layoutId={`card-image-${uniqueId}`}
+        loading="lazy"
       />
       <div className="project-overlay">
         <h3 className="project-title">{project.title}</h3>

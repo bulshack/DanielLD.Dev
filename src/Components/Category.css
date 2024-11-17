@@ -1,27 +1,17 @@
-/* Scroll Buttons */
-.scroll-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.8);
-  border: none;
-  border-radius: 50%;
-  padding: 10px;
-  cursor: pointer;
-  z-index: 2;
+/* src/styles/Category.css */
+
+/* Category Container */
+.category {
+  margin: 50px 0;
 }
 
-.scroll-button.left {
-  left: 10px;
-}
-
-.scroll-button.right {
-  right: 10px;
-}
-
-.arrow {
-  font-size: 24px;
+/* Category Title */
+.category-title {
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  text-align: center;
   color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Project Grid Container */
@@ -29,32 +19,58 @@
   position: relative;
   display: flex;
   align-items: center;
-  /* other styles as needed */
-}
-
-/* Disable interaction and adjust opacity when modal is open */
-.project-grid-container.modal-open {
-  pointer-events: none;
-  opacity: 0.5;
-  overflow: hidden;
 }
 
 /* Project Grid */
 .project-grid {
   display: flex;
-  overflow-x: scroll;
+  overflow-x: auto;
   scroll-behavior: smooth;
   padding: 10px 0;
-  /* other styles as needed */
+  gap: 20px;
+  width: 100%;
 }
 
-/* Hide scrollbar for WebKit browsers */
 .project-grid::-webkit-scrollbar {
   display: none;
 }
 
-/* Hide scrollbar for other browsers */
 .project-grid {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+/* Scroll Buttons */
+.scroll-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(30, 30, 30, 0.7);
+  border: none;
+  color: #fff;
+  padding: 15px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+  font-size: 1.8em;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.scroll-button.left {
+  left: -25px;
+}
+
+.scroll-button.right {
+  right: -25px;
+}
+
+.scroll-button:hover {
+  background: rgba(30, 30, 30, 0.9);
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Modal Open State */
+.modal-open .project-grid-container {
+  filter: blur(2px);
+  transition: filter 0.3s ease;
 }
