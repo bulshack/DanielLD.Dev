@@ -1,5 +1,4 @@
-// ProjectsData.js
-
+//Project Data
 import project1Image from './Images/0.jpg';
 import project2Image from './Images/1.jpeg';
 import project3Image from './Images/2.png';
@@ -10,14 +9,20 @@ import project7Image from './Images/6.png';
 import project8Image from './Images/7.png';
 import project9Image from './Images/8.png';
 
-
 // VR/AR Project Images
 import project101Image from './Images/101.png';
 import project102Image from './Images/102.jpg';
-//import project103Image from './Images/205.png';
 import project104Image from './Images/205.jpg';
-
 import project201Image from './Images/DirectX.jpeg';
+
+// Media Retro Electro Images
+import mediaImage1 from './media/retro_electro_media/image.png';
+import mediaImage2 from './media/retro_electro_media/image2.png';
+import mediaImage3 from './media/retro_electro_media/image3.png';
+import mediaImage4 from './media/retro_electro_media/image4.png';
+
+
+
 
 export const categories = [
   {
@@ -30,14 +35,14 @@ export const categories = [
         description:
           'Rite of Champions is a top-down action hack and slash multiplayer game where you take the role of a "Hero" that gains powers with different weapons. Each weapon grants the hero a new class, each with three unique abilities. The hero can traverse through the world combating different enemy types, take on various quests, or battle in the arena, all of which can be done online with friends.',
         image: project1Image,
-        link: 'https://example.com/rite-of-champions',
+        link: '/Projects_Index/index.html',
         technologies: ['Unity', 'C#'],
         role: 'Lead Developer',
         contributions:
           'Developed core gameplay mechanics, led the networking architecture, collaborated in all design elements, and implemented both player and enemy mechanics for a balanced and immersive experience.',
         achievements:
           'Delivered a fully functional prototype as part of an educational project, demonstrating the game’s potential and receiving positive feedback from instructors and peers, showcasing professional-level quality and depth',
-        tags: ['Game Projects', 'Education'],
+        tags: ['Game Projects'],
       },
       {
         id: 2,
@@ -45,7 +50,7 @@ export const categories = [
         description:
           'Retro Electro is a puzzle-oriented educational game focused on teaching the basics of programming by using drag-and-drop mechanics to give a list of directions to a robot with the goal of guiding it through a maze.',
         image: project2Image,
-        link: 'https://example.com/retro-electro',
+        link: null,
         technologies: ['Unity', 'C#'],
         role: 'Gameplay Programmer',
         contributions:
@@ -56,6 +61,11 @@ export const categories = [
           'Successfully implemented a unique block-based command system that enhances player engagement and strategic thinking.'
         ],
         tags: ['Game Projects', 'Education'],
+        media: [
+        
+        
+          // Add more media items
+        ],
       },
       {
         id: 3,
@@ -65,7 +75,7 @@ export const categories = [
         image: project3Image,
         link: 'https://302interactive.itch.io/rub-a-bellys-cat',
         technologies: ['Unity', 'C#'],
-        role: 'Gameplay Engeneer and Designer',
+        role: 'Gameplay Engineer and Designer',
         contributions:
           'As the gameplay programmer, developed core systems including cat behavior reactions, UI functionality, code architecture, and asset integration to create a seamless and engaging player experience.',
         achievements: 'Successfully identified and refined the game’s core “fun factor” through extensive design collaboration and gameplay iteration, navigating design debates and technical challenges to achieve a highly engaging player experience.',
@@ -77,9 +87,9 @@ export const categories = [
         description:
           'Dive into the high-stakes world of *Paparazzi*, a gravity-defying action game where players take on the role of a movie star in a daring freefall. As you plummet through dynamic cityscapes, strike iconic poses to capture picture-perfect shots while dodging relentless enemies determined to throw you off course. Rack up points by seizing every photo opportunity and avoid getting “bagged” by adversaries trying to ruin your shot. Miss too many photo ops, and you’ll have to reshoot the scene! Can you handle the pressure and achieve the perfect take in this thrilling celebrity escapade?',
         image: project4Image,
-        link: 'https://example.com/paraparazzi',
+        link: 'https://302interactive.itch.io/paraparazzi',
         technologies: ['Unity', 'C#'],
-        role: 'Gamemeplay Engeneer and Designer',
+        role: 'Gameplay Engineer and Designer',
         contributions:
           'Designed and implemented key systems, including the enemy spawner, enemy behavior cycles, and player interactions with both paparazzi and enemies. Developed the paparazzi photo cone dimensions for accurate scoring, and integrated a state machine system for streamlined player and enemy behavior management, ensuring responsive and dynamic gameplay.',
         achievements:
@@ -92,7 +102,7 @@ export const categories = [
         description:
           'Rolf is a unique twist on the mini-golf genre, combining precision gameplay with rogue-lite mechanics. Players progress through increasingly challenging holes, gaining buffs or debuffs after each hole that impact their strategy and performance. This unpredictable element adds depth to traditional mini-golf, requiring players to adapt on the fly, balancing accuracy and strategic thinking to reach the final hole before running out of strokes. Rolf offers a refreshing blend of skill-based and tactical gameplay, delivering an engaging experience beyond typical mini-golf.',
         image: project5Image,
-        link: 'https://example.com/rolf',
+        link: 'https://302interactive.itch.io/rolf',
         technologies: ['Unity', 'C#'],
         role: 'Gameplay Engineer and Designer',
         contributions:
@@ -106,7 +116,7 @@ export const categories = [
         description:
           'Rogue Rally is a 3D futuristic racing game that combines high-speed car mechanics with roguelike elements. Inspired by the iconic style of Mario Kart, Rogue Rally introduces randomized, pseudo-generated tracks that make each race unique, challenging players to adapt on the fly. With a mix of skill-based racing and strategic roguelike elements, players experience the thrill of unpredictability as they navigate obstacles, utilize power-ups, and compete for victory on ever-changing courses.',
         image: project6Image,
-        link: 'https://example.com/rogue-rally',
+        link: 'https://x.com/roguerally',
         technologies: ['Unity', 'C#'],
         role: 'Tools Engineer and Gameplay Programmer',
         contributions:
@@ -121,9 +131,9 @@ export const categories = [
         description:
           'The Suites is an interactive virtual world where players can personalize their own suites and invite friends for immersive social experiences. Inside their suites, players can engage in mini-games, watch live TV, share screens, and enjoy real-time communication, similar to the social functionalities of platforms like Discord but set within a 3D virtual space.',
         image: project7Image,
-        link: 'https://example.com/suites',
+        link: 'https://thirdtimegames.com/introducing-the-suites/',
         technologies: ['Unity', 'C#'],
-        role: 'Networking Engeneer',
+        role: 'Networking Engineer',
         contributions:
           'Engineered core networking functionalities, including room management, disconnection/reconnection handling, and player synchronization. Integrated chat, voice communication, and streaming, allowing seamless, real-time interactions. Implemented Ready Player Me for personalized avatars using facial data, enhancing player identity within the virtual environment.',
         achievements:
@@ -151,7 +161,7 @@ export const categories = [
         description:
           'TTYL is a narrative-driven, time-management game that captures the chaos of teenage life. Players navigate the social world of a high schooler juggling friendships, romance, and family—while contending with a broken phone. With only outdated technology at your disposal, your social status depends on responding to texts and calls promptly. Maintain connections with friends, keep your boyfriend happy, and, crucially, stay on Mom’s good side to secure that long-awaited phone upgrade.',
         image: project9Image,
-        link: 'https://example.com/ttyl',
+        link: 'https://302interactive.itch.io/ttyl',
         technologies: ['Godot', 'GDScript'],
         role: 'Quality Assurance and Design Feedback',
         contributions:
@@ -177,7 +187,7 @@ export const categories = [
         description:
           'Mixed reality platform unveiled at the Augmented World Expo (AWE) in LA. Designed to merge physical and digital worlds, FanPort combines large LED screens or projected displays with AR glasses to allow “holographic” content to seamlessly interact with the audience’s physical space. It creates a shared, social experience where users can interact with virtual objects, reach “into” the screen, and collaborate with others in real-time, enhancing immersive engagements for brand and entertainment experiences.',
         image: project101Image,
-        link: 'https://example.com/fanport',
+        link: 'https://fanport.drawandcode.com/',
         technologies: ['Unity', 'C#', 'UDP', 'NatNet', 'VR', 'AR'],
         role: 'Lead Networking Developer',
         contributions:
@@ -191,7 +201,7 @@ export const categories = [
         description:
           'The teams who took part in the annual Iron Dev competition at I/ITSEC 2020. Iron Dev is a team competition similar to competitive cooking shows, where teams will be given a challenge and “secret ingredient” to develop a training solution to improve warfighter readiness. Teams will consist of diverse members with skills in AR/VR development, simulation networking/distribution, graphic design, simulation development, and training development. Listen in as the teams share who they are and what they did for this year\'s competition.',
         image: project102Image,
-        link: 'https://example.com/medical-command-center',
+        link: 'https://www.fox35orlando.com/video/874113',
         technologies: ['Unity', 'C#', 'VR'],
         role: 'VR Developer',
         contributions:
@@ -209,7 +219,7 @@ export const categories = [
         title: 'Nurse Trainer',
         description:
           'Nurse Train is a VR simulation project created to provide medical students with realistic training on the use of X-ray machines. Recognizing the limited hands-on time available with actual equipment, this immersive simulation replicates a clinical environment where students can learn X-ray machine operations, improve technique, and build confidence before handling real equipment.',
-        image: '0',
+        image: null,
         link: 'https://example.com/nurse-trainer',
         technologies: ['Unity', 'C#', 'AR'],
         role: 'AR Developer',
@@ -225,7 +235,7 @@ export const categories = [
         description:
           'Decision Tactical Trainer started as a VR and mixed reality program developed to enhance tactical decision-making skills for law enforcement officers. The simulation recreates realistic, high-stakes scenarios on a large screen, where officers engage in situational exercises using advanced sensor integration. This system provides precise feedback on actions, helping officers improve response and decision-making in controlled, immersive environments.',
         image: project104Image,
-        link: 'https://example.com/decision-tactical-trainer',
+        link: 'https://decisiontactical.com/',
         technologies: ['Unity', 'C#'],
         role: 'Senior VR Engineer',
         contributions:

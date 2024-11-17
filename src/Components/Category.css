@@ -1,82 +1,60 @@
-/* Category.css */
+/* Scroll Buttons */
+.scroll-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 2;
+}
 
-.category {
-    margin-bottom: 40px;
-  }
-  
-  .category-title {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-  }
-  
-  .project-grid-container {
-    position: relative;
-  }
-  
-  .project-grid {
-    display: flex;
-    overflow-x: auto;
-    gap: 20px;
-    padding-bottom: 10px;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-  }
-  
-  .project-grid::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .project-card {
-    flex: 0 0 auto;
-    width: 300px;
-    scroll-snap-align: start;
-  }
-  
-  .scroll-button {
-    /* Remove opacity and transition properties */
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 60px;
-    background: rgba(20, 20, 20, 0.5);
-    border: none;
-    color: white;
-    cursor: pointer;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .scroll-button.left {
-    left: 0;
-  }
-  
-  .scroll-button.right {
-    right: 0;
-  }
-  
-  .scroll-button .arrow {
-    font-size: 2.5em; /* Increase size to match Netflix arrow */
-  }
-  
-  .project-grid-container:hover .scroll-button {
-    opacity: 1;
-  }
-  
-  @media (hover: none) {
-    .scroll-button {
-      opacity: 1;
-    }
-  }
-  
-  .scroll-button:hover {
-    background: rgba(20, 20, 20, 0.8);
-  }
-  
-  
-  
-  .scroll-button {
-    animation: buttonFadeIn 0.3s forwards;
-  }
-  
+.scroll-button.left {
+  left: 10px;
+}
+
+.scroll-button.right {
+  right: 10px;
+}
+
+.arrow {
+  font-size: 24px;
+  color: #333;
+}
+
+/* Project Grid Container */
+.project-grid-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  /* other styles as needed */
+}
+
+/* Disable interaction and adjust opacity when modal is open */
+.project-grid-container.modal-open {
+  pointer-events: none;
+  opacity: 0.5;
+  overflow: hidden;
+}
+
+/* Project Grid */
+.project-grid {
+  display: flex;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  padding: 10px 0;
+  /* other styles as needed */
+}
+
+/* Hide scrollbar for WebKit browsers */
+.project-grid::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for other browsers */
+.project-grid {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

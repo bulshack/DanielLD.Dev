@@ -2,8 +2,10 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import ProjectCard from './ProjectCard';
+import Modal from './Modal';
 import './Category.css';
-import { motion } from 'framer-motion';
+import { motion, LayoutGroup } from 'framer-motion';
+import projectsData from '../Data/ProjectsData.js';
 
 const Category = ({ category }) => {
   const { title, projects } = category;
@@ -12,10 +14,7 @@ const Category = ({ category }) => {
   const [canScrollRight, setCanScrollRight] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [supportsHover, setSupportsHover] = useState(true);
-
-  // State variables for arrow animations
-  const [leftArrowAnimation, setLeftArrowAnimation] = useState('initial');
-  const [rightArrowAnimation, setRightArrowAnimation] = useState('initial');
+  const [selectedProject, setSelectedProject] = useState(null); // Selected project for modal
 
   useEffect(() => {
     const hoverQuery = window.matchMedia('(hover: hover)');
@@ -60,89 +59,98 @@ const Category = ({ category }) => {
     };
   }, []);
 
-  const scrollLeft = () => {
-    gridRef.current.scrollBy({
-      left: -gridRef.current.clientWidth * 0.9,
-      behavior: 'smooth',
-    });
-    setLeftArrowAnimation('clicked');
+  // Custom smooth scrolling function
+  const smoothScroll = (element, to, duration) => {
+    const start = element.scrollLeft;
+    const change = to - start;
+    const startTime = performance.now();
+
+    const animateScroll = (currentTime) => {
+      const elapsedTime = currentTime - startTime;
+      const progress = Math.min(elapsedTime / duration, 1);
+      element.scrollLeft = start + change * easeInOutQuad(progress);
+      if (progress < 1) {
+        requestAnimationFrame(animateScroll);
+      }
+    };
+
+    requestAnimationFrame(animateScroll);
   };
 
-  const scrollRight = () => {
-    gridRef.current.scrollBy({
-      left: gridRef.current.clientWidth * 0.9,
-      behavior: 'smooth',
-    });
-    setRightArrowAnimation('clicked');
+  const easeInOutQuad = (t) => {
+    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+  };
+
+  const scrollLeftHandler = () => {
+    const scrollAmount = -gridRef.current.clientWidth * 0.9;
+    const targetPosition = gridRef.current.scrollLeft + scrollAmount;
+    smoothScroll(gridRef.current, targetPosition, 500);
+  };
+
+  const scrollRightHandler = () => {
+    const scrollAmount = gridRef.current.clientWidth * 0.9;
+    const targetPosition = gridRef.current.scrollLeft + scrollAmount;
+    smoothScroll(gridRef.current, targetPosition, 500);
   };
 
   const shouldShowButtons = isHovered || !supportsHover;
 
-  // Define the animation variants for the arrow icons
-  const arrowVariants = {
-    initial: { x: 0 },
-    clicked: {
-      x: [0, -5, 5, -5, 5, -3, 3, -1, 1, 0],
-      transition: { duration: 0.4 },
-    },
-  };
-
   return (
     <div className="category">
       <h2 className="category-title">{title}</h2>
-      <div
-        className="project-grid-container"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        {canScrollLeft && (
-          <motion.button
-            className="scroll-button left"
-            onClick={scrollLeft}
-            initial={false}
-            animate={{ opacity: shouldShowButtons ? 1 : 0 }}
-            transition={{ duration: 0.3 }}
-            whileHover={{ scale: 1.1 }}
-          >
-            <motion.span
-              className="arrow"
-              variants={arrowVariants}
-              animate={leftArrowAnimation}
-              onAnimationComplete={() => setLeftArrowAnimation('initial')}
+      <LayoutGroup>
+        <div
+          className={`project-grid-container ${selectedProject ? 'modal-open' : ''}`}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          {canScrollLeft && (
+            <motion.button
+              className="scroll-button left"
+              onClick={scrollLeftHandler}
+              initial={false}
+              animate={{ opacity: shouldShowButtons ? 1 : 0 }}
+              transition={{ duration: 0.3 }}
+              whileHover={{ scale: 1.1 }}
             >
               &#10094;
-            </motion.span>
-          </motion.button>
-        )}
-        <div className="project-grid" ref={gridRef}>
-          {projects.map((project) => (
-            <ProjectCard
-              key={`${project.id}-${title}`}
-              project={project}
-              uniqueId={`${project.id}-${title}`}
-            />
-          ))}
-        </div>
-        {canScrollRight && (
-          <motion.button
-            className="scroll-button right"
-            onClick={scrollRight}
-            initial={false}
-            animate={{ opacity: shouldShowButtons ? 1 : 0 }}
-            transition={{ duration: 0.3 }}
-            whileHover={{ scale: 1.1 }}
-          >
-            <motion.span
-              className="arrow"
-              variants={arrowVariants}
-              animate={rightArrowAnimation}
-              onAnimationComplete={() => setRightArrowAnimation('initial')}
+            </motion.button>
+          )}
+          <div className="project-grid" ref={gridRef}>
+            {projects.map((project, index) => {
+              const uniqueId = `${project.id}-${index}`;
+              console.log(`Rendering ProjectCard with uniqueId: ${uniqueId}`);
+              return (
+                <ProjectCard
+                  key={uniqueId}
+                  project={project}
+                  uniqueId={uniqueId}
+                  setSelectedProject={setSelectedProject}
+                />
+              );
+            })}
+          </div>
+          {canScrollRight && (
+            <motion.button
+              className="scroll-button right"
+              onClick={scrollRightHandler}
+              initial={false}
+              animate={{ opacity: shouldShowButtons ? 1 : 0 }}
+              transition={{ duration: 0.3 }}
+              whileHover={{ scale: 1.1 }}
             >
               &#10095;
-            </motion.span>
-          </motion.button>
+            </motion.button>
+          )}
+        </div>
+        {/* Render Single Modal */}
+        {selectedProject && (
+          <Modal
+            project={selectedProject}
+            closeModal={() => setSelectedProject(null)}
+          />
         )}
-      </div>
+      </LayoutGroup>
     </div>
   );
 };

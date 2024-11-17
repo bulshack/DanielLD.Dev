@@ -1,0 +1,80 @@
+.media-gallery {
+    padding: 20px;
+  }
+  
+  .media-thumbnails {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+  }
+  
+  .media-thumbnail {
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .media-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .media-content {
+    position: relative;
+  }
+  
+  .media-fullscreen-image,
+  .media-fullscreen-video {
+    max-width: 90vw;
+    max-height: 80vh;
+    border-radius: 8px;
+  }
+  
+  /* Navigation and Close Buttons */
+  .media-close-button,
+  .media-nav-button {
+    position: absolute;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 40px;
+    user-select: none;
+  }
+  
+  .media-close-button {
+    top: 20px;
+    right: 30px;
+  }
+  
+  .media-nav-button.prev {
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+  }
+  
+  .media-nav-button.next {
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 600px) {
+    .media-thumbnails {
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    }
+  
+    .media-close-button,
+    .media-nav-button {
+      font-size: 30px;
+    }
+  }
