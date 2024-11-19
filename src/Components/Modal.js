@@ -1,9 +1,9 @@
 // src/components/Modal.js
 
 import React, { useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion'; // Import from framer-motion
-import FocusLock from 'react-focus-lock'; // For accessibility
-import './Modal.css'; // Ensure this path is correct
+import { motion, AnimatePresence } from 'framer-motion';
+import FocusLock from 'react-focus-lock';
+import './Modal.css';
 import {
   FaReact,
   FaCss3Alt,
@@ -18,11 +18,14 @@ import {
   SiJira,
   SiConfluence,
 } from 'react-icons/si';
-import { Swiper, SwiperSlide } from 'swiper/react'; // Import Swiper React components
-import { Navigation, Pagination, A11y } from 'swiper/modules'; // Import Swiper modules from 'swiper/modules'
-import 'swiper/css'; // Import Swiper styles
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, A11y } from 'swiper/modules';
+import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+
+// Optional: Import a default image for fallback
+import defaultImage from '../Data/Images/0.png';
 
 // Map technology names to icons
 const techIcons = {
@@ -40,13 +43,10 @@ const techIcons = {
 };
 
 const Modal = ({ project, uniqueId, isModalOpen, closeModal }) => {
-  const hasGallery = project && project.media && project.media.length > 0;
+  const hasGallery = project?.media?.length > 0;
 
-  const imageUrl = project
-    ? project.image.startsWith('http')
-      ? project.image
-      : `${process.env.PUBLIC_URL}/${project.image}`
-    : '/default_image.jpg'; // Ensure this image exists in public
+  // Directly use the imported image path
+  const imageUrl = project?.image || defaultImage;
 
   // Handle Esc key to close modal
   useEffect(() => {
@@ -109,6 +109,7 @@ const Modal = ({ project, uniqueId, isModalOpen, closeModal }) => {
                         className="modal-image"
                         layoutId={`card-image-${uniqueId}`}
                         loading="lazy"
+                        onError={(e) => { e.target.src = defaultImage; }} // Fallback
                       />
                     </div>
 
@@ -126,23 +127,16 @@ const Modal = ({ project, uniqueId, isModalOpen, closeModal }) => {
                         <SwiperSlide key={index}>
                           {mediaItem.type === 'image' ? (
                             <img
-                              src={
-                                mediaItem.src.startsWith('http')
-                                  ? mediaItem.src
-                                  : `${process.env.PUBLIC_URL}/${mediaItem.src}`
-                              }
+                              src={mediaItem}
                               alt={`${project.title} media ${index + 1}`}
                               className="gallery-image"
                               loading="lazy"
+                              onError={(e) => { e.target.src = defaultImage; }} // Fallback
                             />
                           ) : mediaItem.type === 'video' ? (
                             <video
                               controls
-                              src={
-                                mediaItem.src.startsWith('http')
-                                  ? mediaItem.src
-                                  : `${process.env.PUBLIC_URL}/${mediaItem.src}`
-                              }
+                              src={mediaItem}
                               className="gallery-video"
                               preload="metadata"
                             >
@@ -224,6 +218,7 @@ const Modal = ({ project, uniqueId, isModalOpen, closeModal }) => {
                       className="modal-image"
                       layoutId={`card-image-${uniqueId}`}
                       loading="lazy"
+                      onError={(e) => { e.target.src = defaultImage; }} // Fallback
                     />
                   </div>
 
