@@ -37,7 +37,7 @@ export const categories = [
         image: project1Image,
         link: '/Projects_Index/index.html',
         technologies: ['Unity', 'C#'],
-        media: [],
+        media: [project1Image],
           // Add more media items]
         role: 'Lead Developer',
         contributions:
