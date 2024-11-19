@@ -1,5 +1,15 @@
+/* src/styles/MediaGallery.css */
+
 .media-gallery {
-    padding: 20px;
+    padding: 20px 0;
+  }
+  
+  .media-gallery h3 {
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    color: var(--color-accent);
+    font-family: var(--font-secondary);
+    text-align: center; /* Centered title */
   }
   
   .media-thumbnails {
@@ -8,10 +18,21 @@
     gap: 10px;
   }
   
+  .thumbnail-wrapper {
+    overflow: hidden;
+    border-radius: 8px;
+  }
+  
   .media-thumbnail {
     width: 100%;
-    border-radius: 8px;
+    height: 80px;
+    object-fit: cover;
     cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .media-thumbnail:hover {
+    transform: scale(1.05);
   }
   
   .media-modal {
@@ -21,7 +42,7 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.9);
-    z-index: 1001;
+    z-index: 1002; /* Ensure it's above the main modal */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -31,23 +52,27 @@
     position: relative;
   }
   
-  .media-fullscreen-image,
-  .media-fullscreen-video {
+  .media-fullscreen-image {
     max-width: 90vw;
     max-height: 80vh;
     border-radius: 8px;
   }
   
-  /* Navigation and Close Buttons */
-  .media-close-button,
-  .media-nav-button {
+  .media-nav-button,
+  .media-close-button {
     position: absolute;
-    color: #fff;
+    color: var(--color-primary-text);
     background: none;
     border: none;
     cursor: pointer;
     font-size: 40px;
     user-select: none;
+    transition: color 0.2s ease;
+  }
+  
+  .media-nav-button:hover,
+  .media-close-button:hover {
+    color: var(--color-muted-text);
   }
   
   .media-close-button {
@@ -67,14 +92,18 @@
     transform: translateY(-50%);
   }
   
-  /* Responsive Adjustments */
   @media (max-width: 600px) {
     .media-thumbnails {
       grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
     }
   
-    .media-close-button,
-    .media-nav-button {
+    .media-thumbnail {
+      height: 60px;
+    }
+  
+    .media-nav-button,
+    .media-close-button {
       font-size: 30px;
     }
   }
+  

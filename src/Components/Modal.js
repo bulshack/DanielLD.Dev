@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import FocusLock from 'react-focus-lock';
 import './Modal.css';
+import MediaGallery from './MediaGallery'; // Import the MediaGallery component
 import {
   FaReact,
   FaCss3Alt,
@@ -18,16 +19,10 @@ import {
   SiJira,
   SiConfluence,
 } from 'react-icons/si';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, A11y } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 
 // Optional: Import a default image for fallback
-import defaultImage from '../Data/Images/0.png';
+import defaultImage from '../Data/Images/default_image.png';
 
-// Map technology names to icons
 const techIcons = {
   React: <FaReact />,
   CSS: <FaCss3Alt />,
@@ -43,9 +38,10 @@ const techIcons = {
 };
 
 const Modal = ({ project, uniqueId, isModalOpen, closeModal }) => {
-  const hasGallery = project?.media?.length > 0;
+  const hasGallery = project?.media?.length > 0 && project.showGallery !== false;
+  const showVisitButton = project?.link && project.showVisitButton !== false;
 
-  // Directly use the imported image path
+  // Directly use the imported image path or fallback
   const imageUrl = project?.image || defaultImage;
 
   // Handle Esc key to close modal
@@ -96,192 +92,67 @@ const Modal = ({ project, uniqueId, isModalOpen, closeModal }) => {
                 &times;
               </button>
               {/* Modal Content */}
-              {hasGallery ? (
-                // Layout when gallery is present
-                <div className="modal-content-wrapper">
-                  {/* Left Side: Image and Gallery */}
-                  <div className="modal-left">
-                    {/* Main Image */}
-                    <div className="modal-image-container">
-                      <motion.img
-                        src={imageUrl}
-                        alt={project.title}
-                        className="modal-image"
-                        layoutId={`card-image-${uniqueId}`}
-                        loading="lazy"
-                        onError={(e) => { e.target.src = defaultImage; }} // Fallback
-                      />
-                    </div>
-
-                    {/* Media Gallery */}
-                    <Swiper
-                      modules={[Navigation, Pagination, A11y]}
-                      spaceBetween={50}
-                      slidesPerView={1}
-                      navigation
-                      pagination={{ clickable: true }}
-                      a11y={{ enabled: true }}
-                      className="modal-carousel"
-                    >
-                      {project.media.map((mediaItem, index) => (
-                        <SwiperSlide key={index}>
-                          {mediaItem.type === 'image' ? (
-                            <img
-                              src={mediaItem}
-                              alt={`${project.title} media ${index + 1}`}
-                              className="gallery-image"
-                              loading="lazy"
-                              onError={(e) => { e.target.src = defaultImage; }} // Fallback
-                            />
-                          ) : mediaItem.type === 'video' ? (
-                            <video
-                              controls
-                              src={mediaItem}
-                              className="gallery-video"
-                              preload="metadata"
-                            >
-                              Your browser does not support the video tag.
-                            </video>
-                          ) : null}
-                        </SwiperSlide>
+              <div className="modal-details">
+                <h2 className="modal-title" id={`modal-title-${uniqueId}`}>
+                  {project.title}
+                </h2>
+                <p className="modal-description">{project.description}</p>
+                {project.role && (
+                  <p className="modal-role">
+                    <strong>Role:</strong> {project.role}
+                  </p>
+                )}
+                {project.contributions && (
+                  <p className="modal-contributions">
+                    <strong>Contributions:</strong> {project.contributions}
+                  </p>
+                )}
+                {project.achievements && (
+                  <p className="modal-achievements">
+                    <strong>Achievements:</strong> {project.achievements}
+                  </p>
+                )}
+                {project.technologies && (
+                  <div className="modal-technologies">
+                    <h3>Technologies:</h3>
+                    <div className="technologies-list">
+                      {project.technologies.map((tech, index) => (
+                        <div key={index} className="project-tech">
+                          {techIcons[tech] || tech}
+                          <span>{tech}</span>
+                        </div>
                       ))}
-                    </Swiper>
+                    </div>
                   </div>
-
-                  {/* Right Side: Details */}
-                  <div className="modal-right">
-                    {/* Project Details */}
-                    <h2 className="modal-title" id={`modal-title-${uniqueId}`}>
-                      {project.title}
-                    </h2>
-                    <p className="modal-description">{project.description}</p>
-                    {project.role && (
-                      <p className="modal-role">
-                        <strong>Role:</strong> {project.role}
-                      </p>
-                    )}
-                    {project.contributions && (
-                      <p className="modal-contributions">
-                        <strong>Contributions:</strong> {project.contributions}
-                      </p>
-                    )}
-                    {project.achievements && (
-                      <p className="modal-achievements">
-                        <strong>Achievements:</strong> {project.achievements}
-                      </p>
-                    )}
-                    {project.technologies && (
-                      <div className="modal-technologies">
-                        <h3>Technologies:</h3>
-                        <div className="technologies-list">
-                          {project.technologies.map((tech, index) => (
-                            <div key={index} className="project-tech">
-                              {techIcons[tech] || tech}
-                              <span>{tech}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                    {project.tags && (
-                      <div className="modal-tags">
-                        <h3>Tags:</h3>
-                        <div className="tags-list">
-                          {project.tags.map((tag, index) => (
-                            <span key={index} className="project-tag">
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                    {project.link && (
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="view-project-button"
-                      >
-                        Visit Project
-                      </a>
-                    )}
+                )}
+                {project.tags && (
+                  <div className="modal-tags">
+                    <h3>Tags:</h3>
+                    <div className="tags-list">
+                      {project.tags.map((tag, index) => (
+                        <span key={index} className="project-tag">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ) : (
-                // Layout when no gallery is present
-                <div className="modal-content-wrapper no-gallery">
-                  {/* Main Image */}
-                  <div className="modal-image-container">
-                    <motion.img
-                      src={imageUrl}
-                      alt={project.title}
-                      className="modal-image"
-                      layoutId={`card-image-${uniqueId}`}
-                      loading="lazy"
-                      onError={(e) => { e.target.src = defaultImage; }} // Fallback
-                    />
-                  </div>
-
-                  {/* Details Section */}
-                  <div className="modal-details">
-                    {/* Project Details */}
-                    <h2 className="modal-title" id={`modal-title-${uniqueId}`}>
-                      {project.title}
-                    </h2>
-                    <p className="modal-description">{project.description}</p>
-                    {project.role && (
-                      <p className="modal-role">
-                        <strong>Role:</strong> {project.role}
-                      </p>
-                    )}
-                    {project.contributions && (
-                      <p className="modal-contributions">
-                        <strong>Contributions:</strong> {project.contributions}
-                      </p>
-                    )}
-                    {project.achievements && (
-                      <p className="modal-achievements">
-                        <strong>Achievements:</strong> {project.achievements}
-                      </p>
-                    )}
-                    {project.technologies && (
-                      <div className="modal-technologies">
-                        <h3>Technologies:</h3>
-                        <div className="technologies-list">
-                          {project.technologies.map((tech, index) => (
-                            <div key={index} className="project-tech">
-                              {techIcons[tech] || tech}
-                              <span>{tech}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                    {project.tags && (
-                      <div className="modal-tags">
-                        <h3>Tags:</h3>
-                        <div className="tags-list">
-                          {project.tags.map((tag, index) => (
-                            <span key={index} className="project-tag">
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                    {project.link && (
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="view-project-button"
-                      >
-                        Visit Project
-                      </a>
-                    )}
-                  </div>
-                </div>
-              )}
+                )}
+                {/* Integrate MediaGallery */}
+                {hasGallery && (
+                  <MediaGallery media={project.media} title={project.title} />
+                )}
+                {/* Visit Project Button */}
+                {showVisitButton && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="view-project-button"
+                  >
+                    Visit Project
+                  </a>
+                )}
+              </div>
             </motion.div>
           </FocusLock>
         </motion.div>

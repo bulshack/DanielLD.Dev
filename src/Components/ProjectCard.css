@@ -3,20 +3,21 @@
 /* Project Card Styles */
 .project-card {
   position: relative;
-  width: 300px; /* Adjust as needed */
-  height: 200px; /* Adjust as needed */
+  width: 350px; /* Increased from 300px */
+  height: 250px; /* Increased from 200px */
   margin: 10px;
   overflow: hidden;
   border-radius: 12px;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  background-color: #fff; /* Optional: Add background color */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+  background-color: var(--color-dark-gray); /* Unified background */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-family: var(--font-primary);
 }
 
 .project-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  transform: scale(1.07); /* Slightly larger scale */
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4); /* Stronger shadow */
 }
 
 .project-image {
@@ -24,6 +25,7 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  border-radius: 12px;
 }
 
 .project-overlay {
@@ -31,11 +33,12 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(30, 30, 30, 0.85);
-  color: #fff;
-  padding: 15px;
+  background: rgba(30, 30, 30, 0.9); /* Slightly more opaque */
+  color: var(--color-primary-text);
+  padding: 20px; /* Increased padding */
   opacity: 0;
   transition: opacity 0.3s ease;
+  border-radius: 0 0 12px 12px;
 }
 
 .project-card:hover .project-overlay {
@@ -44,14 +47,16 @@
 
 .project-title {
   margin: 0;
-  font-size: 1.3em;
+  font-family: var(--font-secondary);
+  font-size: 1.5em; /* Increased from 1.3em */
   font-weight: bold;
+  color: var(--color-primary-text);
 }
 
 .project-company {
   margin: 8px 0;
-  font-size: 1em;
-  color: #ddd;
+  font-size: 1em; /* Increased from var(--font-size-small) */
+  color: var(--color-muted-text);
 }
 
 .project-technologies {
@@ -65,9 +70,9 @@
   display: flex;
   align-items: center;
   background: rgba(255, 255, 255, 0.1);
-  padding: 5px 12px;
+  padding: 7px 15px; /* Increased padding */
   border-radius: 20px;
-  font-size: 0.9em;
+  font-size: 1em; /* Increased from var(--font-size-small) */
   transition: background 0.3s ease;
 }
 
@@ -77,5 +82,5 @@
 
 .project-tech svg {
   margin-right: 5px;
-  color: #1db954; /* Adjust icon color as needed */
+  color: var(--color-accent);
 }

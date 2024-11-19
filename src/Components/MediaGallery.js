@@ -1,8 +1,9 @@
-// MediaGallery.js
+// src/components/MediaGallery.js
 
 import React, { useState } from 'react';
 import './MediaGallery.css';
 import { motion, AnimatePresence } from 'framer-motion';
+import defaultImage from '../Data/Images/default_image.png'; // Ensure this path is correct
 
 const MediaGallery = ({ media, title }) => {
   const [selectedIndex, setSelectedIndex] = useState(null);
@@ -27,22 +28,14 @@ const MediaGallery = ({ media, title }) => {
     <div className="media-gallery">
       <h3>Gallery</h3>
       <div className="media-thumbnails">
-        {media.map((mediaItem, index) => (
+        {media.map((src, index) => (
           <div key={index} className="thumbnail-wrapper" onClick={() => openMedia(index)}>
-            {mediaItem.type === 'image' ? (
-              <img
-                src={mediaItem.src}
-                alt={`${title} Media ${index + 1}`}
-                className="media-thumbnail"
-              />
-            ) : (
-              <video
-                src={mediaItem.src}
-                className="media-thumbnail"
-                muted
-                loop
-              />
-            )}
+            <img
+              src={src}
+              alt={`${title} Media ${index + 1}`}
+              className="media-thumbnail"
+              onError={(e) => { e.target.src = defaultImage; }} // Fallback
+            />
           </div>
         ))}
       </div>
@@ -62,22 +55,15 @@ const MediaGallery = ({ media, title }) => {
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.8 }}
+              transition={{ duration: 0.3 }}
               onClick={(e) => e.stopPropagation()}
             >
-              {media[selectedIndex].type === 'image' ? (
-                <img
-                  src={media[selectedIndex].src}
-                  alt={`${title} Media ${selectedIndex + 1}`}
-                  className="media-fullscreen-image"
-                />
-              ) : (
-                <video
-                  src={media[selectedIndex].src}
-                  className="media-fullscreen-video"
-                  controls
-                  autoPlay
-                />
-              )}
+              <img
+                src={media[selectedIndex]}
+                alt={`${title} Media ${selectedIndex + 1}`}
+                className="media-fullscreen-image"
+                onError={(e) => { e.target.src = defaultImage; }} // Fallback
+              />
               {/* Navigation Buttons */}
               {media.length > 1 && (
                 <>

@@ -1,31 +1,66 @@
+/* src/styles/Portfolio.css */
+
 .portfolio {
-    padding: 20px;
-  }
-  
-  .category {
-    margin-bottom: 40px;
-    position: relative;
-  }
-  
-  .category-title {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-  }
-  
+  padding: 20px 10px; /* Reduced from 40px 20px */
+  background-color: var(--color-primary-bg);
+  color: var(--color-primary-text);
+  font-family: var(--font-primary);
+}
+
+.category {
+  margin-bottom: 40px; /* Reduced from 60px */
+  position: relative;
+}
+
+.category-title {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-title);
+  margin-bottom: 10px; /* Reduced from 20px */
+  color: #ffffff; /* Changed to white for better contrast */
+  text-align: center; /* Kept centered title */
+  text-transform: uppercase; /* Bold appearance */
+  letter-spacing: 2px; /* Slight spacing between letters */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Optional for better contrast */
+}
+
+.category-title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 5px;
+  background-color: var(--color-accent);
+  margin: 8px auto 0; /* Aligned to center */
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.project-grid {
+  display: flex;
+  flex-wrap: nowrap; /* Prevent wrapping for horizontal scrolling */
+  gap: 15px; /* Reduced from 20px */
+  justify-content: center; /* Center the project cards */
+  padding-bottom: 10px;
+  scroll-behavior: smooth;
+  overflow-x: auto; /* Enable horizontal scrolling */
+}
+
+.project-grid::-webkit-scrollbar {
+  display: none; /* Hide scrollbar in WebKit browsers */
+}
+
+.project-grid {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Responsive Design */
+@media (max-width: 800px) {
   .project-grid {
-    display: flex;
-    overflow-x: auto;
-    gap: 20px;
-    padding-bottom: 10px;
-    scroll-behavior: smooth;
+    flex-direction: column;
+    align-items: center;
   }
-  
-  .project-grid::-webkit-scrollbar {
-    display: none;
-  }
-  
+
   .project-card {
-    flex: 0 0 auto;
-    width: 300px;
+    width: 90%; /* Adjust width for smaller screens */
   }
-  
+}

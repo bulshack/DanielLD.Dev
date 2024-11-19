@@ -1,9 +1,13 @@
+@import'./Styles/variables.css';
+
 :root {
+
   --background-color: #404241;
   --primary-text-color: #FFFFFF;
   --secondary-text-color: #B0B0B0;
   --accent-color: #59e63d;
   --hover-color: #1ED760;
+
 }
 
 body {
