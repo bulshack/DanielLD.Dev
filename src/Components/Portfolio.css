@@ -12,33 +12,68 @@
   position: relative;
 }
 
+
+
 .category-title {
-  font-family: var(--font-secondary);
-  font-size: var(--font-size-title);
-  margin-bottom: 10px; /* Reduced from 20px */
-  color: #ffffff; /* Changed to white for better contrast */
-  text-align: center; /* Kept centered title */
-  text-transform: uppercase; /* Bold appearance */
-  letter-spacing: 2px; /* Slight spacing between letters */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Optional for better contrast */
+  font-size: 1.8em;
+  color: #ffffff;
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  position: relative;
+  text-transform: capitalize;
+  font-family: 'Segoe UI', sans-serif;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.category-title:hover {
+  color: var(--color-accent); /* Accent color on hover */
 }
 
 .category-title::after {
   content: '';
   display: block;
-  width: 80px;
+  width: 100px; /* Default width for the underline */
   height: 5px;
   background-color: var(--color-accent);
-  margin: 8px auto 0; /* Aligned to center */
+  margin: 8px 0 0;
   border-radius: 2px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  animation: pulse 1.5s infinite; /* Subtle pulsing effect */
+  transition: width 0.4s ease; /* Smooth grow animation */
 }
 
+/* Pulse Animation */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scaleX(1); /* Full size */
+  }
+  50% {
+    opacity: 0.7;
+    transform: scaleX(0.9); /* Slight shrink */
+  }
+}
+
+/* Project Grid Container */
+.project-grid-container {
+  position: relative;
+  display: flex;
+  align-items: left; /* Align to the left */
+}
+
+
+
+
+
+/* Project Grid */
 .project-grid {
   display: flex;
   flex-wrap: nowrap; /* Prevent wrapping for horizontal scrolling */
-  gap: 15px; /* Reduced from 20px */
-  justify-content: center; /* Center the project cards */
+  gap: 5px; /* Reduced from 20px */
+  justify-content: flex-start; /* Align to the left */
+  padding: 0 40px; /* Added padding to prevent overlap with scroll buttons */
   padding-bottom: 10px;
   scroll-behavior: smooth;
   overflow-x: auto; /* Enable horizontal scrolling */
@@ -53,14 +88,31 @@
   scrollbar-width: none; /* Firefox */
 }
 
+
+
 /* Responsive Design */
 @media (max-width: 800px) {
   .project-grid {
     flex-direction: column;
     align-items: center;
+    padding: 0; /* Remove horizontal padding on small screens */
   }
 
   .project-card {
     width: 90%; /* Adjust width for smaller screens */
+  }
+
+  .category-title {
+    font-size: 2em; /* Adjust font size for smaller screens */
+    margin-bottom: 8px; /* Adjust margin */
+  }
+
+  .category-title::after {
+    width: 60px; /* Adjust underline width for smaller screens */
+    height: 4px; /* Adjust underline height */
+  }
+
+  .scroll-button {
+    display: none; /* Hide scroll buttons on small screens */
   }
 }

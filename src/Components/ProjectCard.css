@@ -1,86 +1,87 @@
-/* src/styles/ProjectCard.css */
-
-/* Project Card Styles */
 .project-card {
+  flex: 0 0 auto; /* Prevent cards from shrinking or growing */
+  width: 300px; /* Adjust width as needed */
+  height: 170px; /* Maintain 16:9 aspect ratio */
+  margin: 0 8px; /* Add spacing between cards */
   position: relative;
-  width: 350px; /* Increased from 300px */
-  height: 250px; /* Increased from 200px */
-  margin: 10px;
+  border-radius: 8px; /* Smooth edges */
   overflow: hidden;
-  border-radius: 12px;
-  cursor: pointer;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
-  background-color: var(--color-dark-gray); /* Unified background */
+  background-color: #141414;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  font-family: var(--font-primary);
+  cursor: pointer;
 }
 
 .project-card:hover {
-  transform: scale(1.07); /* Slightly larger scale */
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4); /* Stronger shadow */
+  transform: translateY(-12px) scale(1.05); /* Subtle lift and scaling */
+  z-index: 5;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); /* Dramatic shadow for depth */
 }
 
+/* Image Styling with Zoom */
 .project-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
-  border-radius: 12px;
+  transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth zoom */
 }
 
+.project-card:hover .project-image {
+  transform: scale(1.15); /* Stronger zoom effect */
+}
+
+/* Overlay Styling */
 .project-overlay {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(30, 30, 30, 0.9); /* Slightly more opaque */
-  color: var(--color-primary-text);
-  padding: 20px; /* Increased padding */
+  height: 50%; /* Taller overlay for a bold appearance */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)); /* Rich gradient */
+  color: #ffffff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Align content at the bottom */
+  align-items: flex-start;
   opacity: 0;
-  transition: opacity 0.3s ease;
-  border-radius: 0 0 12px 12px;
+  transform: translateY(100%); /* Slide from bottom */
+  transition: transform 0.4s ease, opacity 0.4s ease; /* Smooth slide and fade */
 }
 
 .project-card:hover .project-overlay {
+  transform: translateY(0); /* Slide up on hover */
   opacity: 1;
 }
 
+/* Title Styling */
 .project-title {
-  margin: 0;
-  font-family: var(--font-secondary);
-  font-size: 1.5em; /* Increased from 1.3em */
+  font-size: 1.6em; /* Larger for emphasis */
   font-weight: bold;
-  color: var(--color-primary-text);
+  margin: 0;
+  color: #f1f1f1; /* Softer white for better contrast */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7); /* Add subtle depth */
 }
 
-.project-company {
-  margin: 8px 0;
-  font-size: 1em; /* Increased from var(--font-size-small) */
-  color: var(--color-muted-text);
-}
-
+/* Technologies Styling */
 .project-technologies {
+  margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 10px;
+  justify-content: flex-start; /* Align with the title */
 }
 
 .project-tech {
-  display: flex;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 7px 15px; /* Increased padding */
-  border-radius: 20px;
-  font-size: 1em; /* Increased from var(--font-size-small) */
-  transition: background 0.3s ease;
+  background: rgba(255, 255, 255, 0.2); /* Semi-transparent for texture */
+  padding: 6px 12px;
+  border-radius: 16px; /* Pill-shaped */
+  font-size: 0.9em;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); /* Slight shadow for better readability */
+  transition: background 0.3s ease, transform 0.3s ease; /* Hover interaction */
 }
 
 .project-tech:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.project-tech svg {
-  margin-right: 5px;
-  color: var(--color-accent);
+  background: rgba(255, 255, 255, 0.4); /* Brighten on hover */
+  transform: scale(1.1); /* Add a slight pop effect */
 }

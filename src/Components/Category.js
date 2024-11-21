@@ -5,7 +5,7 @@ import ProjectCard from './ProjectCard';
 import Modal from './Modal';
 import './Category.css';
 import { motion, LayoutGroup } from 'framer-motion';
-
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'; // Import chevron icons
 
 const Category = ({ category }) => {
   const { title, projects } = category;
@@ -126,19 +126,18 @@ const Category = ({ category }) => {
             <motion.button
               className="scroll-button left"
               onClick={scrollLeftHandler}
-              initial={false}
+              initial={{ opacity: 0 }}
               animate={{ opacity: shouldShowButtons ? 1 : 0 }}
               transition={{ duration: 0.3 }}
               whileHover={{ scale: 1.1 }}
               aria-label="Scroll Left"
             >
-              &#10094;
+              <FaChevronLeft />
             </motion.button>
           )}
           <div className="project-grid" ref={gridRef}>
             {projects.map((project, index) => {
               const uniqueId = `${project.id}-${index}`;
-              console.log(`Rendering ProjectCard with uniqueId: ${uniqueId}`);
               return (
                 <ProjectCard
                   key={uniqueId}
@@ -153,13 +152,13 @@ const Category = ({ category }) => {
             <motion.button
               className="scroll-button right"
               onClick={scrollRightHandler}
-              initial={false}
+              initial={{ opacity: 0 }}
               animate={{ opacity: shouldShowButtons ? 1 : 0 }}
               transition={{ duration: 0.3 }}
               whileHover={{ scale: 1.1 }}
               aria-label="Scroll Right"
             >
-              &#10095;
+              <FaChevronRight />
             </motion.button>
           )}
         </div>

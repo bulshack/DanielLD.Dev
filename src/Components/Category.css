@@ -1,76 +1,117 @@
-/* src/styles/Category.css */
-
-/* Category Container */
+/* Category container */
 .category {
-  margin: 50px 0;
+  position: relative;
+  padding: px 4%; /* Add padding to sides */
+  overflow: visible; /* Allow cards to overflow on hover */
 }
 
-/* Category Title */
-.category-title {
-  font-size: 2.5em;
-  margin-bottom: 40px;
-  text-align: center;
-  color: #ffffff;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Project Grid Container */
+/* Grid container */
 .project-grid-container {
   position: relative;
-  display: flex;
-  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px 0; /* Add padding to contain hover effects */
+  overflow: visible; /* Allow hover animations to overflow */
 }
 
-/* Project Grid */
+/* Project grid */
 .project-grid {
   display: flex;
   overflow-x: auto;
+  overflow-y: visible; /* Allow hover effects to overflow vertically */
   scroll-behavior: smooth;
-  padding: 10px 0;
-  gap: 20px;
-  width: 100%;
+  padding: 20px 40px; /* Add padding to show first card fully */
+  gap: 8px;
+  margin: -20px 0; /* Offset padding to maintain spacing */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-.project-grid::-webkit-scrollbar {
-  display: none;
-}
-
-.project-grid {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-
-/* Scroll Buttons */
+/* Scroll Buttons Styling */
 .scroll-button {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(30, 30, 30, 0.7);
-  border: none;
-  color: #fff;
-  padding: 15px;
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Default position */
+  background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent black */
+  border: 2px solid transparent; /* Default border */
+  color: #ffffff; /* White arrow */
+  width: 45px; /* Button size */
+  height: 45px;
+  border-radius: 50%; /* Circular shape */
   cursor: pointer;
-  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 10;
-  font-size: 1.8em;
-  transition: background 0.3s ease, transform 0.3s ease;
+  transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease; /* Smooth transitions */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Subtle shadow */
 }
 
-.scroll-button.left {
-  left: -25px;
-}
-
-.scroll-button.right {
-  right: -25px;
-}
-
+/* Hover Effect - Animate Down with Border Pulse */
 .scroll-button:hover {
-  background: rgba(30, 30, 30, 0.9);
-  transform: translateY(-50%) scale(1.1);
+  transform: translateY(-45%); /* Move slightly down */
+  background-color: rgba(6, 15, 6, 0.384); /* Green for hover visibility */
+  border-color: rgba(0, 255, 0, 1); /* Green glowing border */
+  animation: border-pulse 1.5s infinite; /* Pulse effect */
 }
 
-/* Modal Open State */
-.modal-open .project-grid-container {
-  filter: blur(2px);
-  transition: filter 0.3s ease;
+/* Smooth Reset After Hover Ends */
+.scroll-button:not(:hover) {
+  transform: translateY(-50%); /* Return to original position */
+  background-color: rgba(0, 0, 0, 0.4); /* Reset background color */
+  border-color: transparent; /* Reset border */
+  animation: none; /* Stop pulsing */
+}
+
+/* SVG Icon for Arrows */
+.scroll-button svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor; /* Matches button text color */
+}
+
+/* Pulse Animation */
+@keyframes border-pulse {
+  0%, 100% {
+    border-color: rgba(0, 255, 0, 0.6); /* Dimmer green */
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.4); /* Subtle glow */
+  }
+  50% {
+    border-color: rgba(0, 255, 0, 1); /* Bright green */
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.7); /* Stronger glow */
+  }
+}
+
+
+/* Left Button */
+.scroll-button.left {
+  left: 15px; /* Slightly inside the container */
+}
+
+/* Right Button */
+.scroll-button.right {
+  right: 15px; /* Slightly inside the container */
+}
+
+/* Hide Buttons on Smaller Screens */
+@media (max-width: 768px) {
+  .scroll-button {
+    display: none; /* Hide buttons on mobile */
+  }
+}
+
+
+/* Media queries */
+@media (max-width: 768px) {
+  .category {
+    padding: 20px 2%;
+  }
+  
+  .project-grid {
+    padding: 20px 4%;
+  }
+  
+  .scroll-button {
+    display: none;
+  }
 }
