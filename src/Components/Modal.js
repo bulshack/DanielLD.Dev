@@ -18,11 +18,15 @@ import {
   SiFigma,
   SiJira,
   SiConfluence,
+  SiRider,
+  SiGithub,
+  SiVisualstudio,
 } from 'react-icons/si';
 
 // Optional: Import a default image for fallback
 import defaultImage from '../Data/Images/default_image.png';
 
+// Map technology names to icons
 const techIcons = {
   React: <FaReact />,
   CSS: <FaCss3Alt />,
@@ -34,6 +38,9 @@ const techIcons = {
   Figma: <SiFigma />,
   Jira: <SiJira />,
   Confluence: <SiConfluence />,
+  Rider : <SiRider />,
+  Github: <SiGithub />,
+  VisualStudio: <SiVisualstudio />,  
   // Add more mappings as needed
 };
 

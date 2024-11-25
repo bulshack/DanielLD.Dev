@@ -21,6 +21,45 @@ import mediaImage2 from './media/retro_electro_media/image2.png';
 import mediaImage3 from './media/retro_electro_media/image3.png';
 import mediaImage4 from './media/retro_electro_media/image4.png';
 
+//Media Project C
+import mediaProjectC0 from './media/project_c_media/PC0.png';
+import mediaProjectC1 from './media/project_c_media/PC1.png';
+import mediaProjectC2 from './media/project_c_media/PC2.png';
+import mediaProjectC3 from './media/project_c_media/PC3.png';
+import mediaProjectC4 from './media/project_c_media/PC4.png';
+
+
+
+//Media Lazy Susan
+import mediaLazySusan0 from './media/Lazy_Susan_media/0.png';
+import mediaLazySusan2 from './media/Lazy_Susan_media/LazyS_GamePlay_3.png';
+import mediaLazySusan3 from './media/Lazy_Susan_media/LazyS_GamePlay_4.png';
+import mediaLazySusan4 from './media/Lazy_Susan_media/LazyS_GamePlay_5.png';
+import mediaLazySusan5 from './media/Lazy_Susan_media/LazyS_GamePlay_6.png';
+import mediaLazySusan6 from './media/Lazy_Susan_media/LazyS_UI.png';
+
+//Rogue Rally media
+import mediaRogueRally0 from './media/Rogue_Rally_media/mainMenu.jpg';
+import mediaRogueRally1 from './media/Rogue_Rally_media/Game.jpg';
+import mediaRogueRally2 from './media/Rogue_Rally_media/Pause.jpg';
+import mediaRogueRally3 from './media/Rogue_Rally_media/Settings.jpg';
+import mediaRogueRally4 from './media/Rogue_Rally_media/pitstop.png';
+import mediaRogueRally5 from './media/Rogue_Rally_media/GameOver.jpg';
+import mediaRogueRally6 from './media/Rogue_Rally_media/0.jpeg';
+import mediaRogueRally7 from './media/Rogue_Rally_media/enemies.jpg';
+
+//command center media
+import mediaCommandCenter0 from './Images/FullSail.jpg';
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -36,7 +75,7 @@ export const categories = [
           'Rite of Champions is a top-down action hack and slash multiplayer game where you take the role of a "Hero" that gains powers with different weapons. Each weapon grants the hero a new class, each with three unique abilities. The hero can traverse through the world combating different enemy types, take on various quests, or battle in the arena, all of which can be done online with friends.',
         image: project1Image,
         link: '/Projects_Index/index.html',
-        technologies: ['Unity', 'C#'],
+        technologies: ['Unity', 'C#','VisualStudio', 'Github', 'Jira', 'Figma'],
         media: [project1Image],
           // Add more media items]
         role: 'Lead Developer',
@@ -55,7 +94,7 @@ export const categories = [
           'Retro Electro is a puzzle-oriented educational game focused on teaching the basics of programming by using drag-and-drop mechanics to give a list of directions to a robot with the goal of guiding it through a maze.',
         image: project2Image,
         link:  'https://example.com',
-        technologies: ['Unity', 'C#'],
+        technologies: ['Unity', 'C#','VisualStudio', 'Github', 'Jira', 'Figma'],
         media: [
           mediaImage1,
           mediaImage2,
@@ -83,8 +122,8 @@ export const categories = [
           'RUB THE BELLY! is a humor-driven, reflex-based game inspired by the classic "red light, green light" mechanic. Players must rub a virtual cat\'s belly while watching closely for mood shifts that signal when to stop rubbing. As in "red light, green light," timing is key: rub as much as you can, but be ready to pause as soon as the cat shows signs of irritation, or risk getting scratched! With progressively challenging stages, players balance risk and reward in this quirky simulation that captures the unpredictable nature of petting a feisty cat.',
         image: project3Image,
         link: 'https://302interactive.itch.io/rub-a-bellys-cat',
-        technologies: ['Unity', 'C#'],
-        media: [],
+        technologies: ['Unity', 'C#','Rider', 'Github', 'Jira', 'Figma'],
+        media: [project3Image],
         role: 'Gameplay Engineer and Designer',
         contributions:
           'As the gameplay programmer, developed core systems including cat behavior reactions, UI functionality, code architecture, and asset integration to create a seamless and engaging player experience.',
@@ -100,8 +139,8 @@ export const categories = [
           'Dive into the high-stakes world of *Paparazzi*, a gravity-defying action game where players take on the role of a movie star in a daring freefall. As you plummet through dynamic cityscapes, strike iconic poses to capture picture-perfect shots while dodging relentless enemies determined to throw you off course. Rack up points by seizing every photo opportunity and avoid getting “bagged” by adversaries trying to ruin your shot. Miss too many photo ops, and you’ll have to reshoot the scene! Can you handle the pressure and achieve the perfect take in this thrilling celebrity escapade?',
         image: project4Image,
         link: 'https://302interactive.itch.io/paraparazzi',
-        technologies: ['Unity', 'C#'],
-        media: [],
+        technologies: ['Unity', 'C#','Rider', 'Github', 'Jira', 'Figma'],
+        media: [project4Image],
         role: 'Gameplay Engineer and Designer',
         contributions:
           'Designed and implemented key systems, including the enemy spawner, enemy behavior cycles, and player interactions with both paparazzi and enemies. Developed the paparazzi photo cone dimensions for accurate scoring, and integrated a state machine system for streamlined player and enemy behavior management, ensuring responsive and dynamic gameplay.',
@@ -118,8 +157,8 @@ export const categories = [
           'Rolf is a unique twist on the mini-golf genre, combining precision gameplay with rogue-lite mechanics. Players progress through increasingly challenging holes, gaining buffs or debuffs after each hole that impact their strategy and performance. This unpredictable element adds depth to traditional mini-golf, requiring players to adapt on the fly, balancing accuracy and strategic thinking to reach the final hole before running out of strokes. Rolf offers a refreshing blend of skill-based and tactical gameplay, delivering an engaging experience beyond typical mini-golf.',
         image: project5Image,
         link: 'https://302interactive.itch.io/rolf',
-        technologies: ['Unity', 'C#'],
-        media: [],
+        technologies: ['Unity', 'C#','Rider', 'Github', 'Jira', 'Figma'],
+        media: [project5Image],
         role: 'Gameplay Engineer and Designer',
         contributions:
           'Developed core elements to simulate mini-golf physics, including shot indicators, force mechanics, and interactions with rogue-lite elements. Contributed to design decisions and asset implementation, ensuring cohesive gameplay and a polished player experience.',
@@ -135,8 +174,8 @@ export const categories = [
           'Rogue Rally is a 3D futuristic racing game that combines high-speed car mechanics with roguelike elements. Inspired by the iconic style of Mario Kart, Rogue Rally introduces randomized, pseudo-generated tracks that make each race unique, challenging players to adapt on the fly. With a mix of skill-based racing and strategic roguelike elements, players experience the thrill of unpredictability as they navigate obstacles, utilize power-ups, and compete for victory on ever-changing courses.',
         image: project6Image,
         link: 'https://x.com/roguerally',
-        technologies: ['Unity', 'C#'],
-        media: [],
+        technologies: ['Unity', 'C#','Rider', 'Github', 'Jira', 'Figma'],
+        media: [project6Image,mediaRogueRally0,mediaRogueRally1,mediaRogueRally2,mediaRogueRally3,mediaRogueRally4,mediaRogueRally5,mediaRogueRally6,mediaRogueRally7],
         role: 'Tools Engineer and Gameplay Programmer',
         contributions:
           'Developed a pseudo-randomized track generation tool using Bézier curve principles, ensuring each race offers a fresh challenge. Implemented key car mechanics, including collision handling and dash functionality, to enhance gameplay dynamics. Designed and integrated UI settings for video options, allowing players to customize resolution, refresh rate, and other visual elements.',
@@ -153,8 +192,8 @@ export const categories = [
           'The Suites is an interactive virtual world where players can personalize their own suites and invite friends for immersive social experiences. Inside their suites, players can engage in mini-games, watch live TV, share screens, and enjoy real-time communication, similar to the social functionalities of platforms like Discord but set within a 3D virtual space.',
         image: project7Image,
         link: 'https://thirdtimegames.com/introducing-the-suites/',
-        technologies: ['Unity', 'C#'],
-        media: [],
+        technologies: ['Unity', 'C#','Rider', 'Github', 'Jira', 'Figma'],
+        media: [project7Image],
         role: 'Networking Engineer',
         contributions:
           'Engineered core networking functionalities, including room management, disconnection/reconnection handling, and player synchronization. Integrated chat, voice communication, and streaming, allowing seamless, real-time interactions. Implemented Ready Player Me for personalized avatars using facial data, enhancing player identity within the virtual environment.',
@@ -171,8 +210,8 @@ export const categories = [
           'Project C is an RPG action prototype set in a futuristic world filled with aliens and unique creatures. Players can switch between different classes—such as warrior, mage, and shooter—in real-time to experience diverse combat styles and defeat enemies. This prototype was designed to explore dynamic class-based combat within an immersive sci-fi universe.',
         image: project8Image,
         link: 'https://example.com/project-c',
-        technologies: ['Unity', 'C#'],
-        media: [],
+        technologies: ['Unity', 'C#','VisualStudio', 'Github', 'Jira', 'Figma'],
+        media: [project8Image,mediaProjectC0,mediaProjectC1,mediaProjectC2,mediaProjectC3,mediaProjectC4],
         role: 'Lead Programmer',
         contributions:
           'Handled all programming aspects, including asset integration, game controller setup, enemy implementation, UI design, and core game logic, delivering a complete and playable prototype.',
@@ -180,7 +219,7 @@ export const categories = [
           'Received strong feedback from instructors and peers for developing a polished, playable prototype that demonstrated advanced programming and design skills within a collaborative student project.',
         tags: ['Game Projects', 'Education'],
         showGallery: true, // Optional: Explicitly show gallery
-        showVisitButton: true, // Optional: Explicitly show "Visit Project" button
+        showVisitButton: false, // Optional: Explicitly show "Visit Project" button
       },
       { 
         id: 9,
@@ -189,8 +228,8 @@ export const categories = [
           'TTYL is a narrative-driven, time-management game that captures the chaos of teenage life. Players navigate the social world of a high schooler juggling friendships, romance, and family—while contending with a broken phone. With only outdated technology at your disposal, your social status depends on responding to texts and calls promptly. Maintain connections with friends, keep your boyfriend happy, and, crucially, stay on Mom’s good side to secure that long-awaited phone upgrade.',
         image: project9Image,
         link: 'https://302interactive.itch.io/ttyl',
-        technologies: ['Godot', 'GDScript'],
-        media: [],
+        technologies: ['Godot', 'Figma', 'Jira'],
+        media: [project9Image],
         role: 'Quality Assurance and Design Feedback',
         contributions:
           'Tested gameplay extensively to ensure a smooth player experience, identified bugs, and provided design feedback to enhance narrative immersion and pacing.',
@@ -204,9 +243,32 @@ export const categories = [
         showGallery: true, // Optional: Explicitly show gallery
         showVisitButton: true, // Optional: Explicitly show "Visit Project" button
       },
+      { 
+        id: 10,
+        title: 'Lazy Susan',
+        description:
+          'Lazy Susan is a unique tower defense game inspired by the Chinese New Year and Asian culinary traditions. Players are tasked with protecting the central figure, the Bun King, from waves of approaching enemies depicted as grabbing hands eager to snatch him away.',
+        image: mediaLazySusan4,
+        link: 'https://302interactive.itch.io/ttyl',
+        technologies: ['Unity', 'C#','Rider', 'Github', 'Jira', 'Figma'],
+        media: [mediaLazySusan4,mediaLazySusan6,mediaLazySusan5,mediaLazySusan0,mediaLazySusan2,mediaLazySusan3],
+        role: 'Gameplay Engineer',
+        contributions:
+          "Programmed the behavior of bun towers, including targeting logic, firing rates, and special abilities triggered by the energy bar. Implemented enemy AI that determines how enemies approach and react to the player's defenses, ensuring unpredictable and engaging challenges. Developed the system that controls the spawning and scaling of enemy waves, balancing the games's pacing and difficulty and more",
+        achievements:
+          [
+            "Seamless Integration: Successfully integrated complex systems (AI, physics, and game mechanics) to work harmoniously, providing a polished and cohesive player experience. ",
+            "Cross-Functional Collaboration: Worked closely with designers and artists to ensure that the bun towers and enemies not only functioned well but also aligned with the game's cultural and festive themes. ",
+            "Problem-Solving Leadership: Took initiative in troubleshooting and resolving complex issues related to enemy AI and tower interactions, contributing to the project's timely and successful completion.",
+          ],
+        tags: ['Game Projects', '302 Interactive'],
+        showGallery: true, // Optional: Explicitly show gallery
+        showVisitButton: false, // Optional: Explicitly show "Visit Project" button
+      },
       // ... Add more projects if needed
     ],
   },
+
   {
     title: 'VR/AR Projects',
     maxProjects: 4,
@@ -218,8 +280,8 @@ export const categories = [
           'Mixed reality platform unveiled at the Augmented World Expo (AWE) in LA. Designed to merge physical and digital worlds, FanPort combines large LED screens or projected displays with AR glasses to allow “holographic” content to seamlessly interact with the audience’s physical space. It creates a shared, social experience where users can interact with virtual objects, reach “into” the screen, and collaborate with others in real-time, enhancing immersive engagements for brand and entertainment experiences.',
         image: project101Image,
         link: 'https://fanport.drawandcode.com/',
-        technologies: ['Unity', 'C#', 'UDP', 'NatNet', 'VR', 'AR'],
-        media: [],
+        technologies: ['Unity', 'C#', 'VisualStudio', 'Github', 'Figma', 'Jira'],
+        media: [project101Image],
         role: 'Lead Networking Developer',
         contributions:
           'Engineered a high-performance networking solution, managing real-time data flow at 240Hz to maintain smooth interactions and avoid motion sickness. Integrated NatNet cameras and connected data streams through a UDP server to Unity clients, ensuring synchronized AR/VR experiences. Developed a JSON management system for seamless connection/disconnection handling and headset management, and conducted rigorous motion-to-photon latency testing to optimize user experience.',
@@ -235,8 +297,8 @@ export const categories = [
           'The teams who took part in the annual Iron Dev competition at I/ITSEC 2020. Iron Dev is a team competition similar to competitive cooking shows, where teams will be given a challenge and “secret ingredient” to develop a training solution to improve warfighter readiness. Teams will consist of diverse members with skills in AR/VR development, simulation networking/distribution, graphic design, simulation development, and training development. Listen in as the teams share who they are and what they did for this year\'s competition.',
         image: project102Image,
         link: 'https://www.fox35orlando.com/video/874113',
-        technologies: ['Unity', 'C#', 'VR'],
-        media: [],
+        technologies: ['Unity', 'C#', 'VisualStudio', 'Github', 'Figma', 'Jira'],
+        media: [project102Image,mediaCommandCenter0],
         role: 'VR Developer',
         contributions:
           'Implemented assets within the VR environment, coordinated with the art team for cohesive visual integration, and managed feature implementation. Developed the networking and management system to enable virtual resource exchange and communication, simulating a command center setup for hospitals.',
@@ -251,32 +313,14 @@ export const categories = [
         showVisitButton: true, // Optional: Explicitly show "Visit Project" button
       },
       {
-        id: 103,
-        title: 'Nurse Trainer',
-        description:
-          'Nurse Train is a VR simulation project created to provide medical students with realistic training on the use of X-ray machines. Recognizing the limited hands-on time available with actual equipment, this immersive simulation replicates a clinical environment where students can learn X-ray machine operations, improve technique, and build confidence before handling real equipment.',
-        image: project102Image,
-        link: 'https://example.com/nurse-trainer',
-        technologies: ['Unity', 'C#', 'AR'],
-        media: [],
-        role: 'VR Developer',
-        contributions:
-          'Developed the VR logic and implemented a realistic, interactive X-ray machine simulation. Managed networking aspects using Photon Networking, enabling multi-user interactions for collaborative training sessions.',
-        achievements:
-          'Enhanced student learning experiences by creating a high-fidelity X-ray simulation environment. Increased student confidence and proficiency in X-ray machine operation through hands-on practice in a safe, controlled setting.',
-        tags: ['Mixed Reality Projects'],
-        showGallery: true, // Optional: Explicitly show gallery
-        showVisitButton: true, // Optional: Explicitly show "Visit Project" button
-      },
-      {
         id: 104,
         title: 'Decision Tactical Trainer',
         description:
           'Decision Tactical Trainer started as a VR and mixed reality program developed to enhance tactical decision-making skills for law enforcement officers. The simulation recreates realistic, high-stakes scenarios on a large screen, where officers engage in situational exercises using advanced sensor integration. This system provides precise feedback on actions, helping officers improve response and decision-making in controlled, immersive environments.',
         image: project104Image,
         link: 'https://decisiontactical.com/',
-        technologies: ['Unity', 'C#'],
-        media: [],
+        technologies: ['Unity', 'C#', 'VisualStudio', 'Github', 'Figma', 'Jira'],
+        media: [project104Image],
         role: 'Senior VR Engineer',
         contributions:
           'Engineered immersive and interactive scenarios, integrated AI-driven characters for dynamic responses, and optimized real-time performance. Developed a mixed reality system using laser-point detection and custom gun attachments that send signals to the server, accurately registering shot placement and actions within the virtual scenario.',
@@ -303,7 +347,7 @@ export const categories = [
         description: 'This project focuses on exploring GPU capabilities and core computer graphics concepts using C++ and the DirectX API. It features a split-screen setup with two visually distinct themes: an expansive space universe and a Super Smash Brothers-inspired arena. Key elements include custom shader development, dynamic lighting, and real-time rendering optimizations to harness GPU performance. The FPS camera system allows smooth, free navigation, enabling an immersive exploration of both 3D worlds.',
         image: project201Image,
         link: 'https://example.com/fanport',
-        technologies: ['C++', 'DirectX', 'Shaders', 'GPU Optimization'],
+        technologies: ['C++', 'VisualStudio', 'Github'],
         media: [],
         role: 'Solo Developer',
         contributions:

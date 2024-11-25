@@ -16,6 +16,9 @@ import {
   SiFigma,
   SiJira,
   SiConfluence,
+  SiRider,
+  SiGithub,
+  SiVisualstudio,
 } from 'react-icons/si';
 
 // Map technology names to icons
@@ -30,6 +33,9 @@ const techIcons = {
   Figma: <SiFigma />,
   Jira: <SiJira />,
   Confluence: <SiConfluence />,
+  Rider : <SiRider />,
+  Github: <SiGithub />,
+  VisualStudio: <SiVisualstudio />,  
   // Add more mappings as needed
 };
 
