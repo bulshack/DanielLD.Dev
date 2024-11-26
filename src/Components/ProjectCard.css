@@ -31,21 +31,21 @@
 
 /* Overlay Styling */
 .project-overlay {
+  font-family: 'Segoe UI', sans-serif;
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 50%; /* Taller overlay for a bold appearance */
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)); /* Rich gradient */
+  height: 60%; /* Increased height to accommodate both title and icons */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5));
   color: #ffffff;
   padding: 20px;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end; /* Align content at the bottom */
-  align-items: flex-start;
+  flex-direction: column; /* Stack title and technologies vertically */
+  justify-content: space-between; /* Space between title and icons */
   opacity: 0;
-  transform: translateY(100%); /* Slide from bottom */
-  transition: transform 0.4s ease, opacity 0.4s ease; /* Smooth slide and fade */
+  transform: translateY(100%);
+  transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
 .project-card:hover .project-overlay {
@@ -55,11 +55,13 @@
 
 /* Title Styling */
 .project-title {
-  font-size: 1.6em; /* Larger for emphasis */
+  font-size: 1.6em;
   font-weight: bold;
   margin: 0;
-  color: #f1f1f1; /* Softer white for better contrast */
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7); /* Add subtle depth */
+  color: #f1f1f1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+  /* Ensure the title stays at the top */
+  flex-shrink: 0;
 }
 
 /* Technologies Styling */
@@ -68,7 +70,18 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  justify-content: flex-start; /* Align with the title */
+  max-height: 60px; /* Limit height to prevent overlap */
+  overflow-y: auto; /* Enable scrolling if icons exceed max height */
+}
+
+/* Optional: Customize Scrollbar for Technologies Section */
+.project-technologies::-webkit-scrollbar {
+  width: 6px;
+}
+
+.project-technologies::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
 }
 
 .project-tech {
