@@ -1,18 +1,43 @@
 /* src/styles/Portfolio.css */
 
 .portfolio {
-  padding: 20px 10px; /* Reduced from 40px 20px */
+  position: relative; /* To contain absolutely positioned children */
+  padding: 20px 10px;
   background-color: var(--color-primary-bg);
   color: var(--color-primary-text);
   font-family: var(--font-primary);
+  overflow: hidden; /* Prevent particles from escaping the container */
+  border: 1px solid rgb(14, 216, 14);
+  z-index: 1; /* Ensure it's above the particles */
 }
 
+.particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;  /* Ensure full width */
+  bottom: 0; /* Ensure full height */
+  z-index: 0; /* Place behind other content */
+  pointer-events: none; /* Prevent interaction with particles */
+  background: transparent; /* Ensure background is clear */
+  overflow: hidden; /* Keep particles within the container */
+}
+
+
+
+.particles-container {
+  border: 1px solid blue;
+}
+
+
+
+/* Rest of your CSS remains the same */
+
+/* Category Styles */
 .category {
-  margin-bottom: 40px; /* Reduced from 60px */
+  margin-bottom: 40px;
   position: relative;
 }
-
-
 
 .category-title {
   font-size: 1.8em;
@@ -24,48 +49,63 @@
   text-transform: capitalize;
   font-family: 'Segoe UI', sans-serif;
   letter-spacing: 0.5px;
-  transition: color 0.3s ease; /* Smooth color transition */
+  transition: color 0.3s ease;
 }
 
 .category-title:hover {
-  color: var(--color-accent); /* Accent color on hover */
-
-  /* Glitch Animation */
+  color: var(--color-accent);
   animation: glitch 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-  
 }
 
 @keyframes glitch {
-  0% { transform: translate(0); opacity: 1; }
-  20% { transform: translate(-2px, 2px); opacity: 0.8; }
-  40% { transform: translate(2px, -2px); opacity: 1; }
-  60% { transform: translate(-1px, 1px); opacity: 0.9; }
-  80% { transform: translate(1px, -1px); opacity: 1; }
-  100% { transform: translate(0); opacity: 1; }
+  0% {
+    transform: translate(0);
+    opacity: 1;
+  }
+  20% {
+    transform: translate(-2px, 2px);
+    opacity: 0.8;
+  }
+  40% {
+    transform: translate(2px, -2px);
+    opacity: 1;
+  }
+  60% {
+    transform: translate(-1px, 1px);
+    opacity: 0.9;
+  }
+  80% {
+    transform: translate(1px, -1px);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0);
+    opacity: 1;
+  }
 }
 
 .category-title::after {
   content: '';
   display: block;
-  width: 100px; /* Default width for the underline */
+  width: 100px;
   height: 5px;
   background-color: var(--color-accent);
   margin: 8px 0 0;
   border-radius: 2px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  animation: pulse 1.5s infinite; /* Subtle pulsing effect */
-  transition: width 0.4s ease; /* Smooth grow animation */
+  animation: pulse 1.5s infinite;
+  transition: width 0.4s ease;
 }
 
-/* Pulse Animation */
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
-    transform: scaleX(1); /* Full size */
+    transform: scaleX(1);
   }
   50% {
     opacity: 0.7;
-    transform: scaleX(0.9); /* Slight shrink */
+    transform: scaleX(0.9);
   }
 }
 
@@ -73,59 +113,53 @@
 .project-grid-container {
   position: relative;
   display: flex;
-  align-items: left; /* Align to the left */
+  align-items: left;
 }
-
-
-
-
 
 /* Project Grid */
 .project-grid {
   display: flex;
-  flex-wrap: nowrap; /* Prevent wrapping for horizontal scrolling */
-  gap: 5px; /* Reduced from 20px */
-  justify-content: flex-start; /* Align to the left */
-  padding: 0 40px; /* Added padding to prevent overlap with scroll buttons */
+  flex-wrap: nowrap;
+  gap: 5px;
+  justify-content: flex-start;
+  padding: 0 40px;
   padding-bottom: 10px;
   scroll-behavior: smooth;
-  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-x: auto;
 }
 
 .project-grid::-webkit-scrollbar {
-  display: none; /* Hide scrollbar in WebKit browsers */
+  display: none;
 }
 
 .project-grid {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
-
-
 
 /* Responsive Design */
 @media (max-width: 800px) {
   .project-grid {
     flex-direction: column;
     align-items: center;
-    padding: 0; /* Remove horizontal padding on small screens */
+    padding: 0;
   }
 
   .project-card {
-    width: 90%; /* Adjust width for smaller screens */
+    width: 90%;
   }
 
   .category-title {
-    font-size: 2em; /* Adjust font size for smaller screens */
-    margin-bottom: 8px; /* Adjust margin */
+    font-size: 2em;
+    margin-bottom: 8px;
   }
 
   .category-title::after {
-    width: 60px; /* Adjust underline width for smaller screens */
-    height: 4px; /* Adjust underline height */
+    width: 60px;
+    height: 4px;
   }
 
   .scroll-button {
-    display: none; /* Hide scroll buttons on small screens */
+    display: none;
   }
 }

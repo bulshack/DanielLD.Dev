@@ -1,52 +1,183 @@
-// Portfolio.js
-
-import React from 'react';
-import { projects } from '../Data/ProjectsData.js';
-import Category from './Category';
-import './Portfolio.css';
+import { useEffect, useMemo, useState } from "react";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { projects } from "../Data/ProjectsData.js";
+import Category from "./Category";
+import { loadFull } from "tsparticles";
+import "./Portfolio.css";
 
 const Portfolio = () => {
-  // Function to group projects by tags
+ 
+  // Initialize particles using the `init` prop
+  const [init, setInit ] = useState(false);
+
+ // this should be run only once per application lifetime
+ useEffect(() => {
+  initParticlesEngine(async (engine) => {
+    console.log("particlesInit called");
+    // Load all features
+    await loadFull(engine);
+    console.log("particles loaded");
+  }).then(() => {
+    setInit(true);
+  });
+}, []);
+
+
+  const particlesOptions = useMemo(
+    () => ({
+      fullScreen: {
+        enable: false,
+      },
+      background: {
+        color: {
+          value: "transparent",
+        },
+      },
+      fpsLimit: 60,
+      interactivity: {
+        events: {
+          onHover: {
+            enable: true,
+            mode: "grab", // Use 'grab' mode for subtle interaction
+          },
+          resize: true,
+        },
+        modes: {
+          grab: {
+            distance: 200,
+            links: {
+              opacity: 0.3,
+            },
+          },
+          trail: {
+            delay: 0.1,
+            pauseOnStop: true,
+            quantity: 1,
+            particles: {
+              color: {
+                value: "#ff0000",
+              },
+              move: {
+                speed: 3,
+                direction: "none",
+                outModes: {
+                  default: "destroy",
+                },
+              },
+              size: {
+                value: 5,
+                random: true,
+              },
+              opacity: {
+                value: 0.2,
+              },
+            },
+          },
+        },
+      },
+      particles: {
+        number: {
+          value: 50, // Reduced particle count
+          density: {
+            enable: true,
+            area: 800,
+          },
+        },
+        color: {
+          value: "#00ff99", // Adjusted to a cool tech color
+        },
+        shape: {
+          type: ["circle", "square", "triangle"], // Simplified shapes for a cleaner look
+        },
+        opacity: {
+          value: 0.5,
+        },
+        size: {
+          value: { min: 3, max: 8 },
+          random: true,
+        },
+        links: {
+          enable: true, // Enable particle links
+          distance: 150,
+          color: "#00ff99",
+          opacity: 0.3,
+          width: 1,
+        },
+        move: {
+          enable: true,
+          speed: 1,
+          direction: "none",
+          random: false,
+          straight: false,
+          outModes: {
+            default: "bounce",
+          },
+        },
+      },
+      detectRetina: true,
+    }),
+    []
+  );
+
+  // Group projects by tags (unchanged)
   const groupProjectsByTags = (projects) => {
     const tagGroups = {};
-
     projects.forEach((project) => {
       if (project.tags && Array.isArray(project.tags)) {
         project.tags.forEach((tag) => {
           if (!tagGroups[tag]) {
             tagGroups[tag] = [];
           }
-          // Avoid duplicates
           tagGroups[tag].push(project);
         });
       }
     });
-
     return tagGroups;
   };
 
   const projectsByTag = groupProjectsByTags(projects);
 
-  // Define the order of tags (categories)
   const tagOrder = [
-    'Game Projects',
-     'Mixed Reality Projects',
-      '302 Interactive', 
-      'Education'];
+    "Game Projects",
+    "Mixed Reality Projects",
+    "302 Interactive",
+    "Education",
+  ];
 
   return (
     <div className="portfolio">
-      {/* Display categories in the order specified by tagOrder */}
+      {/* Particle Background */}
+      <div className="particles-container">
+        <Particles
+          id="tsparticles"
+          init={setInit}
+          options={particlesOptions}
+          style={{
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+            top: 0,
+            left: 0,
+          }}
+        />
+      </div>
+
+      {/* Content */}
       {tagOrder.map((tag) =>
         projectsByTag[tag] ? (
-          <Category key={tag} category={{ title: tag, projects: projectsByTag[tag] }} />
+          <Category
+            key={tag}
+            category={{ title: tag, projects: projectsByTag[tag] }}
+          />
         ) : null
       )}
-      {/* Display any additional tags not in tagOrder */}
       {Object.keys(projectsByTag)
         .filter((tag) => !tagOrder.includes(tag))
         .map((tag) => (
-          <Category key={tag} category={{ title: tag, projects: projectsByTag[tag] }} />
+          <Category
+            key={tag}
+            category={{ title: tag, projects: projectsByTag[tag] }}
+          />
         ))}
     </div>
   );
