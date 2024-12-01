@@ -12,7 +12,14 @@ const Portfolio = () => {
 
  // this should be run only once per application lifetime
  useEffect(() => {
-  initParticlesEngine(async (engine) => {
+
+const handleResize = () => {
+  setInit((prev) => !prev); // toggle the init state to re-render the particles
+;}
+
+window.addEventListener("resize", handleResize);
+
+initParticlesEngine(async (engine) => {
     console.log("particlesInit called");
     // Load all features
     await loadFull(engine);
@@ -20,7 +27,13 @@ const Portfolio = () => {
   }).then(() => {
     setInit(true);
   });
+
+return () => {
+  window.removeEventListener("resize", handleResize);
+  };
 }, []);
+
+
 
 
   const particlesOptions = useMemo(
@@ -58,7 +71,7 @@ const Portfolio = () => {
                 value: "#ff0000",
               },
               move: {
-                speed: 3,
+                speed: 20,
                 direction: "none",
                 outModes: {
                   default: "destroy",
@@ -149,16 +162,8 @@ const Portfolio = () => {
       {/* Particle Background */}
       <div className="particles-container">
         <Particles
-          id="tsparticles"
           init={setInit}
           options={particlesOptions}
-          style={{
-            position: "absolute",
-            width: "100%",
-            height: "100%",
-            top: 0,
-            left: 0,
-          }}
         />
       </div>
 

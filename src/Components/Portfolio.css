@@ -1,33 +1,40 @@
 /* src/styles/Portfolio.css */
 
 .portfolio {
-  position: relative; /* To contain absolutely positioned children */
+  position: relative;
   padding: 20px 10px;
   background-color: var(--color-primary-bg);
   color: var(--color-primary-text);
   font-family: var(--font-primary);
-  overflow: hidden; /* Prevent particles from escaping the container */
-  border: 1px solid rgb(14, 216, 14);
-  z-index: 1; /* Ensure it's above the particles */
+  overflow: hidden; /* Ensure particles don't overflow */
+  z-index: 1;
+  border: 2px solid #00ffb3;
+  min-height: 100vh; /* Forces full-screen height */
+  height: 100%; /* Ensures it adapts to dynamic height changes */
 }
 
 .particles-container {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;  /* Ensure full width */
-  bottom: 0; /* Ensure full height */
-  z-index: 0; /* Place behind other content */
-  pointer-events: none; /* Prevent interaction with particles */
-  background: transparent; /* Ensure background is clear */
-  overflow: hidden; /* Keep particles within the container */
+  right: 0;
+  bottom: 0;
+  z-index: 0; /* Below the main content */
+  pointer-events: none; /* Prevent interactions with particles */
+  border: 2px solid blue; /* Debugging */
+}
+
+#tsparticles canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Ensure it doesn't interfere with other elements */
 }
 
 
 
-.particles-container {
-  border: 1px solid blue;
-}
 
 
 
