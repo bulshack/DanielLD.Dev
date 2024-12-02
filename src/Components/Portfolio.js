@@ -54,6 +54,10 @@ return () => {
             mode: "grab", // Use 'grab' mode for subtle interaction
           },
           resize: true,
+          onClick: {
+            enable: true,
+            mode: "repulse", // Use 'repulse' mode for click interaction
+          },
         },
         modes: {
           grab: {
@@ -62,6 +66,7 @@ return () => {
               opacity: 0.3,
             },
           },
+      
           trail: {
             delay: 0.1,
             pauseOnStop: true,
@@ -100,7 +105,17 @@ return () => {
           value: "#00ff99", // Adjusted to a cool tech color
         },
         shape: {
-          type: ["circle", "square", "triangle"], // Simplified shapes for a cleaner look
+          type: ["circle", "square", "triangle", "polygon", "star"], 
+          options: {
+            polygon: [
+              {
+                sides: 5
+              },
+              {
+                sides: 6
+              }
+            ]
+          }
         },
         opacity: {
           value: 0.5,

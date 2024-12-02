@@ -1,80 +1,102 @@
+/* ProjectCard.css */
+
 .project-card {
-  flex: 0 0 auto; /* Prevent cards from shrinking or growing */
-  width: 300px; /* Adjust width as needed */
-  height: 170px; /* Maintain 16:9 aspect ratio */
-  margin: 0 8px; /* Add spacing between cards */
+  flex: 0 0 auto;
+  width: 300px;
+  height: 200px; /* Aumentada para más contenido */
+  margin: 0 8px;
   position: relative;
-  border-radius: 8px; /* Smooth edges */
+  border-radius: 12px;
   overflow: hidden;
   background-color: #141414;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
   cursor: pointer;
 }
 
-.project-card:hover {
-  transform: translateY(-12px) scale(1.05); /* Subtle lift and scaling */
-  z-index: 5;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); /* Dramatic shadow for depth */
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 12px;
+  background: linear-gradient(45deg, #00ffff, #ff00ff, #00ffff);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: -1;
 }
 
-/* Image Styling with Zoom */
+.project-card:hover::before {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.project-card:hover {
+  transform: translateY(-12px) scale(1.05);
+  z-index: 5;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6),
+              0 0 20px rgba(0, 255, 255, 0.5);
+}
+
 .project-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth zoom */
+  transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .project-card:hover .project-image {
-  transform: scale(1.15); /* Stronger zoom effect */
+  transform: scale(1.15);
 }
 
-/* Overlay Styling */
 .project-overlay {
   font-family: 'Segoe UI', sans-serif;
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 60%; /* Increased height to accommodate both title and icons */
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5));
+  height: 70%; /* Aumentada para más contenido */
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.6));
   color: #ffffff;
   padding: 20px;
   display: flex;
-  flex-direction: column; /* Stack title and technologies vertically */
-  justify-content: space-between; /* Space between title and icons */
+  flex-direction: column;
+  justify-content: flex-start;
   opacity: 0;
   transform: translateY(100%);
-  transition: transform 0.4s ease, opacity 0.4s ease;
+  transition: transform 0.6s ease, opacity 0.6s ease;
 }
 
 .project-card:hover .project-overlay {
-  transform: translateY(0); /* Slide up on hover */
+  transform: translateY(0);
   opacity: 1;
 }
 
-/* Title Styling */
 .project-title {
   font-size: 1.6em;
   font-weight: bold;
   margin: 0;
   color: #f1f1f1;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
-  /* Ensure the title stays at the top */
   flex-shrink: 0;
 }
 
-/* Technologies Styling */
-.project-technologies {
-  margin-top: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  max-height: 60px; /* Limit height to prevent overlap */
-  overflow-y: auto; /* Enable scrolling if icons exceed max height */
+.project-company {
+  font-size: 1em;
+  margin-top: 5px;
+  color: #cccccc;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-/* Optional: Customize Scrollbar for Technologies Section */
+.project-technologies {
+  margin-top: 10px;
+  display: grid; /* Disposición en grid para mejor distribución */
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); /* Adaptable */
+  gap: 8px;
+  padding: 5px 0;
+}
+
 .project-technologies::-webkit-scrollbar {
   width: 6px;
 }
@@ -85,16 +107,34 @@
 }
 
 .project-tech {
-  background: rgba(255, 255, 255, 0.2); /* Semi-transparent for texture */
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.2);
   padding: 6px 12px;
-  border-radius: 16px; /* Pill-shaped */
+  border-radius: 16px;
   font-size: 0.9em;
   color: #ffffff;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); /* Slight shadow for better readability */
-  transition: background 0.3s ease, transform 0.3s ease; /* Hover interaction */
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  transition: background 0.3s ease, transform 0.3s ease, color 0.3s ease;
+}
+
+.project-tech svg {
+  margin-right: 5px;
+  width: 16px;
+  height: 16px;
+  transition: fill 0.3s ease;
 }
 
 .project-tech:hover {
-  background: rgba(255, 255, 255, 0.4); /* Brighten on hover */
-  transform: scale(1.1); /* Add a slight pop effect */
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+  color: #00ffff;
 }
+
+.project-tech:hover svg {
+  fill: #00ffff;
+}
+
+/* Eliminada la animación shake de CSS */
+/* @keyframes shake { ... }
+.project-tech:hover svg { animation: shake 0.5s; } */

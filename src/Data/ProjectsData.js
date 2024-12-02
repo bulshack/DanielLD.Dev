@@ -75,7 +75,7 @@ export const categories = [
           'Rite of Champions is a top-down action hack and slash multiplayer game where you take the role of a "Hero" that gains powers with different weapons. Each weapon grants the hero a new class, each with three unique abilities. The hero can traverse through the world combating different enemy types, take on various quests, or battle in the arena, all of which can be done online with friends.',
         image: project1Image,
         link: '/Projects_Index/index.html',
-        technologies: ['Unity', 'C#','VisualStudio', 'Github', 'Jira', 'Figma'],
+        technologies: ['Unity', 'C#','VS', 'Github', 'Jira', 'Figma'],
         media: [project1Image],
           // Add more media items]
         role: 'Lead Developer',
@@ -94,7 +94,7 @@ export const categories = [
           'Retro Electro is a puzzle-oriented educational game focused on teaching the basics of programming by using drag-and-drop mechanics to give a list of directions to a robot with the goal of guiding it through a maze.',
         image: project2Image,
         link:  'https://example.com',
-        technologies: ['Unity', 'C#','VisualStudio', 'Github', 'Jira', 'Figma'],
+        technologies: ['Unity', 'C#','VS', 'Github', 'Jira', 'Figma'],
         media: [
           mediaImage1,
           mediaImage2,
@@ -210,7 +210,7 @@ export const categories = [
           'Project C is an RPG action prototype set in a futuristic world filled with aliens and unique creatures. Players can switch between different classes—such as warrior, mage, and shooter—in real-time to experience diverse combat styles and defeat enemies. This prototype was designed to explore dynamic class-based combat within an immersive sci-fi universe.',
         image: project8Image,
         link: 'https://example.com/project-c',
-        technologies: ['Unity', 'C#','VisualStudio', 'Github', 'Jira', 'Figma'],
+        technologies: ['Unity', 'C#','VS', 'Github', 'Jira', 'Figma'],
         media: [project8Image,mediaProjectC0,mediaProjectC1,mediaProjectC2,mediaProjectC3,mediaProjectC4],
         role: 'Lead Programmer',
         contributions:
@@ -280,7 +280,7 @@ export const categories = [
           'Mixed reality platform unveiled at the Augmented World Expo (AWE) in LA. Designed to merge physical and digital worlds, FanPort combines large LED screens or projected displays with AR glasses to allow “holographic” content to seamlessly interact with the audience’s physical space. It creates a shared, social experience where users can interact with virtual objects, reach “into” the screen, and collaborate with others in real-time, enhancing immersive engagements for brand and entertainment experiences.',
         image: project101Image,
         link: 'https://fanport.drawandcode.com/',
-        technologies: ['Unity', 'C#', 'VisualStudio', 'Github', 'Figma', 'Jira'],
+        technologies: ['Unity', 'C#', 'VS', 'Github', 'Figma', 'Jira'],
         media: [project101Image],
         role: 'Lead Networking Developer',
         contributions:
@@ -297,7 +297,7 @@ export const categories = [
           'The teams who took part in the annual Iron Dev competition at I/ITSEC 2020. Iron Dev is a team competition similar to competitive cooking shows, where teams will be given a challenge and “secret ingredient” to develop a training solution to improve warfighter readiness. Teams will consist of diverse members with skills in AR/VR development, simulation networking/distribution, graphic design, simulation development, and training development. Listen in as the teams share who they are and what they did for this year\'s competition.',
         image: project102Image,
         link: 'https://www.fox35orlando.com/video/874113',
-        technologies: ['Unity', 'C#', 'VisualStudio', 'Github', 'Figma', 'Jira'],
+        technologies: ['Unity', 'C#', 'VS', 'Github', 'Figma', 'Jira'],
         media: [project102Image,mediaCommandCenter0],
         role: 'VR Developer',
         contributions:
@@ -319,7 +319,7 @@ export const categories = [
           'Decision Tactical Trainer started as a VR and mixed reality program developed to enhance tactical decision-making skills for law enforcement officers. The simulation recreates realistic, high-stakes scenarios on a large screen, where officers engage in situational exercises using advanced sensor integration. This system provides precise feedback on actions, helping officers improve response and decision-making in controlled, immersive environments.',
         image: project104Image,
         link: 'https://decisiontactical.com/',
-        technologies: ['Unity', 'C#', 'VisualStudio', 'Github', 'Figma', 'Jira'],
+        technologies: ['Unity', 'C#', 'VS', 'Github', 'Figma', 'Jira'],
         media: [project104Image],
         role: 'Senior VR Engineer',
         contributions:
@@ -347,7 +347,7 @@ export const categories = [
         description: 'This project focuses on exploring GPU capabilities and core computer graphics concepts using C++ and the DirectX API. It features a split-screen setup with two visually distinct themes: an expansive space universe and a Super Smash Brothers-inspired arena. Key elements include custom shader development, dynamic lighting, and real-time rendering optimizations to harness GPU performance. The FPS camera system allows smooth, free navigation, enabling an immersive exploration of both 3D worlds.',
         image: project201Image,
         link: 'https://example.com/fanport',
-        technologies: ['C++', 'VisualStudio', 'Github'],
+        technologies: ['C++', 'VS', 'Github'],
         media: [],
         role: 'Solo Developer',
         contributions:

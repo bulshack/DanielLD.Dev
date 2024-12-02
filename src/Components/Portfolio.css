@@ -8,7 +8,6 @@
   font-family: var(--font-primary);
   overflow: hidden; /* Ensure particles don't overflow */
   z-index: 1;
-  border: 2px solid #00ffb3;
   min-height: 100vh; /* Forces full-screen height */
   height: 100%; /* Ensures it adapts to dynamic height changes */
 }
@@ -21,7 +20,6 @@
   bottom: 0;
   z-index: 0; /* Below the main content */
   pointer-events: none; /* Prevent interactions with particles */
-  border: 2px solid blue; /* Debugging */
 }
 
 #tsparticles canvas {

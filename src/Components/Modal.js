@@ -40,7 +40,7 @@ const techIcons = {
   Confluence: <SiConfluence />,
   Rider : <SiRider />,
   Github: <SiGithub />,
-  VisualStudio: <SiVisualstudio />,  
+  VS: <SiVisualstudio />,  
   // Add more mappings as needed
 };
 

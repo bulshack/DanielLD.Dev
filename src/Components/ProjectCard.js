@@ -21,7 +21,7 @@ import {
   SiVisualstudio,
 } from 'react-icons/si';
 
-// Map technology names to icons
+// Mapea los nombres de tecnologías a los íconos correspondientes
 const techIcons = {
   React: <FaReact />,
   CSS: <FaCss3Alt />,
@@ -33,16 +33,26 @@ const techIcons = {
   Figma: <SiFigma />,
   Jira: <SiJira />,
   Confluence: <SiConfluence />,
-  Rider : <SiRider />,
+  Rider: <SiRider />,
   Github: <SiGithub />,
-  VisualStudio: <SiVisualstudio />,  
-  // Add more mappings as needed
+  VS: <SiVisualstudio />,  
+  // Añade más mapeos según sea necesario
+};
+
+// Definir variantes para los íconos de tecnologías
+const techVariants = {
+  initial: { scale: 1, rotate: 0 },
+  hover: {
+    scale: 1.2,
+    rotate: [0, 10, -10, 10, -10, 0],
+    transition: { duration: 0.6, ease: 'easeInOut' },
+  },
 };
 
 const ProjectCard = ({ project, uniqueId, setSelectedProject }) => {
   const openModal = () => {
     console.log(`Opening modal for ${uniqueId}`);
-    setSelectedProject(project); // Pass the project data directly
+    setSelectedProject(project); // Pasa directamente los datos del proyecto
   };
 
   const imageUrl = project.image
@@ -51,7 +61,7 @@ const ProjectCard = ({ project, uniqueId, setSelectedProject }) => {
       : project.image.startsWith('/')
       ? `${process.env.PUBLIC_URL}${project.image}`
       : `${process.env.PUBLIC_URL}/${project.image}`
-    : '/default_image.jpg'; // Ensure this image exists in public
+    : '/default_image.jpg'; // Asegúrate de que esta imagen exista en public
 
   return (
     <motion.div
@@ -60,6 +70,11 @@ const ProjectCard = ({ project, uniqueId, setSelectedProject }) => {
       layoutId={`card-container-${uniqueId}`}
       whileHover={{ scale: 1.05 }}
       transition={{ duration: 0.3 }}
+      role="button"
+      tabIndex={0}
+      onKeyPress={(e) => {
+        if (e.key === 'Enter') openModal();
+      }}
     >
       <motion.img
         src={imageUrl}
@@ -74,10 +89,16 @@ const ProjectCard = ({ project, uniqueId, setSelectedProject }) => {
         {project.technologies && (
           <div className="project-technologies">
             {project.technologies.map((tech, index) => (
-              <div key={index} className="project-tech">
+              <motion.div
+                key={index}
+                className="project-tech"
+                variants={techVariants}
+                initial="initial"
+                whileHover="hover"
+              >
                 {techIcons[tech] || tech}
                 <span>{tech}</span>
-              </div>
+              </motion.div>
             ))}
           </div>
         )}
