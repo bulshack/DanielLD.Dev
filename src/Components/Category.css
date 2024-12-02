@@ -31,7 +31,6 @@
 .scroll-button {
   position: absolute;
   top: 50%; /* Center vertically */
-  transform: translateY(-50%); /* Default position */
   background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent black */
   border: 2px solid transparent; /* Default border */
   color: #ffffff; /* White arrow */
@@ -49,7 +48,6 @@
 
 /* Hover Effect - Animate Down with Border Pulse */
 .scroll-button:hover {
-  transform: translateY(-45%); /* Move slightly down */
   background-color: rgba(6, 15, 6, 0.384); /* Green for hover visibility */
   border-color: rgba(0, 255, 0, 1); /* Green glowing border */
   animation: border-pulse 1.5s infinite; /* Pulse effect */
@@ -57,7 +55,6 @@
 
 /* Smooth Reset After Hover Ends */
 .scroll-button:not(:hover) {
-  transform: translateY(-50%); /* Return to original position */
   background-color: rgba(0, 0, 0, 0.4); /* Reset background color */
   border-color: transparent; /* Reset border */
   animation: none; /* Stop pulsing */
