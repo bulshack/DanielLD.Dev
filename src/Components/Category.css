@@ -90,25 +90,25 @@
   right: 15px; /* Slightly inside the container */
 }
 
-/* Hide Buttons on Smaller Screens */
-@media (max-width: 768px) {
-  .scroll-button {
-    display: none; /* Hide buttons on mobile */
-  }
-}
-
 
 /* Media queries */
 @media (max-width: 768px) {
-  .category {
-    padding: 20px 2%;
-  }
-  
-  .project-grid {
-    padding: 20px 4%;
-  }
-  
   .scroll-button {
-    display: none;
+    display: flex; /* Ensure buttons are visible on mobile */
+    width: 35px; /* Adjust size for smaller screens */
+    height: 35px;
+  }
+
+  .scroll-button.left {
+    left: 3px; /* Adjust spacing for smaller screens */
+  }
+
+  .scroll-button.right {
+    right: 3px; /* Adjust spacing for smaller screens */
+  }
+
+  .scroll-button svg {
+    width: 16px; /* Slightly smaller icon */
+    height: 16px;
   }
 }

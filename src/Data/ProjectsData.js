@@ -52,17 +52,6 @@ import mediaRogueRally7 from './media/Rogue_Rally_media/enemies.jpg';
 import mediaCommandCenter0 from './Images/FullSail.jpg';
 
 
-
-
-
-
-
-
-
-
-
-
-
 export const categories = [
   {
     title: 'Game Projects',
@@ -313,7 +302,7 @@ export const categories = [
         showVisitButton: true, // Optional: Explicitly show "Visit Project" button
       },
       {
-        id: 104,
+        id: 103,
         title: 'Decision Tactical Trainer',
         description:
           'Decision Tactical Trainer started as a VR and mixed reality program developed to enhance tactical decision-making skills for law enforcement officers. The simulation recreates realistic, high-stakes scenarios on a large screen, where officers engage in situational exercises using advanced sensor integration. This system provides precise feedback on actions, helping officers improve response and decision-making in controlled, immersive environments.',
@@ -339,10 +328,10 @@ export const categories = [
   // Add more categories as needed
   {
     title: 'Personal Research Projects',
-    maxProjects: 100,
+    maxProjects: 10,
     projects: [
       {
-        id: 201,
+        id: 105,
         title: 'Split-Screen Graphics Exploration',
         description: 'This project focuses on exploring GPU capabilities and core computer graphics concepts using C++ and the DirectX API. It features a split-screen setup with two visually distinct themes: an expansive space universe and a Super Smash Brothers-inspired arena. Key elements include custom shader development, dynamic lighting, and real-time rendering optimizations to harness GPU performance. The FPS camera system allows smooth, free navigation, enabling an immersive exploration of both 3D worlds.',
         image: project201Image,

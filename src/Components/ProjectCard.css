@@ -35,8 +35,12 @@
 .project-card:hover {
   transform: translateY(-12px) scale(1.05);
   z-index: 5;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6),
-              0 0 20px rgba(0, 255, 255, 0.5);
+  box-shadow: 
+    0 25px 35px rgba(0, 0, 0, 0.9),
+    0 0 5px rgba(0, 255, 170, 0.8),
+    0 0 8px rgba(0, 255, 170, 0.6),
+    0 0 12px rgba(0, 255, 170, 0.4);
+  border-radius: 12px; 
 }
 
 .project-image {
@@ -56,7 +60,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 70%; /* Aumentada para más contenido */
+  height: 70%; 
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.6));
   color: #ffffff;
   padding: 20px;
@@ -135,6 +139,11 @@
   fill: #00ffff;
 }
 
-/* Eliminada la animación shake de CSS */
-/* @keyframes shake { ... }
-.project-tech:hover svg { animation: shake 0.5s; } */
+
+  
+
+
+
+
+
+
