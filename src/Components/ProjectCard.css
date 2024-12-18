@@ -1,9 +1,8 @@
-/* ProjectCard.css */
-
 .project-card {
   flex: 0 0 auto;
-  width: 300px;
-  height: 200px; /* Aumentada para más contenido */
+  width: 100%;
+  max-width: 300px; /* Adjust as desired for your layout */
+  aspect-ratio: 16 / 9; /* Use a 16:9 ratio for a more Netflix-like rectangle */
   margin: 0 8px;
   position: relative;
   border-radius: 12px;
@@ -84,6 +83,9 @@
   color: #f1f1f1;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
   flex-shrink: 0;
+  white-space: nowrap;       /* Optional: Prevents wrapping */
+  overflow: hidden;          /* Optional: Hide overflowing text */
+  text-overflow: ellipsis;   /* Optional: Show ellipsis if text is too long */
 }
 
 .project-company {
@@ -95,8 +97,8 @@
 
 .project-technologies {
   margin-top: 10px;
-  display: grid; /* Disposición en grid para mejor distribución */
-  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); /* Adaptable */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
   gap: 8px;
   padding: 5px 0;
 }
@@ -139,11 +141,32 @@
   fill: #ffffff;
 }
 
+/* Responsive Design */
+@media (max-width: 800px) {
+  .project-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
 
-  
+  .project-card {
+    width: 70%;
+    max-width: none;
+    aspect-ratio: 16 / 9; /* maintain a rectangular shape on mobile too */
+    margin: 0 auto;
+  }
 
+  .category-title {
+    font-size: 2em;
+    margin-bottom: 8px;
+  }
 
+  .category-title::after {
+    width: 60px;
+    height: 4px;
+  }
 
-
-
-
+  .scroll-button {
+    display: none;
+  }
+}
