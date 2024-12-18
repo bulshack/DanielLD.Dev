@@ -1,10 +1,9 @@
 // src/components/Modal.js
-
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import FocusLock from 'react-focus-lock';
 import './Modal.css';
-import MediaGallery from './MediaGallery'; // Import the MediaGallery component
+import MediaGallery from './MediaGallery';
 import {
   FaReact,
   FaCss3Alt,
@@ -23,10 +22,8 @@ import {
   SiVisualstudio,
 } from 'react-icons/si';
 
-// Optional: Import a default image for fallback
 import defaultImage from '../Data/Images/default_image.png';
 
-// Map technology names to icons
 const techIcons = {
   React: <FaReact />,
   CSS: <FaCss3Alt />,
@@ -38,20 +35,59 @@ const techIcons = {
   Figma: <SiFigma />,
   Jira: <SiJira />,
   Confluence: <SiConfluence />,
-  Rider : <SiRider />,
+  Rider: <SiRider />,
   Github: <SiGithub />,
-  VS: <SiVisualstudio />,  
-  // Add more mappings as needed
+  VS: <SiVisualstudio />,
+};
+
+// Simpler variants with eased transitions
+const backdropVariants = {
+  initial: { opacity: 0 },
+  animate: { 
+    opacity: 1,
+    transition: { duration: 0.3, ease: "easeOut" }
+  },
+  exit: { opacity: 0, transition: { duration: 0.2, ease: "easeIn" } }
+};
+
+const modalVariants = {
+  initial: { scale: 0.9, opacity: 0, rotateY: 0 },
+  animate: {
+    scale: 1,
+    opacity: 1,
+    rotateY: 0,
+    transition: {
+      duration: 0.4,
+      ease: "easeOut"
+    }
+  },
+  exit: { 
+    scale: 0.9, 
+    opacity: 0,
+    rotateY: 0,
+    transition: {
+      duration: 0.3, 
+      ease: "easeIn"
+    }
+  }
+};
+
+const containerVariants = {
+  animate: {
+    transition: { staggerChildren: 0.1 }
+  }
+};
+
+const childVariants = {
+  initial: { y: 10, opacity: 0 },
+  animate: { y: 0, opacity: 1, transition: { duration: 0.3, ease: "easeOut" } }
 };
 
 const Modal = ({ project, uniqueId, isModalOpen, closeModal }) => {
   const hasGallery = project?.media?.length > 0 && project.showGallery !== false;
   const showVisitButton = project?.link && project.showVisitButton !== false;
-
-  // Directly use the imported image path or fallback
   const imageUrl = project?.image || defaultImage;
 
-  // Handle Esc key to close modal
   useEffect(() => {
     const handleEsc = (event) => {
       if (event.key === 'Escape') {
@@ -59,13 +95,12 @@ const Modal = ({ project, uniqueId, isModalOpen, closeModal }) => {
       }
     };
     window.addEventListener('keydown', handleEsc);
-
     return () => {
       window.removeEventListener('keydown', handleEsc);
     };
   }, [closeModal]);
 
-  if (!project) return null; // Prevent rendering if no project
+  if (!project) return null;
 
   return (
     <AnimatePresence>
@@ -73,9 +108,10 @@ const Modal = ({ project, uniqueId, isModalOpen, closeModal }) => {
         <motion.div
           className="project-modal"
           onClick={closeModal}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          variants={backdropVariants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
           key={`modal-${uniqueId}`}
           aria-modal="true"
           role="dialog"
@@ -85,11 +121,10 @@ const Modal = ({ project, uniqueId, isModalOpen, closeModal }) => {
             <motion.div
               className="project-modal-content"
               onClick={(e) => e.stopPropagation()}
-              layoutId={`card-container-${uniqueId}`}
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              variants={modalVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
             >
               <button
                 className="project-modal-close"
@@ -98,68 +133,92 @@ const Modal = ({ project, uniqueId, isModalOpen, closeModal }) => {
               >
                 &times;
               </button>
-              {/* Modal Content */}
-              <div className="modal-details">
-                <h2 className="modal-title" id={`modal-title-${uniqueId}`}>
+              <motion.div 
+                className="modal-details"
+                variants={containerVariants}
+                initial="initial"
+                animate="animate"
+              >
+                <motion.h2
+                  className="modal-title"
+                  id={`modal-title-${uniqueId}`}
+                  variants={childVariants}
+                >
                   {project.title}
-                </h2>
-                <p className="modal-description">{project.description}</p>
+                </motion.h2>
+                <motion.p className="modal-description" variants={childVariants}>
+                  {project.description}
+                </motion.p>
+
                 {project.role && (
-                  <p className="modal-role">
+                  <motion.p className="modal-role" variants={childVariants}>
                     <strong>Role:</strong> {project.role}
-                  </p>
+                  </motion.p>
                 )}
+
                 {project.contributions && (
-                  <p className="modal-contributions">
+                  <motion.p className="modal-contributions" variants={childVariants}>
                     <strong>Contributions:</strong> {project.contributions}
-                  </p>
+                  </motion.p>
                 )}
+
                 {project.achievements && (
-                  <p className="modal-achievements">
+                  <motion.p className="modal-achievements" variants={childVariants}>
                     <strong>Achievements:</strong> {project.achievements}
-                  </p>
+                  </motion.p>
                 )}
+
                 {project.technologies && (
-                  <div className="modal-technologies">
+                  <motion.div className="modal-technologies" variants={childVariants}>
                     <h3>Technologies:</h3>
                     <div className="technologies-list">
                       {project.technologies.map((tech, index) => (
-                        <div key={index} className="project-tech">
+                        <motion.div
+                          key={index}
+                          className="project-tech"
+                          variants={childVariants}
+                          whileHover={{ scale: 1.05 }}
+                        >
                           {techIcons[tech] || tech}
                           <span>{tech}</span>
-                        </div>
+                        </motion.div>
                       ))}
                     </div>
-                  </div>
+                  </motion.div>
                 )}
+
                 {project.tags && (
-                  <div className="modal-tags">
+                  <motion.div className="modal-tags" variants={childVariants}>
                     <h3>Tags:</h3>
                     <div className="tags-list">
                       {project.tags.map((tag, index) => (
-                        <span key={index} className="project-tag">
+                        <motion.span key={index} className="project-tag" variants={childVariants}>
                           {tag}
-                        </span>
+                        </motion.span>
                       ))}
                     </div>
-                  </div>
+                  </motion.div>
                 )}
-                {/* Integrate MediaGallery */}
+
                 {hasGallery && (
-                  <MediaGallery media={project.media} title={project.title} />
+                  <motion.div variants={childVariants}>
+                    <MediaGallery media={project.media} title={project.title} />
+                  </motion.div>
                 )}
-                {/* Visit Project Button */}
+
                 {showVisitButton && (
-                  <a
+                  <motion.a
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="view-project-button"
+                    variants={childVariants}
+                    whileHover={{ scale: 1.05 }}
                   >
                     Visit Project
-                  </a>
+                  </motion.a>
                 )}
-              </div>
+              </motion.div>
             </motion.div>
           </FocusLock>
         </motion.div>

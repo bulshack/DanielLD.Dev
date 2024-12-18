@@ -132,11 +132,11 @@
 .project-tech:hover {
   background: rgba(255, 255, 255, 0.4);
   transform: scale(1.1);
-  color: #00ffff;
+  color: #00ff80;
 }
 
 .project-tech:hover svg {
-  fill: #00ffff;
+  fill: #ffffff;
 }
 
 
