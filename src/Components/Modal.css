@@ -8,22 +8,25 @@
   --font-size-small: clamp(0.8rem, 1vw, 0.95rem);
 }
 
+/* Always show scrollbar on desktop to avoid layout shift */
+html {
+  overflow-y: scroll;
+}
+
 /* Modal Overlay */
 .project-modal {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw; /* Match viewport width exactly */
+  height: 100vh; /* Match viewport height exactly */
   background-color: rgba(30, 30, 30, 0.85);
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  overflow: hidden;
+  overflow: hidden; /* No scrolling on overlay */
   perspective: 1000px;
-  padding-right: calc(100vw - 100%); /* Compensate for scrollbar width */
 }
 
 /* Modal Content */
@@ -32,7 +35,7 @@
   background-color: var(--color-primary-bg);
   color: var(--color-primary-text);
   border-radius: 12px;
-  max-width: 900px;
+  max-width: 900px; /* Same as your original desktop look */
   width: 100%;
   max-height: 90vh;
   overflow: auto;
@@ -43,9 +46,7 @@
   flex-direction: column;
   transform-style: preserve-3d;
   backface-visibility: hidden;
-  overflow-y: auto;
-  scrollbar-gutter: stable; /* Prevent layout shift */
-  /* Smooth scrollbar styling */
+  scrollbar-gutter: stable;
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
 }
@@ -74,11 +75,12 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  transition: color 0.2s ease;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .project-modal-close:hover {
-  color: var(--color-muted-text);
+  color: var(--color-accent-hover);
+  transform: rotate(180deg) scale(1.2);
 }
 
 /* Modal Details */
@@ -88,7 +90,7 @@
   flex: 1;
 }
 
-/* Modal Title (Centered) */
+/* Modal Title */
 .modal-title {
   font-family: var(--font-secondary);
   font-size: var(--font-size-title);
@@ -97,6 +99,8 @@
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 2px;
+  white-space: normal;
+  overflow-wrap: break-word;
 }
 
 .modal-title::after {
@@ -110,13 +114,15 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-/* Gallery Title (Left-Aligned) */
+/* Gallery Title */
 .gallery-title {
   text-align: left;
   color: #ffffff;
   font-family: var(--font-secondary);
   font-size: var(--font-size-subtitle);
-  margin-bottom: 8px; /* Reduced margin */
+  margin-bottom: 8px;
+  white-space: normal;
+  overflow-wrap: break-word;
 }
 
 .gallery-title::after {
@@ -125,20 +131,22 @@
   width: 80px;
   height: 4px;
   background-color: var(--color-accent);
-  margin: 6px 0 0 0; /* Reduced margin */
+  margin: 6px 0 0 0;
   border-radius: 2px;
 }
 
-/* Description and Other Text */
+/* Descriptions and Other Text */
 .modal-description,
 .modal-role,
 .modal-contributions,
 .modal-achievements {
-  margin: 8px 0; /* Reduced margin */
+  margin: 8px 0;
   font-size: var(--font-size-body);
   line-height: 1.4;
   color: var(--color-muted-text);
   flex-shrink: 1;
+  white-space: normal;
+  overflow-wrap: break-word;
 }
 
 .modal-role strong,
@@ -150,35 +158,41 @@
 /* Technologies and Tags */
 .modal-technologies,
 .modal-tags {
-  margin: 5px 0; /* Reduced margin */
+  margin: 5px 0;
 }
 
 .modal-technologies h3,
 .modal-tags h3 {
   font-family: var(--font-secondary);
   font-size: var(--font-size-subtitle);
-  margin-bottom: 12px; /* Reduced margin */
-  margin-top: 8px; /* Reduced margin */
+  margin-bottom: 12px;
+  margin-top: 8px;
   color: var(--color-accent);
+  white-space: normal;
+  overflow-wrap: break-word;
 }
 
 .technologies-list,
 .tags-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px; /* Reduced gap */
+  gap: 8px;
 }
 
 .project-tech,
 .project-tag {
   background-color: var(--color-dark-gray);
   color: var(--color-primary-text);
-  padding: 5px 10px; /* Reduced padding */
+  padding: 5px 10px;
   border-radius: 25px;
   font-size: var(--font-size-small);
   display: flex;
   align-items: center;
   transition: background-color 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px;
 }
 
 .project-tech:hover,
@@ -209,7 +223,6 @@
   transition: background-color 0.3s ease, transform 0.2s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   align-self: flex-start;
-  font-family: var(--font-primary);
   margin-top: 12px;
   transform-origin: center;
 }
@@ -219,32 +232,11 @@
   transform: translateY(-2px);
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Responsive Design */
+/* Responsive: On Mobile, make modal narrower */
 @media (max-width: 800px) {
   .project-modal-content {
+    max-width: 95vw; /* Narrower on mobile */
     padding: 15px;
-    will-change: transform, opacity;
   }
 
   .project-modal-close {
@@ -275,7 +267,6 @@
   }
 }
 
-/* Additional Responsive Design for Small Heights */
 @media (max-height: 700px) {
   .project-modal-content {
     padding: 10px;
@@ -298,7 +289,6 @@
   }
 }
 
-/* Adjustments for Extremely Small Screens */
 @media (max-width: 500px), (max-height: 600px) {
   .modal-title {
     font-size: 1.4rem;

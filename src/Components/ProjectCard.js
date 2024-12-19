@@ -1,6 +1,6 @@
 // src/components/ProjectCard.js
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import './ProjectCard.css';
 import {
@@ -21,7 +21,6 @@ import {
   SiVisualstudio,
 } from 'react-icons/si';
 
-// Mapea los nombres de tecnologías a los íconos correspondientes
 const techIcons = {
   React: <FaReact />,
   CSS: <FaCss3Alt />,
@@ -36,10 +35,8 @@ const techIcons = {
   Rider: <SiRider />,
   Github: <SiGithub />,
   VS: <SiVisualstudio />,  
-  // Añade más mapeos según sea necesario
 };
 
-// Definir variantes para los íconos de tecnologías
 const techVariants = {
   initial: { scale: 1, rotate: 0 },
   hover: {
@@ -50,9 +47,32 @@ const techVariants = {
 };
 
 const ProjectCard = ({ project, uniqueId, setSelectedProject }) => {
+  const [overlayVisible, setOverlayVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const isTouch = window.matchMedia('(pointer: coarse)').matches;
+    setIsMobile(isTouch);
+  }, []);
+
   const openModal = () => {
-    console.log(`Opening modal for ${uniqueId}`);
-    setSelectedProject(project); // Pasa directamente los datos del proyecto
+    setSelectedProject(project);
+    setOverlayVisible(false); // reset overlay after opening modal
+  };
+
+  const handleCardClick = () => {
+    if (isMobile) {
+      if (!overlayVisible) {
+        // First tap shows overlay
+        setOverlayVisible(true);
+      } else {
+        // Second tap opens modal
+        openModal();
+      }
+    } else {
+      // Desktop: open modal immediately
+      openModal();
+    }
   };
 
   const imageUrl = project.image
@@ -61,19 +81,19 @@ const ProjectCard = ({ project, uniqueId, setSelectedProject }) => {
       : project.image.startsWith('/')
       ? `${process.env.PUBLIC_URL}${project.image}`
       : `${process.env.PUBLIC_URL}/${project.image}`
-    : '/default_image.jpg'; // Asegúrate de que esta imagen exista en public
+    : '/default_image.jpg';
 
   return (
     <motion.div
       className="project-card"
-      onClick={openModal}
+      onClick={handleCardClick}
       layoutId={`card-container-${uniqueId}`}
-      whileHover={{ scale: 1.05 }}
+      whileHover={isMobile ? {} : { scale: 1.05 }}
       transition={{ duration: 0.3 }}
       role="button"
       tabIndex={0}
       onKeyPress={(e) => {
-        if (e.key === 'Enter') openModal();
+        if (e.key === 'Enter') handleCardClick();
       }}
     >
       <motion.img
@@ -83,12 +103,12 @@ const ProjectCard = ({ project, uniqueId, setSelectedProject }) => {
         layoutId={`card-image-${uniqueId}`}
         loading="lazy"
       />
-      <div className="project-overlay">
+      <div className={`project-overlay ${overlayVisible ? 'visible' : ''}`}>
         <h3 className="project-title">{project.title}</h3>
         {project.company && <p className="project-company">{project.company}</p>}
         {project.technologies && (
           <div className="project-technologies">
-            {project.technologies.map((tech, index) => (
+            {project.technologies.slice(0, 6).map((tech, index) => (
               <motion.div
                 key={index}
                 className="project-tech"

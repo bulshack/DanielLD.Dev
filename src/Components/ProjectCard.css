@@ -1,8 +1,8 @@
 .project-card {
   flex: 0 0 auto;
   width: 100%;
-  max-width: 300px; /* Adjust as desired for your layout */
-  aspect-ratio: 16 / 9; /* Use a 16:9 ratio for a more Netflix-like rectangle */
+  max-width: 300px;
+  aspect-ratio: 16 / 9;
   margin: 0 8px;
   position: relative;
   border-radius: 12px;
@@ -26,20 +26,33 @@
   z-index: -1;
 }
 
-.project-card:hover::before {
-  opacity: 1;
-  transform: scale(1.05);
-}
+/* Desktop hover effects */
+@media (hover: hover) {
+  .project-card:hover::before {
+    opacity: 1;
+    transform: scale(1.05);
+  }
 
-.project-card:hover {
-  transform: translateY(-12px) scale(1.05);
-  z-index: 5;
-  box-shadow: 
-    0 25px 35px rgba(0, 0, 0, 0.9),
-    0 0 5px rgba(0, 255, 170, 0.8),
-    0 0 8px rgba(0, 255, 170, 0.6),
-    0 0 12px rgba(0, 255, 170, 0.4);
-  border-radius: 12px; 
+  .project-card:hover {
+    transform: translateY(-12px) scale(1.05);
+    z-index: 5;
+    box-shadow:
+      0 25px 35px rgba(0, 0, 0, 0.9),
+      0 0 5px rgba(0, 255, 170, 0.8),
+      0 0 8px rgba(0, 255, 170, 0.6),
+      0 0 12px rgba(0, 255, 170, 0.4);
+    border-radius: 12px; 
+  }
+
+  .project-card:hover .project-image {
+    transform: scale(1.15);
+  }
+
+  .project-card:hover .project-overlay {
+    transform: translateY(0);
+    opacity: 1;
+    height: 70%;
+  }
 }
 
 .project-image {
@@ -49,85 +62,86 @@
   transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.project-card:hover .project-image {
-  transform: scale(1.15);
-}
-
 .project-overlay {
   font-family: 'Segoe UI', sans-serif;
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
+  /* For desktop, overlay starts at bottom. For mobile, visible class sets it fully shown. */
   height: 70%; 
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.6));
   color: #ffffff;
-  padding: 20px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  gap: 8px;
   opacity: 0;
   transform: translateY(100%);
   transition: transform 0.6s ease, opacity 0.6s ease;
+  /* No scrolling, we ensure content fits */
+  overflow: hidden;
 }
 
-.project-card:hover .project-overlay {
-  transform: translateY(0);
-  opacity: 1;
+.project-overlay.visible {
+  /* On mobile after first tap: show overlay fully. 
+     Let's use a bigger height so that title + up to 6 icons fit nicely. */
+  transform: translateY(0) !important;
+  opacity: 1 !important;
+  height: 85%; /* Slightly taller to fit icons and text comfortably */
 }
 
 .project-title {
-  font-size: 1.6em;
+  font-size: 1.5em;
   font-weight: bold;
   margin: 0;
   color: #f1f1f1;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
-  flex-shrink: 0;
-  white-space: nowrap;       /* Optional: Prevents wrapping */
-  overflow: hidden;          /* Optional: Hide overflowing text */
-  text-overflow: ellipsis;   /* Optional: Show ellipsis if text is too long */
+
+  /* Keep the title on a single line and truncate if too long */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  max-width: 100%;
 }
 
 .project-company {
-  font-size: 1em;
-  margin-top: 5px;
+  font-size: 0.9em;
+  margin-top: 0;
   color: #cccccc;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  white-space: normal;
+  overflow-wrap: break-word;
 }
 
 .project-technologies {
-  margin-top: 10px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-  gap: 8px;
-  padding: 5px 0;
-}
-
-.project-technologies::-webkit-scrollbar {
-  width: 6px;
-}
-
-.project-technologies::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 3px;
+  grid-template-columns: repeat(3, 1fr); /* 3 icons per row */
+  gap: 6px;
+  /* Without scroll and with ~2 rows of icons max (6 icons total) */
 }
 
 .project-tech {
   display: flex;
   align-items: center;
   background: rgba(255, 255, 255, 0.2);
-  padding: 6px 12px;
-  border-radius: 16px;
-  font-size: 0.9em;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.85em;
   color: #ffffff;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   transition: background 0.3s ease, transform 0.3s ease, color 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .project-tech svg {
-  margin-right: 5px;
-  width: 16px;
-  height: 16px;
+  margin-right: 3px;
+  width: 14px;
+  height: 14px;
   transition: fill 0.3s ease;
 }
 
@@ -152,21 +166,7 @@
   .project-card {
     width: 70%;
     max-width: none;
-    aspect-ratio: 16 / 9; /* maintain a rectangular shape on mobile too */
+    aspect-ratio: 16 / 9;
     margin: 0 auto;
-  }
-
-  .category-title {
-    font-size: 2em;
-    margin-bottom: 8px;
-  }
-
-  .category-title::after {
-    width: 60px;
-    height: 4px;
-  }
-
-  .scroll-button {
-    display: none;
   }
 }

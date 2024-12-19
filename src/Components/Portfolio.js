@@ -6,35 +6,27 @@ import { loadFull } from "tsparticles";
 import "./Portfolio.css";
 
 const Portfolio = () => {
- 
-  // Initialize particles using the `init` prop
-  const [init, setInit ] = useState(false);
+  const [init, setInit] = useState(false);
 
- // this should be run only once per application lifetime
- useEffect(() => {
+  useEffect(() => {
+    const handleResize = () => {
+      setInit((prev) => !prev); // toggle to re-render the particles if needed
+    };
 
-const handleResize = () => {
-  setInit((prev) => !prev); // toggle the init state to re-render the particles
-;}
+    window.addEventListener("resize", handleResize);
 
-window.addEventListener("resize", handleResize);
+    initParticlesEngine(async (engine) => {
+      await loadFull(engine);
+      setInit(true);
+    });
 
-initParticlesEngine(async (engine) => {
-    console.log("particlesInit called");
-    // Load all features
-    await loadFull(engine);
-    console.log("particles loaded");
-  }).then(() => {
-    setInit(true);
-  });
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
-return () => {
-  window.removeEventListener("resize", handleResize);
-  };
-}, []);
-
-
-
+  // Check if mobile (simple heuristic)
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
   const particlesOptions = useMemo(
     () => ({
@@ -49,15 +41,16 @@ return () => {
       fpsLimit: 60,
       interactivity: {
         events: {
+          // Disable hover/click interactions on mobile for performance
           onHover: {
-            enable: true,
-            mode: "grab", // Use 'grab' mode for subtle interaction
+            enable: !isMobile,
+            mode: "grab",
+          },
+          onClick: {
+            enable: !isMobile,
+            mode: "repulse",
           },
           resize: true,
-          onClick: {
-            enable: true,
-            mode: "repulse", // Use 'repulse' mode for click interaction
-          },
         },
         modes: {
           grab: {
@@ -66,7 +59,6 @@ return () => {
               opacity: 0.3,
             },
           },
-      
           trail: {
             delay: 0.1,
             pauseOnStop: true,
@@ -95,27 +87,28 @@ return () => {
       },
       particles: {
         number: {
-          value: 50, // Reduced particle count
+          value: isMobile ? 20 : 50, // Fewer particles on mobile
           density: {
             enable: true,
             area: 800,
           },
         },
         color: {
-          value: "#00ff99", // Adjusted to a cool tech color
+          value: "#00ff99",
         },
         shape: {
-          type: ["circle", "square", "triangle", "polygon", "star"], 
+          // Simplify shapes on mobile (just circles) for performance
+          type: isMobile ? "circle" : ["circle", "square", "triangle", "polygon", "star"],
           options: {
             polygon: [
               {
-                sides: 5
+                sides: 5,
               },
               {
-                sides: 6
-              }
-            ]
-          }
+                sides: 6,
+              },
+            ],
+          },
         },
         opacity: {
           value: 0.5,
@@ -125,7 +118,7 @@ return () => {
           random: true,
         },
         links: {
-          enable: true, // Enable particle links
+          enable: !isMobile, // Disable links on mobile
           distance: 150,
           color: "#00ff99",
           opacity: 0.3,
@@ -133,7 +126,7 @@ return () => {
         },
         move: {
           enable: true,
-          speed: 1,
+          speed: isMobile ? 0.5 : 1, // Slower movement on mobile
           direction: "none",
           random: false,
           straight: false,
@@ -144,10 +137,9 @@ return () => {
       },
       detectRetina: true,
     }),
-    []
+    [isMobile]
   );
 
-  // Group projects by tags (unchanged)
   const groupProjectsByTags = (projects) => {
     const tagGroups = {};
     projects.forEach((project) => {
@@ -174,30 +166,19 @@ return () => {
 
   return (
     <div className="portfolio">
-      {/* Particle Background */}
       <div className="particles-container">
-        <Particles
-          init={setInit}
-          options={particlesOptions}
-        />
+        <Particles init={setInit} options={particlesOptions} />
       </div>
 
-      {/* Content */}
       {tagOrder.map((tag) =>
         projectsByTag[tag] ? (
-          <Category
-            key={tag}
-            category={{ title: tag, projects: projectsByTag[tag] }}
-          />
+          <Category key={tag} category={{ title: tag, projects: projectsByTag[tag] }} />
         ) : null
       )}
       {Object.keys(projectsByTag)
         .filter((tag) => !tagOrder.includes(tag))
         .map((tag) => (
-          <Category
-            key={tag}
-            category={{ title: tag, projects: projectsByTag[tag] }}
-          />
+          <Category key={tag} category={{ title: tag, projects: projectsByTag[tag] }} />
         ))}
     </div>
   );
