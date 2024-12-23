@@ -13,36 +13,11 @@
 body {
   background-color: var(--background-color);
   color: var(--primary-text-color);
-  font-family: 'Arial', sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   margin: 0;
   padding: 0;
 }
 
-.navbar {
-  background-color: var(--background-color);
-  padding: 10px 0;
-  overflow: hidden;
+.content-wrapper {
+  padding-top: 68px; /* Adjust based on navbar height */
 }
-
-.navbar-nav {
-  display: flex;
-  justify-content: space-around;
-  list-style: none;
-  padding: 0;
-}
-
-.nav-item {
-  display: inline-block;
-}
-
-.nav-link {
-  color: var(--accent-color);
-  text-decoration: none;
-  text-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color), 0 0 30px var(--accent-color), 0 0 40px var(--accent-color);
-  transition: color 0.3s ease;
-}
-
-.nav-link:hover {
-  color: var(--hover-color);
-    text-shadow: 0 0 10px var(--hover-color), 0 0 20px var(--hover-color), 0 0 30px var(--hover-color), 0 0 40px var(--hover-color);
-  }
