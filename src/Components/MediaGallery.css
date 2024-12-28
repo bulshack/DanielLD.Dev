@@ -10,7 +10,7 @@
   --color-muted-text: #cccccc;      /* muted/hover text color */
 
   --font-primary: 'Segoe UI', sans-serif;
-  --font-secondary: 'Consolas', monospace;
+  --font-secondary: 'Segoe UI', sans-serif;
 
   --font-size-title: clamp(1.8rem, 2vw, 2.5rem);
   --font-size-subtitle: clamp(1.5rem, 1.8vw, 2rem);
@@ -21,7 +21,7 @@
    GALLERY THUMBNAILS
 --------------------------- */
 .media-gallery {
-  padding: 20px 0;
+  padding: 10px 0px;
   font-family: var(--font-primary);
 }
 

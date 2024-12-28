@@ -119,12 +119,12 @@ html {
 /* Gallery Title */
 .gallery-title {
   text-align: left;
-  color: #ffffff;
+  color: #4CAF50;
   font-family: var(--font-secondary);
   font-size: var(--font-size-subtitle);
-  margin-bottom: 8px;
   white-space: normal;
   overflow-wrap: break-word;
+  margin-bottom: 6px; /* Adjust as needed */
 }
 
 /* Descriptions and Other Text */
