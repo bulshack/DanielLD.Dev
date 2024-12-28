@@ -170,7 +170,7 @@ const Modal = ({ project, uniqueId, isModalOpen, closeModal }) => {
 
                 {project.technologies && (
                   <motion.div className="modal-technologies" variants={childVariants}>
-                    <h3>Technologies:</h3>
+                    <h3>Technologies</h3>
                     <div className="technologies-list">
                       {project.technologies.map((tech, index) => (
                         <motion.div
@@ -189,7 +189,7 @@ const Modal = ({ project, uniqueId, isModalOpen, closeModal }) => {
 
                 {project.tags && (
                   <motion.div className="modal-tags" variants={childVariants}>
-                    <h3>Tags:</h3>
+                    <h3>Tags</h3>
                     <div className="tags-list">
                       {project.tags.map((tag, index) => (
                         <motion.span key={index} className="project-tag" variants={childVariants}>

@@ -46,6 +46,8 @@ html {
   flex-direction: column;
   transform-style: preserve-3d;
   backface-visibility: hidden;
+
+  /* Scrollbar styling */
   scrollbar-gutter: stable;
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
@@ -123,16 +125,6 @@ html {
   margin-bottom: 8px;
   white-space: normal;
   overflow-wrap: break-word;
-}
-
-.gallery-title::after {
-  content: '';
-  display: block;
-  width: 80px;
-  height: 4px;
-  background-color: var(--color-accent);
-  margin: 6px 0 0 0;
-  border-radius: 2px;
 }
 
 /* Descriptions and Other Text */
@@ -232,17 +224,15 @@ html {
   transform: translateY(-2px);
 }
 
-/* Responsive: On Mobile, make modal narrower */
+/* --------------------- */
+/*      RESPONSIVE       */
+/* --------------------- */
+
+/* For screens up to 800px wide */
 @media (max-width: 800px) {
   .project-modal-content {
     max-width: 95vw; /* Narrower on mobile */
     padding: 15px;
-  }
-
-  .project-modal-close {
-    top: 10px;
-    right: 15px;
-    font-size: 1.5rem;
   }
 
   .modal-title {
@@ -265,8 +255,16 @@ html {
     padding: 8px 16px;
     font-size: 0.95em;
   }
+
+  /* Move & slightly shrink the close button so it doesn't overlap nav bar */
+  .project-modal-close {
+    top: 60px;      /* Increase top offset to clear the nav bar */
+    right: 20px;
+    font-size: 1.4rem; /* Slightly smaller text so it doesn't overlap or appear too large */
+  }
 }
 
+/* For screens with height under 700px */
 @media (max-height: 700px) {
   .project-modal-content {
     padding: 10px;
@@ -289,6 +287,7 @@ html {
   }
 }
 
+/* For screens below 500px wide or 600px tall */
 @media (max-width: 500px), (max-height: 600px) {
   .modal-title {
     font-size: 1.4rem;
