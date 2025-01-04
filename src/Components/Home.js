@@ -1,124 +1,137 @@
-import React from 'react';
-import { Box, Typography, Button, Container, Grid } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Box, Container, Typography, Grid, Button } from '@mui/material';
 import { styled } from '@mui/system';
+import { categories } from '../Data/ProjectsData';
 import ProjectCard from './ProjectCard';
-import BlogPostCard from './BlogPostCard';
-import { ColorTextTypography } from './CustomTypography';
-
 import Footer from './Footer';
-import TestimonialSection from './TestimonialSection';
+import ProjectModal from './Modal';
 
-const HeroContainer = styled(Container)(({ theme }) => ({
-  marginTop: theme.spacing(8),
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-}));
+import './Home.css';
 
-const HeroButton = styled(Button)(({ theme }) => ({
-  margin: theme.spacing(3, 0, 2),
-  backgroundColor: '#1DB954',
+// 1) Define the keyframes for flicker
+import { keyframes } from '@emotion/react';
+
+const buttonFlicker = keyframes`
+  0% { filter: brightness(1); }
+  50% { filter: brightness(2); }
+  100% { filter: brightness(1); }
+`;
+
+// 2) Create a smaller NeonButton with flicker and new hover color
+const NeonButton = styled(Button)(({ theme }) => ({
+  color: '#fff',
+  backgroundColor: '#1DB954',   // Normal color
+  textTransform: 'uppercase',
+  fontWeight: 600,
+  letterSpacing: '1px',
+  // Make it smaller
+  padding: theme.spacing(1, 2),
+  fontSize: '0.85rem',
+  borderRadius: '6px',
+  position: 'relative',
+  // Subtle glow
+  boxShadow: '0 0 6px rgba(0,255,127,0.3)', // Using a bright greenish glow
+  transition: 'all 0.2s ease-out',
   '&:hover': {
-    backgroundColor: '#00FFFF',
+    backgroundColor: '#32FF7E',  // A bright neon green on hover
+    boxShadow: '0 0 12px rgba(0,255,127,0.6)',
+    transform: 'scale(1.03)',
+    animation: `${buttonFlicker} 0.3s linear`, // Flicker effect
+  },
+  '&:active': {
+    transform: 'scale(0.98)',
+    boxShadow: '0 0 8px rgba(0,255,127,0.4)',
   },
 }));
 
-const ViewAllButton = styled(Button)(({ theme }) => ({
-  margin: theme.spacing(3, 0, 2),
-  backgroundColor: '#1DB954',
-  '&:hover': {
-    backgroundColor: '#00FFFF',
-  },
-}));
-
-// ... rest of the code...
-const posts = [
-  { 
-    id: 1, 
-    title: 'My first post', 
-    description: 'This is the first post on my blog...', 
-    postUrl: '/blog/1',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?ixid=M3w0NDgzMDl8MHwxfHNlYXJjaHwxfHx2aWRlbyUyMGdhbWVzfGVufDB8fHx8MTY4Nzc1MDE4MHww&ixlib=rb-4.0.3'
-  },
-  { 
-    id: 2, 
-    title: 'My second post', 
-    description: 'This is the second post on my blog...', 
-    postUrl: '/blog/2',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1586182987320-4f376d39d787?ixid=M3w0NDgzMDl8MHwxfHNlYXJjaHwyfHx2aWRlbyUyMGdhbWVzfGVufDB8fHx8MTY8Nzc1MDE4MHww&ixlib=rb-4.0.3'
-  },
-];
-
-const projects = [
-  { 
-    id: 1, 
-    title: 'Project Alpha', 
-    description: 'An innovative solution for efficient resource management.', 
-    projectUrl: '/projects/1',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1555066931-bf19f8fd108f?ixid=M3w0NDgzMDl8MHwxfHNlYXJjaHwxfHxwcm9qZWN0JTIwbWFuYWdlbWVudHxlbnwwfHx8fDE2ODc3NTAxODA&ixlib=rb-1.2.1'
-  },
-  { 
-    id: 2, 
-    title: 'Project Beta', 
-    description: 'A cutting-edge application to streamline online workflows.', 
-    projectUrl: '/projects/2',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1553484771-371e8e279a19?ixid=M3w0NDgzMDl8MHwxfHNlYXJjaHwyfHxwcm9qZWN0JTIwbWFuYWdlbWVudHxlbnwwfHx8fDE2ODc7NTAxODA&ixlib=rb-1.2.1' 
-  },
-];
-
+// Helper: get 3 Game Projects
+function getFeaturedProjects() {
+  const gameCat = categories.find((cat) => cat.title === 'Game Projects');
+  return gameCat ? gameCat.projects.slice(0, 3) : [];
+}
 
 const Home = () => {
-  const [isDarkTheme, setTheme] = React.useState(false);
-  
-  const toggleTheme = () => {
-    setTheme(!isDarkTheme);
+  const [featuredProjects, setFeaturedProjects] = useState([]);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(null);
+
+  useEffect(() => {
+    setFeaturedProjects(getFeaturedProjects());
+  }, []);
+
+  const handleOpenModal = (project, uniqueId) => {
+    setSelectedProject(project);
+    setIsModalOpen(uniqueId);
+  };
+
+  const closeModal = () => {
+    setSelectedProject(null);
+    setIsModalOpen(null);
   };
 
   return (
-    <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-      <HeroContainer component="section">
-        <ColorTextTypography component="h1" variant="h2" align="center" gutterBottom>
-          Welcome to Daniel Lopez's Game Dev Portfolio
-        </ColorTextTypography>
-        <Typography component="h2" variant="h5" align="center" paragraph>
-          I'm a passionate game developer. Here you can find my projects and read my blog posts.
+    <Box className="home-page" component="main">
+      {/* HERO SECTION */}
+      <section className="hero-section">
+        <Container maxWidth="lg" className="hero-content">
+          <Typography variant="h1" className="hero-title" gutterBottom>
+            HELLO! I AM <span className="accent-text">DANIEL LOPEZ</span>
+          </Typography>
+          <Typography variant="h5" className="hero-subtitle">
+            Software Engineer | Game Developer & Designer
+          </Typography>
+        </Container>
+      </section>
+
+      {/* FEATURED PROJECTS */}
+      <Container sx={{ mt: 10 }}>
+        <Typography variant="h4" className="category-title" gutterBottom>
+          Featured Projects
         </Typography>
-        <HeroButton variant="contained" href="/portfolio">
-          View My Portfolio
-        </HeroButton>
-      </HeroContainer>
-
-      <Container component="section" sx={{ my: 8 }}>
-        <ColorTextTypography component="h2" variant="h4" gutterBottom>
-          Latest Projects
-        </ColorTextTypography>
         <Grid container spacing={4}>
-          {projects.map(project => <ProjectCard key={project.id} project={project} />)}
+          {featuredProjects.map((project) => {
+            const uniqueId = `home-feature-${project.id}`;
+            return (
+              <Grid item xs={12} sm={6} md={4} key={project.id}>
+                <ProjectCard
+                  project={project}
+                  uniqueId={uniqueId}
+                  setSelectedProject={() => handleOpenModal(project, uniqueId)}
+                />
+              </Grid>
+            );
+          })}
         </Grid>
-        <ViewAllButton variant="contained" href="/portfolio">View All Projects</ViewAllButton>
+
+        {/* Another smaller NeonButton for "View All Projects" */}
+        <NeonButton variant="contained" href="/portfolio" sx={{ mt: 3 }}>
+          View All Projects
+        </NeonButton>
       </Container>
 
-      <Container component="section" sx={{ my: 8 }}>
-        <ColorTextTypography component="h2" variant="h4" gutterBottom>
-          Recent Blog Posts
-        </ColorTextTypography>
-        <Grid container spacing={4}>
-          {posts.map(post => <BlogPostCard key={post.id} post={post} />)}
-        </Grid>
-        <ViewAllButton variant="contained" href="/blog">View All Blog Posts</ViewAllButton>
-      </Container>
-
-      <Container component="section" sx={{ my: 8 }}>
-        <ColorTextTypography component="h2" variant="h4" gutterBottom>
+      {/* ABOUT SECTION */}
+      <Container sx={{ mt: 10, mb: 10 }} className="about-section">
+        <Typography variant="h4" className="category-title" gutterBottom>
           About Me
-        </ColorTextTypography>
-        <Typography component="h3" variant="h6">
-          I am Daniel Lopez, a passionate game developer with X years of experience. 
-          I specialize in developing engaging and innovative digital and physical game designs.
+        </Typography>
+        <Typography variant="h5" className="about-text">
+          I’m Daniel Lopez, a passionate game developer with X years of experience in Unity and C#.
+          My mission is to craft fresh, immersive worlds. Check out my projects below and see what’s cooking!
         </Typography>
       </Container>
-      <TestimonialSection />
+
+      {/* FOOTER */}
       <Footer />
+
+      {/* MODAL (only if a project is selected) */}
+      {selectedProject && (
+        <ProjectModal
+          project={selectedProject}
+          uniqueId={isModalOpen}
+          isModalOpen={isModalOpen}
+          closeModal={closeModal}
+        />
+      )}
     </Box>
   );
 };

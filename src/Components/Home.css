@@ -1,0 +1,144 @@
+/* src/styles/Home.css */
+
+/* Root variables can come from your index.css or portfolio
+:root {
+  --color-primary-bg: #121212;
+  --color-primary-text: #ffffff;
+  --color-accent: #4CAF50;
+  --font-primary: 'Segoe UI', sans-serif;
+}
+*/
+
+.home-page {
+    background-color: var(--color-primary-bg);
+    color: var(--color-primary-text);
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: var(--font-primary);
+    position: relative;
+  }
+  
+  /* HERO SECTION */
+  .hero-section {
+    padding: 60px 0 50px;
+    background: linear-gradient(to right, #0b0b0b, #232323); /* Subtle gradient */
+  }
+  .hero-content {
+    text-align: left; /* or center if you prefer center */
+  }
+  
+  /* Hero Title (powerful look) */
+  .hero-title {
+    font-size: 3rem;      /* Large text */
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    color: var(--color-primary-text);
+  }
+  .hero-title .accent-text {
+    color: var(--color-accent);
+  }
+  
+  /* Hero Subtitle */
+  .hero-subtitle {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin-bottom: 20px;
+    line-height: 1.4;
+    color: var(--color-primary-text);
+  }
+  
+  /* Category Title (like "Featured Projects" / "About Me") */
+  .category-title {
+    font-size: 2rem; 
+    font-weight: bold;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    color: var(--color-primary-text);
+    padding-left: 10px;
+    transition: color 0.3s ease;
+  }
+  .category-title:hover {
+    color: var(--color-accent);
+    animation: glitch 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+  .category-title::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 5px;
+    background-color: var(--color-accent);
+    margin: 8px 0 0;
+    border-radius: 2px;
+    animation: pulse 1.5s infinite;
+  }
+  
+  /* Glitch Keyframe */
+  @keyframes glitch {
+    0%   { transform: translate(0); opacity: 1; }
+    20%  { transform: translate(-2px, 2px); opacity: 0.8; }
+    40%  { transform: translate(2px, -2px); opacity: 1; }
+    60%  { transform: translate(-1px, 1px); opacity: 0.9; }
+    80%  { transform: translate(1px, -1px); opacity: 1; }
+    100% { transform: translate(0); opacity: 1; }
+  }
+  
+  /* Pulse Keyframe */
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scaleX(1); }
+    50% { opacity: 0.7; transform: scaleX(0.9); }
+  }
+  
+  /* "View All" or CTA Buttons */
+  .view-all-button {
+    margin-top: 20px;
+    background-color: #1DB954;
+    color: #fff;
+    transition: background-color 0.2s ease;
+  }
+  .view-all-button:hover {
+    background-color: #00ffff;
+  }
+  
+  /* ABOUT SECTION */
+  .about-section {
+    margin-top: 60px;
+  }
+  .about-text {
+    font-size: 1.2rem;   /* bigger to feel "powerful" */
+    max-width: 800px;
+    line-height: 1.6;
+    margin-top: 10px;
+    color: var(--color-primary-text);
+  }
+  
+  /* RESPONSIVE TWEAKS */
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.2rem;
+    }
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+    .category-title {
+      font-size: 1.6rem;
+    }
+  }
+  @media (max-width: 500px) {
+    .hero-title {
+      font-size: 1.8rem;
+    }
+    .hero-subtitle {
+      font-size: 0.95rem;
+    }
+    .category-title {
+      font-size: 1.4rem;
+    }
+    .category-title::after {
+      width: 80px;
+    }
+  }
+  
