@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Box, Container, Typography, Grid, Button } from '@mui/material';
 import { styled } from '@mui/system';
 import { keyframes } from '@emotion/react';
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadFull } from "tsparticles";
 
 import { categories } from '../Data/ProjectsData';
 import ProjectCard from './ProjectCard';
@@ -62,12 +64,16 @@ const Home = () => {
   const [featuredProjects, setFeaturedProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(null);
+  const [init, setInit] = useState(false);
+
+  // controls the fade-in of the particles container
+  const [particlesVisible, setParticlesVisible] = useState(false);
 
   // Typewriter state
   const [typedText, setTypedText] = useState("");
   const [typedIndex, setTypedIndex] = useState(0);
 
-  // Multiline text with \n for line breaks
+  // The multiline text for the typewriter
   const fullText = "HELLO!\nI AM\nDANIEL LOPEZ";
 
   // Load featured projects
@@ -86,9 +92,86 @@ const Home = () => {
     }
   }, [typedIndex, fullText]);
 
+  // done typing?
   const typedDone = typedIndex >= fullText.length;
 
-  // Modal
+  // after typewriter is done, wait 1.2s, then fade in particles
+  useEffect(() => {
+    if (typedDone) {
+      const fadeTimer = setTimeout(() => {
+        setParticlesVisible(true);
+      }, 1200); // 1.2s after typing finishes
+      return () => clearTimeout(fadeTimer);
+    }
+  }, [typedDone]);
+
+  // initialize Particles
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadFull(engine);
+      setInit(true);
+    });
+  }, []);
+
+  // handle mobile vs. desktop config
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
+  // Particles config
+  const particlesOptions = useMemo(
+    () => ({
+      fullScreen: { enable: false },
+      background: { color: { value: "transparent" } },
+      fpsLimit: 60,
+      interactivity: {
+        events: {
+          onHover: { enable: !isMobile, mode: "grab" },
+          onClick: { enable: !isMobile, mode: "repulse" },
+          resize: true,
+        },
+        modes: {
+          grab: {
+            distance: 200,
+            links: { opacity: 0.3 },
+          },
+          repulse: { distance: 100 },
+        },
+      },
+      particles: {
+        number: {
+          value: isMobile ? 20 : 50,
+          density: { enable: true, area: 800 },
+        },
+        color: { value: "#00ff99" },
+        shape: {
+          type: isMobile
+            ? "circle"
+            : ["circle", "square", "triangle", "polygon", "star"],
+        },
+        opacity: { value: 0.5 },
+        size: {
+          value: { min: 3, max: 8 },
+          random: true,
+        },
+        links: {
+          enable: !isMobile,
+          distance: 150,
+          color: "#00ff99",
+          opacity: 0.3,
+          width: 1,
+        },
+        move: {
+          enable: true,
+          speed: isMobile ? 0.5 : 1,
+          direction: "none",
+          outModes: { default: "bounce" },
+        },
+      },
+      detectRetina: true,
+    }),
+    [isMobile]
+  );
+
+  // Modal handlers
   const handleOpenModal = (project, uniqueId) => {
     setSelectedProject(project);
     setIsModalOpen(uniqueId);
@@ -102,11 +185,15 @@ const Home = () => {
     <Box className="home-page" component="main">
       {/* HERO SECTION */}
       <section className="hero-section">
+        {/* We always render the container, but conditionally add .show to fade in */}
+        <div className={`particles-container ${particlesVisible ? "show" : ""}`}>
+          <Particles init={setInit} options={particlesOptions} />
+        </div>
+
         <Container maxWidth="lg" className="hero-content">
           {/* Typewriter Title */}
           <Typography variant="h1" className="hero-title" gutterBottom>
             {typedDone ? (
-              // If done, show final lines with accent on "DANIEL LOPEZ"
               <>
                 HELLO!
                 <br />
@@ -116,7 +203,6 @@ const Home = () => {
                 <span className="console-cursor" />
               </>
             ) : (
-              // If still typing, show partial text plus blinking cursor
               <>
                 {formatTypedTextWithBreaks(typedText)}
                 <span className="console-cursor" />
@@ -124,20 +210,22 @@ const Home = () => {
             )}
           </Typography>
 
-          {/* Subtitle fades in after typing is done */}
+          {/* Subtitle - green bullets */}
           <Typography
             variant="h5"
-            className={`hero-subtitle ${typedDone ? 'show' : ''}`}
+            className={`hero-subtitle ${typedDone ? "show" : ""}`}
           >
-            Game Developer ∙ Designer ∙ VR Innovator
+            Game Developer <span className="accent-text">∙</span> Designer{" "}
+            <span className="accent-text">∙</span> VR Innovator
           </Typography>
 
-          {/* Quote line (also fades in after typing is done) */}
+          {/* Quote - highlight "Love." in green */}
           <Typography
             variant="subtitle2"
-            className={`hero-quote ${typedDone ? 'show' : ''}`}
+            className={`hero-quote ${typedDone ? "show" : ""}`}
           >
-            “Dreaming Big, Building Bigger: Crafting Worlds That Players Love.”
+            <span className="accent-text">“</span> Dreaming Big, Building Bigger: Crafting Worlds That Players Love{" "}
+            <span className="accent-text">”</span>
           </Typography>
         </Container>
       </section>

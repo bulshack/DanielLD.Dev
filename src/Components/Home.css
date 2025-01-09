@@ -6,7 +6,7 @@
 :root {
   --color-primary-bg: #121212;
   --color-primary-text: #ffffff;
-  --color-accent: #4CAF50;
+  --color-accent: #4CAF50; /* same green used for Daniel Lopez & bullets */
   --font-primary: 'Segoe UI', sans-serif;
 }
 
@@ -20,7 +20,7 @@
 }
 
 /* ----------------------------------------------------
- HERO SECTION (Centered, Larger)
+ HERO SECTION
  ---------------------------------------------------- */
 .hero-section {
   background: linear-gradient(to right, #0b0b0b, #232323);
@@ -29,12 +29,14 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  padding: 0 20px; 
+  padding: 0 20px;
 }
 
 .hero-content {
   text-align: center;
   max-width: 700px;
+  position: relative;
+  z-index: 1; /* on top of any background or particles */
 }
 
 /* Hero Title (Typewriter lines) */
@@ -47,8 +49,8 @@
   color: var(--color-primary-text);
 }
 
-/* Accent text color (for final "DANIEL LOPEZ") */
-.hero-title .accent-text {
+/* Accent text color (for final "DANIEL LOPEZ" and bullet points) */
+.accent-text {
   color: var(--color-accent);
 }
 
@@ -56,45 +58,56 @@
 .hero-subtitle {
   font-size: 1.3rem;
   max-width: 600px;
-  margin-bottom: 1rem;  /* a bit less space before the quote */
+  margin-bottom: 1rem;
   line-height: 1.4;
   color: var(--color-primary-text);
 
-  /* fade/slide from below */
+  /* fade/slide in from below */
   opacity: 0;
   transform: translateY(15px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 
-  /* center the subtitle text */
   text-align: center;
 }
 
-/* when typing is done, add .show to fade in the subtitle */
 .hero-subtitle.show {
   opacity: 0.9;
   transform: translateY(0);
 }
 
-/* Hero Quote (new class) */
+/* Hero Quote (fades in same time as subtitle) */
 .hero-quote {
-  font-size: 1.1rem;       /* slightly smaller than subtitle */
+  font-size: 1.1rem;
   font-style: italic;
-  color: #cccccc;          /* subtle gray color (customize as needed) */
-  max-width: 700px;        /* ensure it wraps nicely */
-  margin: 0 auto;          /* center horizontally */
-  margin-top: 0.5rem;      /* small gap under the subtitle */
+  color: #cccccc; 
+  max-width: 700px;
+  margin: 0 auto;
+  margin-top: 0.5rem;
   text-align: center;
 
-  /* same fade/slide in style as subtitle */
   opacity: 0;
   transform: translateY(15px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
-
-/* fade in quote with .show as well */
 .hero-quote.show {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* --- Particles Container Fade-in --- */
+.particles-container {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  /* Start hidden, then fade in */
+  opacity: 0;
+  pointer-events: none; /* so it doesn't block anything while hidden */
+  transition: opacity 1s ease;
+}
+.particles-container.show {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* ----------------------------------------------------
@@ -142,7 +155,7 @@
   50% { opacity: 0.7; transform: scaleX(0.9); }
 }
 
-/* Optional Buttons */
+/* Buttons */
 .view-all-button {
   margin-top: 20px;
   background-color: #1DB954;
