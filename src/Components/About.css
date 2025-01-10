@@ -1,0 +1,137 @@
+/* --------------------------------------------------------
+   src/styles/About.css
+   -------------------------------------------------------- */
+
+/* Root variables (to match your Home.css) */
+:root {
+    --color-primary-bg: #121212;      /* dark background */
+    --color-primary-text: #ffffff;    /* light text */
+    --color-accent: #4CAF50;         /* same accent color */
+    --font-primary: 'Segoe UI', sans-serif;
+  }
+  
+  /* Basic page styling */
+  .about-page {
+    background-color: var(--color-primary-bg);
+    color: var(--color-primary-text);
+    min-height: 100vh;
+    padding: 2rem;
+    font-family: var(--font-primary);
+  
+    /* If you want to center content or allow scrolling if content is big */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Title styling to match your category-title look */
+  .about-title {
+    font-size: 2rem;
+    font-weight: 700;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+    color: var(--color-primary-text);
+    padding-left: 10px;
+    transition: color 0.3s ease;
+  }
+  .about-title:hover {
+    color: var(--color-accent);
+  }
+  
+  /* Sub-heading (like "My Journey") */
+  .about-subheading {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--color-accent);
+  }
+  
+  /* Profile container (photo + text side by side) */
+  .profile-section {
+    display: flex;
+    flex-wrap: wrap; /* responsive: wrap on smaller screens */
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  .profile-image {
+    flex: 0 0 250px; /* fix width for image or set a max-width */
+    margin-right: 2rem;
+    border-radius: 10px;
+    overflow: hidden; /* if we use an <img> that needs rounding */
+  }
+  .profile-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  .profile-text {
+    flex: 1; /* take remaining space */
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  
+  /* Experience / Timeline section */
+  .timeline {
+    border-left: 2px solid var(--color-accent);
+    margin-left: 1rem;
+    padding-left: 1rem;
+    margin-bottom: 3rem;
+  }
+  .timeline-item {
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .timeline-item h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+    color: var(--color-accent);
+  }
+  .timeline-item .dates {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 0.5rem;
+  }
+  .timeline-item p {
+    font-size: 1rem;
+    margin: 0;
+    color: var(--color-primary-text);
+  }
+  
+  /* CTA section (optional) */
+  .about-cta {
+    text-align: center;
+    margin-top: auto; /* push to bottom if you want */
+  }
+  .about-cta button {
+    background-color: var(--color-accent);
+    color: #fff;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .about-cta button:hover {
+    background-color: #32ff7e;
+  }
+  
+  /* Responsive tweaks */
+  @media (max-width: 768px) {
+    .profile-section {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .profile-image {
+      margin-right: 0;
+      margin-bottom: 1rem;
+    }
+    .timeline {
+      margin-left: 0;
+      padding-left: 1rem;
+    }
+  }
+  

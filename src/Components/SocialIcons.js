@@ -1,45 +1,30 @@
-// SocialIcons.js
-
+import React from 'react';
 import { Box } from '@mui/material';
-
-import { SocialIcon } from './FooterStyles'; 
-
-import TwitterIcon from '@mui/icons-material/Twitter';
-
-import InstagramIcon from '@mui/icons-material/Instagram';
-
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-
-import EmailIcon from '@mui/icons-material/Email';
-
+import { SocialIcon } from './FooterStyles';
+import { GitHub, LinkedIn, MailOutline } from '@mui/icons-material';
 
 const SocialIcons = () => {
-
   return (
-
-    <Box display="flex" justifyContent="center">
-
-      <SocialIcon href="https://twitter.com/you">
-        <TwitterIcon />
+    <Box sx={{ mb: 2 }}>
+      <SocialIcon
+        href="https://github.com/YourGitHubUser"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <GitHub />
       </SocialIcon>
-
-      <SocialIcon href="https://instagram.com/you">
-       <InstagramIcon />
+      <SocialIcon
+        href="https://www.linkedin.com/in/YourLinkedInProfile"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <LinkedIn />
       </SocialIcon>
-
-      <SocialIcon href="https://linkedin.com/you">
-        <LinkedInIcon />
+      <SocialIcon href="mailto:Daniellopezdib@gmail.com">
+        <MailOutline />
       </SocialIcon>
-      
-      <SocialIcon href="mailto:you@email.com">
-        <EmailIcon />
-      </SocialIcon>
-
     </Box>
-
   );
-
-}
-
+};
 
 export default SocialIcons;

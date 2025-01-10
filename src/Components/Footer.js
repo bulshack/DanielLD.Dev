@@ -1,31 +1,29 @@
-// Footer.js
-
+// --------------------------------------
+// src/components/Footer.js
+// --------------------------------------
 import React from 'react';
-
-// Extract styled components to separate files 
-import { FooterContainer, SocialIcon } from './FooterStyles';
-import { Typography, Box } from '@mui/material';
-
-// Extract social icons to separate component
+import { Typography } from '@mui/material';
+import { FooterContainer } from './FooterStyles';
 import SocialIcons from './SocialIcons';
 
-const Footer = () => (
-  <FooterContainer>
+const Footer = () => {
+  return (
+    <FooterContainer>
+      <Typography variant="h6" gutterBottom>
+        Let's Connect
+      </Typography>
 
-    {/* Consistent spacing between sections */}
-    <Typography variant="h6" align="center" gutterBottom>
-      Let's Connect
-    </Typography>
-    
-    <SocialIcons />
+      {/* Your social icons row */}
+      <SocialIcons />
 
-    <Typography variant="body2" align="center">
-      Daniellopezdib@gmail.com
-      <br />
-      &copy; {new Date().getFullYear()} Your Name  
-    </Typography>
-
-  </FooterContainer>
-);
+      {/* Email & Copyright */}
+      <Typography variant="body2" sx={{ mt: 2 }}>
+        Daniellopezdib@gmail.com
+        <br />
+        &copy; {new Date().getFullYear()} Daniel Lopez
+      </Typography>
+    </FooterContainer>
+  );
+};
 
 export default Footer;

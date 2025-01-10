@@ -166,7 +166,7 @@ const Portfolio = () => {
 
   return (
     <div className="portfolio">
-      <div className="particles-container">
+      <div className="particles-container-port">
         <Particles init={setInit} options={particlesOptions} />
       </div>
 

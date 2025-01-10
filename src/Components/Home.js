@@ -4,6 +4,24 @@ import { styled } from '@mui/system';
 import { keyframes } from '@emotion/react';
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadFull } from "tsparticles";
+import { SiBlender, SiAdobephotoshop } from "react-icons/si";
+import {
+  FaReact,
+  FaCss3Alt,
+  FaJsSquare,
+} from 'react-icons/fa';
+import {
+  SiUnity,
+  SiCsharp,
+  SiGodotengine,
+  SiCplusplus,
+  SiFigma,
+  SiJira,
+  SiConfluence,
+  SiRider,
+  SiGithub,
+  SiVisualstudio,
+} from 'react-icons/si';
 
 import { categories } from '../Data/ProjectsData';
 import ProjectCard from './ProjectCard';
@@ -11,15 +29,16 @@ import Footer from './Footer';
 import ProjectModal from './Modal';
 
 import './Home.css';
+import { GitHub } from '@mui/icons-material';
 
-/* ----- Flicker Animation for Neon Button ----- */
+/* Flicker Animation for Neon Button */
 const buttonFlicker = keyframes`
   0% { filter: brightness(1); }
   50% { filter: brightness(2); }
   100% { filter: brightness(1); }
 `;
 
-/* ----- NeonButton: same style as before ----- */
+/* NeonButton */
 const NeonButton = styled(Button)(({ theme }) => ({
   color: '#fff',
   backgroundColor: '#1DB954',
@@ -44,13 +63,12 @@ const NeonButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-/* Helper: get 3 game projects (for "Featured Projects") */
 function getFeaturedProjects() {
   const gameCat = categories.find((cat) => cat.title === 'Game Projects');
   return gameCat ? gameCat.projects.slice(0, 3) : [];
 }
 
-/* Utility to handle multi-line typed text by splitting \n into <br/> */
+/* Convert multiline text to <br/> splits */
 function formatTypedTextWithBreaks(text) {
   return text.split('\n').map((line, idx) => (
     <React.Fragment key={idx}>
@@ -60,23 +78,40 @@ function formatTypedTextWithBreaks(text) {
   ));
 }
 
+/* Technology icons for skills grid */
+const techIcons = {
+  Unity: <SiUnity />,
+  'C#': <SiCsharp />,
+  'C++': <SiCplusplus />,
+  VS: <SiVisualstudio />,
+  Rider: <SiRider />,
+  Github: <SiGithub />,
+  Jira: <SiJira />,
+  Confluence: <SiConfluence />,
+  Figma: <SiFigma />,
+  Godot: <SiGodotengine />,
+  JavaScript: <FaJsSquare />,
+  React: <FaReact />,
+  CSS: <FaCss3Alt />,
+  Photoshop: <SiAdobephotoshop />,
+  Blender: <SiBlender />,
+};
+
 const Home = () => {
   const [featuredProjects, setFeaturedProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(null);
   const [init, setInit] = useState(false);
 
-  // controls the fade-in of the particles container
+  // For particles fade
   const [particlesVisible, setParticlesVisible] = useState(false);
 
-  // Typewriter state
+  // Typewriter
   const [typedText, setTypedText] = useState("");
   const [typedIndex, setTypedIndex] = useState(0);
-
-  // The multiline text for the typewriter
   const fullText = "HELLO!\nI AM\nDANIEL LOPEZ";
 
-  // Load featured projects
+  // Load featured projects on mount
   useEffect(() => {
     setFeaturedProjects(getFeaturedProjects());
   }, []);
@@ -87,25 +122,24 @@ const Home = () => {
       const timer = setTimeout(() => {
         setTypedText((prev) => prev + fullText[typedIndex]);
         setTypedIndex((prev) => prev + 1);
-      }, 100); // typing speed
+      }, 100);
       return () => clearTimeout(timer);
     }
   }, [typedIndex, fullText]);
 
-  // done typing?
   const typedDone = typedIndex >= fullText.length;
 
-  // after typewriter is done, wait 1.2s, then fade in particles
+  // Fade in particles 1.2s after typing finishes
   useEffect(() => {
     if (typedDone) {
       const fadeTimer = setTimeout(() => {
         setParticlesVisible(true);
-      }, 1200); // 1.2s after typing finishes
+      }, 1200);
       return () => clearTimeout(fadeTimer);
     }
   }, [typedDone]);
 
-  // initialize Particles
+  // Initialize tsparticles
   useEffect(() => {
     initParticlesEngine(async (engine) => {
       await loadFull(engine);
@@ -113,10 +147,10 @@ const Home = () => {
     });
   }, []);
 
-  // handle mobile vs. desktop config
+  // Mobile check
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
-  // Particles config
+  // Particle config
   const particlesOptions = useMemo(
     () => ({
       fullScreen: { enable: false },
@@ -185,7 +219,7 @@ const Home = () => {
     <Box className="home-page" component="main">
       {/* HERO SECTION */}
       <section className="hero-section">
-        {/* We always render the container, but conditionally add .show to fade in */}
+        {/* Particles Background */}
         <div className={`particles-container ${particlesVisible ? "show" : ""}`}>
           <Particles init={setInit} options={particlesOptions} />
         </div>
@@ -210,7 +244,7 @@ const Home = () => {
             )}
           </Typography>
 
-          {/* Subtitle - green bullets */}
+          {/* Subtitle */}
           <Typography
             variant="h5"
             className={`hero-subtitle ${typedDone ? "show" : ""}`}
@@ -219,12 +253,13 @@ const Home = () => {
             <span className="accent-text">∙</span> VR Innovator
           </Typography>
 
-          {/* Quote - highlight "Love." in green */}
+          {/* Quote */}
           <Typography
             variant="subtitle2"
             className={`hero-quote ${typedDone ? "show" : ""}`}
           >
-            <span className="accent-text">“</span> Dreaming Big, Building Bigger: Crafting Worlds That Players Love{" "}
+            <span className="accent-text">“</span> Dreaming Big, Building Bigger:
+            Crafting Worlds That Players Love{" "}
             <span className="accent-text">”</span>
           </Typography>
         </Container>
@@ -255,19 +290,40 @@ const Home = () => {
         </NeonButton>
       </Container>
 
-      {/* ABOUT SECTION */}
+      {/* ABOUT SECTION (Preview) */}
       <Container sx={{ mt: 10, mb: 10 }} className="about-section">
         <Typography variant="h4" className="category-title" gutterBottom>
           About Me
         </Typography>
-        <Typography variant="h5" className="about-text">
-          I’m Daniel Lopez, a passionate game developer with X years of experience in Unity and C#.
-          My mission is to craft fresh, immersive worlds. Check out my projects below and see what’s cooking!
+        {/* A short teaser about yourself */}
+        <Typography variant="h5" className="about-text" sx={{ mb: 2 }}>
+        I’m Daniel Lopez, a <strong>Software Engineer</strong>, <strong>Game Developer</strong>, 
+        and <strong>Game Designer</strong> originally from <strong>Venezuela</strong>. 
+        With a passion for video games, eSports, and emerging technologies, 
+        I’ve gone from hosting game servers at age eight to <strong>working alongside 
+        top talent</strong> on cutting-edge VR/AR <strong>and</strong> video game experiences.
+        <br /><br />
         </Typography>
 
-        <NeonButton variant="contained" href="/about" sx={{ mt: 3 }}>
+        {/* Button leading to the full About page */}
+        <NeonButton variant="contained" href="/about">
           Read More About Me
         </NeonButton>
+      </Container>
+
+      {/* SKILLS SECTION */}
+      <Container sx={{ mt: 10, mb: 10 }} className="skills-section">
+        <Typography variant="h4" className="category-title" gutterBottom>
+          Skills
+        </Typography>
+        <Grid container spacing={0} className="skills-grid">
+          {Object.entries(techIcons).map(([name, icon]) => (
+            <Grid item xs={12} md={2} className="skill-box" key={name}>
+              <div className="skill-icon">{icon}</div>
+              <div className="skill-name">{name}</div>
+            </Grid>
+          ))}
+        </Grid>
       </Container>
 
       {/* FOOTER */}

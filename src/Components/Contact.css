@@ -1,0 +1,139 @@
+/* ----------------------------------------------------
+   src/styles/Contact.css
+   ---------------------------------------------------- */
+
+/* Root variables */
+:root {
+    --color-primary-bg: #121212;
+    --color-primary-text: #ffffff;
+    --color-accent: #1DB954; /* or #4CAF50 if you prefer */
+    --font-primary: 'Segoe UI', sans-serif;
+  }
+  
+  /* Page Container */
+  .contact-page {
+    background-color: var(--color-primary-bg);
+    color: var(--color-primary-text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-primary);
+    padding: 2rem;
+  }
+  
+  /* Title */
+  .contact-title {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    color: var(--color-primary-text);
+    text-align: center;
+    text-shadow: 0 0 6px rgba(0,255,127,0.3);
+  }
+  
+  /* Form Container (dark box) */
+  .contact-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;  /* more padding for separation */
+    background: #1d1d1d;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  }
+  
+  /* Each text field spacing */
+  .contact-input {
+    margin-bottom: 1.8rem; /* bigger separation among fields */
+    width: 100%;
+  }
+  
+  /* Label color override */
+  .contact-label {
+    color: #cccccc !important;
+  }
+  
+  /* 
+    Dark background + white text inside the input fields.
+    We also make the outline green on hover & focus.
+  */
+  
+  /* 
+    The input container root (for outlined variant):
+  */
+  .MuiOutlinedInput-root {
+    background-color: #2b2b2b; /* Slightly lighter than #1d1d1d so it stands out */
+  }
+  
+  /* The input text color (the text user types) */
+  .MuiOutlinedInput-input {
+    color: #ffffff !important;
+  }
+  
+  /* Outline color on hover */
+  .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: var(--color-accent) !important;
+  }
+  
+  /* Outline color on focus */
+  .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: var(--color-accent) !important;
+  }
+  
+  /* 
+    By default, MUI sets a "blue" focus ripple effect.
+    We'll override that to green as well.
+    The easiest is to override the focus ripple color,
+    but it might require theme changes. We'll do a partial fix here. 
+  */
+  
+  /* 
+     If you see a leftover blue focus ripple, you'd have to override 
+     a theme or do more complex CSS. For now, this ensures 
+     the visible outline is green.
+  */
+  
+  /* Extra info and social icons */
+  .contact-extra {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 1.1rem;
+    color: #aaaaaa;
+  }
+  
+  .social-icons {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .social-icons a {
+    color: var(--color-accent);
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+  }
+  
+  .social-icons a:hover {
+    color: #32ff7e;
+  }
+  
+  /* Extra separation between last text field and the button */
+  .form-button-wrapper {
+    margin-top: 1.5rem;
+  }
+
+  
+  /* Force autofilled fields to use a dark background + white text in Chrome/Safari */
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  background-color: #2b2b2b !important;       /* Your dark background */
+  -webkit-box-shadow: 0 0 0 50px #2b2b2b inset !important; 
+  /* The 50px inset trick forces the background to actually show up */
+
+  -webkit-text-fill-color: #ffffff !important; /* White text inside the autofill */
+  color: #ffffff !important;
+}
+
+  

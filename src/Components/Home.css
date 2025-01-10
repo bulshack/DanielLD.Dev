@@ -6,7 +6,7 @@
 :root {
   --color-primary-bg: #121212;
   --color-primary-text: #ffffff;
-  --color-accent: #4CAF50; /* same green used for Daniel Lopez & bullets */
+  --color-accent: #4CAF50;
   --font-primary: 'Segoe UI', sans-serif;
 }
 
@@ -19,9 +19,9 @@
   position: relative;
 }
 
-/* ----------------------------------------------------
- HERO SECTION
- ---------------------------------------------------- */
+/* -----------------------------------------------
+ HERO SECTION (you already had this in place)
+ -----------------------------------------------*/
 .hero-section {
   background: linear-gradient(to right, #0b0b0b, #232323);
   min-height: 80vh;
@@ -31,60 +31,49 @@
   position: relative;
   padding: 0 20px;
 }
-
 .hero-content {
   text-align: center;
   max-width: 700px;
   position: relative;
-  z-index: 1; /* on top of any background or particles */
+  z-index: 1;
 }
 
-/* Hero Title (Typewriter lines) */
 .hero-title {
-  font-size: 4rem;      
+  font-size: 4rem;
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   margin-bottom: 1.2rem;
   color: var(--color-primary-text);
 }
-
-/* Accent text color (for final "DANIEL LOPEZ" and bullet points) */
 .accent-text {
   color: var(--color-accent);
 }
 
-/* Hero Subtitle */
 .hero-subtitle {
   font-size: 1.3rem;
   max-width: 600px;
   margin-bottom: 1rem;
   line-height: 1.4;
   color: var(--color-primary-text);
-
-  /* fade/slide in from below */
   opacity: 0;
   transform: translateY(15px);
   transition: opacity 0.8s ease, transform 0.8s ease;
-
   text-align: center;
 }
-
 .hero-subtitle.show {
   opacity: 0.9;
   transform: translateY(0);
 }
 
-/* Hero Quote (fades in same time as subtitle) */
 .hero-quote {
   font-size: 1.1rem;
   font-style: italic;
-  color: #cccccc; 
+  color: #cccccc;
   max-width: 700px;
   margin: 0 auto;
   margin-top: 0.5rem;
   text-align: center;
-
   opacity: 0;
   transform: translateY(15px);
   transition: opacity 0.8s ease, transform 0.8s ease;
@@ -94,15 +83,13 @@
   transform: translateY(0);
 }
 
-/* --- Particles Container Fade-in --- */
+/* Particles container fade-in */
 .particles-container {
   position: absolute;
   inset: 0;
   z-index: 0;
-
-  /* Start hidden, then fade in */
   opacity: 0;
-  pointer-events: none; /* so it doesn't block anything while hidden */
+  pointer-events: none;
   transition: opacity 1s ease;
 }
 .particles-container.show {
@@ -110,9 +97,9 @@
   pointer-events: auto;
 }
 
-/* ----------------------------------------------------
+/* -----------------------------------------------
  CATEGORY TITLE (Featured Projects, About Me)
- ---------------------------------------------------- */
+ -----------------------------------------------*/
 .category-title {
   font-size: 2rem;
   font-weight: bold;
@@ -148,7 +135,6 @@
   80%  { transform: translate(1px, -1px); opacity: 1; }
   100% { transform: translate(0); opacity: 1; }
 }
-
 /* Pulse Keyframe */
 @keyframes pulse {
   0%, 100% { opacity: 1; transform: scaleX(1); }
@@ -178,9 +164,53 @@
   color: var(--color-primary-text);
 }
 
-/* ----------------------------------------------------
+/* New: Skills Grid */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.skill-box {
+  background-color: #1e1e1e; /* slightly lighter than background for contrast */
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.2s ease;
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+}
+.skill-box:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 12px rgba(0,255,127,0.3);
+}
+.skill-icon {
+  font-size: 2.5rem;
+  color: var(--color-accent);
+  margin-bottom: 8px;
+}
+.skill-name {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #eee;
+}
+
+/* Fun Fact text */
+.fun-fact {
+  margin-top: 20px;
+  font-style: italic;
+  color: #cccccc;
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* -----------------------------------------------
  RESPONSIVE TWEAKS
- ---------------------------------------------------- */
+ -----------------------------------------------*/
 @media (max-width: 768px) {
   .hero-title {
     font-size: 2.5rem;
@@ -188,8 +218,10 @@
   .hero-subtitle {
     font-size: 1.1rem;
   }
+  .skills-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
 }
-
 @media (max-width: 500px) {
   .hero-title {
     font-size: 2rem;
@@ -205,9 +237,8 @@
   }
 }
 
-/* --------------------------------------------------------
- Blinking green cursor for the typewriter effect
- --------------------------------------------------------*/
+
+/* Blinking green cursor for the typewriter effect */
 .console-cursor {
   display: inline-block;
   width: 3px;
@@ -217,7 +248,6 @@
   margin-left: 4px;
   animation: blink 0.7s steps(1) infinite;
 }
-
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50%      { opacity: 0; }
