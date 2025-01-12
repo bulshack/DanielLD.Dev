@@ -63,9 +63,16 @@ const NeonButton = styled(Button)(({ theme }) => ({
   },
 }));
 
+/**
+ * UPDATED FUNCTION:
+ * This version looks for a 'featured' flag in your projects.
+ * In your ProjectsData, mark any project with `featured: true`.
+ */
 function getFeaturedProjects() {
-  const gameCat = categories.find((cat) => cat.title === 'Game Projects');
-  return gameCat ? gameCat.projects.slice(0, 3) : [];
+  return categories
+    .flatMap((cat) => cat.projects)
+    .filter((project) => project.featured)
+    .slice(0, 3);
 }
 
 /* Convert multiline text to <br/> splits */
@@ -93,8 +100,6 @@ const techIcons = {
   JavaScript: <FaJsSquare />,
   React: <FaReact />,
   CSS: <FaCss3Alt />,
-  Photoshop: <SiAdobephotoshop />,
-  Blender: <SiBlender />,
 };
 
 const Home = () => {

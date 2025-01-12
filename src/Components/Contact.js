@@ -140,7 +140,7 @@ const Contact = () => {
           <p>Or find me on social media:</p>
           <div className="social-icons">
             <a
-              href="https://github.com/YourGitHubUsername"
+              href="https://github.com/bulshack"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
@@ -148,7 +148,7 @@ const Contact = () => {
               <GitHub />
             </a>
             <a
-              href="https://www.linkedin.com/in/YourLinkedInProfile/"
+              href="https://www.linkedin.com/in/daniel-lopez-511276a7/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"

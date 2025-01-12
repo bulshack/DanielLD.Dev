@@ -7,14 +7,14 @@ const SocialIcons = () => {
   return (
     <Box sx={{ mb: 2 }}>
       <SocialIcon
-        href="https://github.com/YourGitHubUser"
+        href="https://github.com/bulshack"
         target="_blank"
         rel="noopener noreferrer"
       >
         <GitHub />
       </SocialIcon>
       <SocialIcon
-        href="https://www.linkedin.com/in/YourLinkedInProfile"
+        href="https://www.linkedin.com/in/daniel-lopez-511276a7/"
         target="_blank"
         rel="noopener noreferrer"
       >

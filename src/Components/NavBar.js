@@ -117,7 +117,6 @@ const NavBar = () => {
     { path: '/portfolio', label: 'Portfolio' },
     { path: '/resume', label: 'Resume' },
     { path: '/contact', label: 'Contact' },
-    { path: '/blog', label: 'Blog' },
   ];
 
   const toggleMenu = () => {
@@ -132,7 +131,7 @@ const NavBar = () => {
     <nav className="navbar" aria-label="Main Navigation">
       <div className="navbar-container">
         <div className="navbar-brand">
-          <span className="logo-text">Daniel Lopez</span>
+          <span className="logo-text">DLD</span>
           <span className="logo-accent">.dev</span>
         </div>
 

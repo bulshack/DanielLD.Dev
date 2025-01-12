@@ -120,6 +120,7 @@ export const categories = [
         tags: ['Game Projects', '302 Interactive'],
         showGallery: true, // Optional: Explicitly show gallery
         showVisitButton: true, // Optional: Explicitly show "Visit Project" button
+        featured: true, // This will make it appear on Home
       },
       {
         id: 4,
@@ -173,6 +174,7 @@ export const categories = [
         tags: ['Game Projects', '302 Interactive'],
         showGallery: true, // Optional: Explicitly show gallery
         showVisitButton: true, // Optional: Explicitly show "Visit Project" button
+        featured: true, // This will make it appear on Home
       },
       {
         id: 7,
@@ -278,6 +280,7 @@ export const categories = [
         tags: ['Mixed Reality Projects', '302 Interactive'],
         showGallery: true, // Optional: Explicitly show gallery
         showVisitButton: true, // Optional: Explicitly show "Visit Project" button
+        featured: true, // This will make it appear on Home
       },
       {
         id: 102,
