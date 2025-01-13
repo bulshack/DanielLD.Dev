@@ -290,7 +290,7 @@ const Home = () => {
           })}
         </Grid>
 
-        <NeonButton variant="contained" href="/portfolio" sx={{ mt: 3 }}>
+        <NeonButton variant="contained" href="#/portfolio" sx={{ mt: 3 }}>
           View All Projects
         </NeonButton>
       </Container>
@@ -311,7 +311,7 @@ const Home = () => {
         </Typography>
 
         {/* Button leading to the full About page */}
-        <NeonButton variant="contained" href="/about">
+        <NeonButton variant="contained" href="#/about">
           Read More About Me
         </NeonButton>
       </Container>

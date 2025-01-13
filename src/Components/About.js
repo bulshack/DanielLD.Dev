@@ -116,7 +116,7 @@ const About = () => {
       <div className="about-cta">
         <AccentButton 
           variant="contained" 
-          onClick={() => window.location.href = '/contact'}
+          onClick={() => window.location.href = '#/contact'}
         >
           Contact Me
         </AccentButton>
